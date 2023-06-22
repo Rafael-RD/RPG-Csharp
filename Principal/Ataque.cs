@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Habilidade
+namespace projeto1_RPG.Principal
 {
     internal class Ataque
     {
@@ -23,8 +23,7 @@ namespace projeto1_RPG.Habilidade
 
         public int CalcDano()
         {
-            Random rnd = new Random();
-            return rnd.Next(DanoMinimo, DanoMaximo);
+            return new Random().Next(DanoMinimo, DanoMaximo+1);
         }
 
     }

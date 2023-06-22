@@ -10,8 +10,8 @@ namespace projeto1_RPG.Personagens.Racas
 {
 	internal class ListaRacas
 	{
-		private static List<Raca>? RacasJogador { get; set; }
-		private static List<Raca>? RacasOponente { get; set; }
+		private static List<Raca> RacasJogador { get; set; }
+		private static List<Raca> RacasOponente { get; set; }
 		public static List<Raca> GetRacasJogador()
 		{
 			if (RacasJogador == null)

@@ -1,4 +1,4 @@
-using projeto1_RPG.Principal;
+using projeto1_RPG.Habilidades;
 using projeto1_RPG.Personagens;
 using System;
 using System.Collections.Generic;
@@ -10,28 +10,23 @@ namespace projeto1_RPG.Combate
 {
     internal class Combate
     {
-        private List<Personagem> Jogadores { get; set; }
-        private List<Personagem> Oponentes { get; set; }
+        private List<Jogador> Jogadores { get; set; }
+        private List<Oponente> Oponentes { get; set; }
         private FilaCombate Fila { get; set; }
         private bool Fugiu { get; set; }
 
         public Combate()
         {
-            this.Jogadores = new List<Personagem>();
-            this.Oponentes = new List<Personagem>();
+            this.Jogadores = new List<Jogador>();
+            this.Oponentes = new List<Oponente>();
             this.Fila = new FilaCombate();
         }
 
-        public void AddJogador(Personagem jogador)
+        public void AddPersonagem(Personagem personagem)
         {
-            this.Jogadores.Add(jogador);
-            this.Fila.Adicionar(jogador);
-        }
-
-        public void AddOponente(Personagem oponente)
-        {
-            this.Oponentes.Add(oponente);
-            this.Fila.Adicionar(oponente);
+            if (personagem is Jogador) this.Jogadores.Add((Jogador)personagem);
+            else if (personagem is Oponente) this.Oponentes.Add((Oponente)personagem);
+            this.Fila.Adicionar(personagem);
         }
 
         public void IniciarCombate()
@@ -99,7 +94,7 @@ namespace projeto1_RPG.Combate
             Habilidade? habilidade = personagem.SelecionarHabilidade();
             if (habilidade == null) return false;
 
-            Personagem? alvo = personagem.SelecionarAlvo(this.Fila.Ordem);
+            Personagem? alvo = personagem.SelecionarAlvo(this.Fila.Ordem, habilidade);
             if (alvo == null) return false;
 
             Console.WriteLine($"{personagem.Nome} usou {habilidade.Nome} em {alvo.Nome}.");
@@ -114,7 +109,7 @@ namespace projeto1_RPG.Combate
             // Calcula fuga com base na destreza dos lados
             int dexJogadores = (int)Math.Round(this.Fila.Jogadores.Sum(j => j.Atributos.Destreza));
             int dexOponentes = (int)Math.Round(this.Fila.Oponentes.Sum(o => o.Atributos.Destreza));
-            int fuga = (new Random().Next(1, dexJogadores + dexOponentes));
+            int fuga = (new Random().Next(1, dexJogadores + dexOponentes+1));
 
             Fugiu = (fuga < dexJogadores);
             return true;

@@ -18,6 +18,8 @@ namespace projeto1_RPG.Personagens.Racas.Jogador
 			Atributos.Inteligencia = 3;
 			Atributos.Resistencia = 2;
 			Atributos.Saude = 1;
+			DinheiroMin = 0;
+			DinheiroMax = 10;
 		}
 	}
 }
