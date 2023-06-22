@@ -60,6 +60,7 @@
     <Compile Include="Personagens\Classes\ListaClasses.cs" />
     <Compile Include="Personagens\Classes\Mago.cs" />
     <Compile Include="Personagens\Jogador.cs" />
+    <Compile Include="Personagens\Nivel.cs" />
     <Compile Include="Personagens\Oponente.cs" />
     <Compile Include="Personagens\Personagem.cs" />
     <Compile Include="Personagens\Racas\Jogador\Anao.cs" />
