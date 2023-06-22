@@ -69,7 +69,7 @@
     <Compile Include="Personagens\Racas\ListaRacas.cs" />
     <Compile Include="Personagens\Racas\Oponente\Esqueleto.cs" />
     <Compile Include="Personagens\Racas\Oponente\Goblin.cs" />
-    <Compile Include="Personagens\Racas\Oponente\HomemRato.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Homem_Rato.cs" />
     <Compile Include="Personagens\Racas\Oponente\Kobold.cs" />
     <Compile Include="Personagens\Racas\Oponente\Orc.cs" />
     <Compile Include="Personagens\Racas\Oponente\Warg.cs" />
