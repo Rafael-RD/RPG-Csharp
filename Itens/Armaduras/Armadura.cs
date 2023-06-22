@@ -9,13 +9,15 @@ namespace projeto1_RPG.Itens.Armaduras
 {
     internal class Armadura : Item
     {
-        public Defesa Resistencia { get; set; }
-        public Defesa Fraqueza { get; set; }
+        public Categoria Resistencia { get; set; }
+        public Categoria Fraqueza { get; set; }
+        public int ReducaoDano { get; set; }
 
         public Armadura(string nome, string descricao, int valor, int reducaoDano) : base(nome, descricao, valor)
         {
-            Resistencia = new Defesa(reducaoDano);
-            Fraqueza = new Defesa(0);
+            Resistencia = new Categoria();
+            Fraqueza = new Categoria();
+            ReducaoDano = reducaoDano;
         }
     }
 }

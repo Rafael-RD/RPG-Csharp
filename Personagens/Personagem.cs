@@ -66,6 +66,22 @@ namespace projeto1_RPG.Personagens
 		{
 			int dano = ataque.CalcDano();
 
+			// Fraqueza
+			if ((this.Armadura != null) &&
+				(this.Armadura.Fraqueza != null) &&
+				((ataque.Categoria.Elemental == this.Armadura.Fraqueza.Elemental) ||
+				 (ataque.Categoria.Fisica == this.Armadura.Fraqueza.Fisica)))
+				dano = (int)Math.Floor(dano * 1.5);
+
+			// Resistência
+			if ((this.Armadura != null) &&
+				(this.Armadura.Resistencia != null))
+			{
+				if (this.Armadura.Resistencia.Elemental  == ataque.Categoria.Elemental) dano =  Math.Max(0, dano - this.Armadura.ReducaoDano);
+				if (this.Armadura.Resistencia.Fisica == ataque.Categoria.Fisica) dano =  Math.Max(0, dano - this.Armadura.ReducaoDano);
+			}
+
+			// Efeitos de redução ou aumento de dano
 			foreach (Efeito e in this.Efeitos)
 			{
 				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
@@ -76,7 +92,8 @@ namespace projeto1_RPG.Personagens
 
 		public void Atacar(Personagem alvo)
 		{
-			if (this.Arma != null) alvo.ReceberAtaque(this, this.Arma.Ataque);
+			if (this.Arma == null) alvo.ReceberAtaque(this, new Ataque(null, 1, this.Atributos.Forca));
+			else alvo.ReceberAtaque(this, this.Arma.Ataque);
 		}
 
 		public void Defender()

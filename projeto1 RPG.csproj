@@ -52,6 +52,7 @@
     <Compile Include="Itens\Armaduras\Armadura.cs" />
     <Compile Include="Itens\Armaduras\ListaArmaduras.cs" />
     <Compile Include="Itens\Armas\Arma.cs" />
+    <Compile Include="Itens\Armas\ListaArmas.cs" />
     <Compile Include="Itens\Item.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Personagens\Classes\Classe.cs" />
@@ -76,7 +77,7 @@
     <Compile Include="Personagens\Racas\Raca.cs" />
     <Compile Include="Principal\Ataque.cs" />
     <Compile Include="Principal\Atributos.cs" />
-    <Compile Include="Principal\Defesa.cs" />
+    <Compile Include="Principal\Categoria.cs" />
     <Compile Include="Principal\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
