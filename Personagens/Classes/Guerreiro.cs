@@ -17,6 +17,7 @@ namespace projeto1_RPG.Personagens.Classes
 			Atributos.Inteligencia = 1;
 			Atributos.Resistencia = 3;
 			Atributos.Saude = 2;
+			Dinheiro = 10;
 		}
 	}
 }

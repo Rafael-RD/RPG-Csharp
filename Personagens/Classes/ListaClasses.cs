@@ -8,7 +8,7 @@ namespace projeto1_RPG.Personagens.Classes
 {
 	internal class ListaClasses
 	{
-		private static List<Classe>? Classes { get; set; }
+		private static List<Classe> Classes { get; set; }
 		public static List<Classe> GetClasses()
 		{
 			if (Classes == null)
