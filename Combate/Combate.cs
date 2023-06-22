@@ -13,11 +13,7 @@ namespace projeto1_RPG.Combate
         private List<Personagem> Jogadores { get; set; }
         private List<Personagem> Oponentes { get; set; }
         private FilaCombate Fila { get; set; }
-
-        private const int ACAO_ATACAR = 0;
-        private const int ACAO_DEFENDER = 1;
-        private const int ACAO_HABILIDADE = 2;
-        private const int ACAO_FUGIR = 3;
+        private bool Fugiu { get; set; }
 
         public Combate()
         {
@@ -38,142 +34,125 @@ namespace projeto1_RPG.Combate
             this.Fila.Adicionar(oponente, false);
         }
 
-        public ResultadoCombate IniciarCombate()
+        public void IniciarCombate()
         {
+            Fugiu = false;
             this.Fila.Iniciar();
-            while (!this.Fila.Terminou())
+            Console.WriteLine("-----------------");
+            Console.WriteLine("Combate iniciado!");
+
+            // Apresenta ordem
+            Console.WriteLine("Ordem: ");
+            foreach (Personagem p in this.Fila.Ordem) { Console.Write($"- {p.Nome}"); }
+
+            // Loop principal do combate
+            while ((!Fugiu) && (!this.Fila.Terminou()))
             {
                 IniciarTurno(this.Fila.Proximo());
             }
-            ResultadoCombate resultado = CalcularResultado();
 
-            foreach (Personagem jogador in this.Fila.Jogadores)
-            {
-                jogador.Exp += resultado.Exp / this.Fila.Jogadores.Count;
-                // jogador.Dinheiro += resultado.Dinheiro / this.Fila.Jogadores.Count; // TODO: Entregar o dinheiro
-            }
-
-            return resultado;
-        }
-
-        private bool IsJogador(Personagem personagem)
-        {
-            return this.Jogadores.Contains(personagem);
-        }
-
-        private int BuscaAcaoJogador()
-        {
-            Console.WriteLine("Selecione uma ação:");
-            string[] opcoes = {
-                "Atacar",
-                "Defender",
-                "Habilidades"
-            };
-            return Menu.MostrarOpcoes(opcoes, "Ação: ", "Fugir");
-        }
-
-        private int BuscaAcaoNPC()
-        {
-            Random random = new Random();
-            int chance = random.Next(1, 5);
-
-            if (chance == 1) return ACAO_DEFENDER;
-            if (chance == 2) return ACAO_HABILIDADE;
-            return ACAO_ATACAR;
+            // Resultado do combate
+            ApresentarResultado();
         }
 
         private void IniciarTurno(Personagem personagem)
         {
+            Console.WriteLine($"\nTurno de {personagem.Nome}");
+            personagem.IniciouTurno();
+
+            // Sai do loop somente quando executou uma ação
             bool sair = false;
             while (!sair)
             {
-                Console.WriteLine($"\nTurno de {personagem.Nome}");
-
-                int acao;
-                if (IsJogador(personagem)) acao = BuscaAcaoJogador();
-                else acao = BuscaAcaoNPC();
-
-                switch (acao)
+                switch (personagem.EscolherAcao())
                 {
-                    case ACAO_ATACAR: sair = Atacar(personagem); break;
-                    case ACAO_DEFENDER: sair = Defender(personagem); break;
-                    case ACAO_HABILIDADE: sair = Habilidade(personagem); break;
-                   default: sair = Fugir(personagem); break;
-                }
+                    case Personagem.AcaoTurno.Atacar: sair = Atacar(personagem); break;
+                    case Personagem.AcaoTurno.Defender: sair = Defender(personagem); break;
+                    case Personagem.AcaoTurno.Habilidades: sair = UsarHabilidade(personagem); break;
+                    case Personagem.AcaoTurno.Fujir: sair = Fugir(personagem); break;
+                    default: Console.WriteLine("Ação não identificada!"); break;
+               }
             }
         }
-        public bool Atacar(Personagem personagem)
-        {
-            Personagem? alvo = null;
 
-            if (IsJogador(personagem))
-            {
-                if (this.Oponentes.Count == 1)
-                {
-                    alvo = this.Oponentes[0];
-                }
-                else
-                {
-                    Console.WriteLine($"\nQual inimigo deseja atacar?");
-                    int opcao = Menu.MostrarOpcoes(this.Oponentes.Select(j => $"{j.Nome} ({j.SaudeAtual}/{j.Atributos.Saude})").ToArray(), "Alvo: ", "Voltar");
-                    if (opcao >= 0) alvo = this.Oponentes[opcao];
-                }
-            } else {
-                if (this.Jogadores.Count == 1)
-                {
-                    alvo = this.Jogadores[0];
-                }
-                else
-                {
-                    Random random = new Random();
-                    alvo = this.Jogadores[random.Next(0, this.Jogadores.Count-1)];
-                }
-            }
+        private bool Atacar(Personagem personagem)
+        {
+            Personagem? alvo = personagem.SelecionarAlvo(this.Fila.Ordem);
+            if (alvo == null) return false;
 
-            if (alvo != null)
-            {
-                //personagem.Atacar(alvo); // TODO: Atacar
+            Console.WriteLine($"{personagem.Nome} ataca {alvo.Nome}.");
+            personagem.Atacar(alvo);
 
-                if (alvo.SaudeAtual <= 0)
-                {
-                    this.Fila.Remover(alvo);
-                }
-                return true;
-            }
-            return false;
-        }
-        public bool Defender(Personagem personagem)
-        {
-            // TODO: Defender
-            return true;
-        }
-        public bool Habilidade(Personagem personagem)
-        {
-            // TODO: Selecionar habilidade
-            // TODO: Usar habilidade
-            return false;
-        }
-        public bool Fugir(Personagem personagem)
-        {
-            // TODO: Fugir
+            if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
             return true;
         }
 
-        private ResultadoCombate CalcularResultado()
+        private bool Defender(Personagem personagem)
         {
-            ResultadoCombate resultado = new ResultadoCombate();
+            Console.WriteLine($"{personagem.Nome} está se defendendo.");
+            personagem.Defender();
+            return true;
+        }
 
-            resultado.Vitoria = (this.Fila.Oponentes.Count == 0) && (this.Fila.Jogadores.Count > 0);
+        private bool UsarHabilidade(Personagem personagem)
+        {
+            Habilidade? habilidade = personagem.SelecionarHabilidade();
+            if (habilidade == null) return false;
+
+            Personagem? alvo = personagem.SelecionarAlvo(this.Fila.Ordem);
+            if (alvo == null) return false;
+
+            Console.WriteLine($"{personagem.Nome} usou {habilidade.Nome} em {alvo.Nome}.");
+            personagem.Habilidade(habilidade, alvo);
+
+            if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+            return true;
+        }
+
+        private bool Fugir(Personagem personagem)
+        {
+            // Calcula fuga com base na destreza dos lados
+            double dexJogadores = 0;
+            double dexOponentes = 0;
+            foreach (Personagem p in this.Fila.Ordem)
+            {
+                if (p is Jogador) dexJogadores += p.Atributos.Destreza;
+                else dexOponentes += p.Atributos.Destreza;
+            }
+            int fuga = (new Random().Next(1, (int)Math.Round(dexJogadores + dexOponentes)));
+
+            Fugiu = (fuga < dexJogadores);
+            return true;
+        }
+
+        private void ApresentarResultado()
+        {
+            Console.WriteLine("------------------");
+            Console.WriteLine("Combate encerrado!");
+
+            string resultado;
+            if (Fugiu) resultado = "Fuga";
+            else if (this.Fila.Jogadores.Count == 0) resultado = "Derrota";
+            else resultado = "Vitória";
+
+            Console.WriteLine($"Resultado: {resultado}");
+
+            int totalExp = 0;
             foreach (Personagem p in this.Oponentes)
             {
-                if (!this.Fila.Oponentes.Contains(p))
-                {
-                    resultado.Exp += p.Exp;
-                    // resultado.Dinheiro += p.Dinheiro; // TODO: Somar o dinheiro no resultado
-                }
+                if (!this.Fila.Oponentes.Contains(p)) totalExp += p.Exp;
             }
 
-            return resultado;
+            int exp;
+            foreach (Personagem jogador in this.Fila.Jogadores)
+            {
+                exp = totalExp / this.Fila.Jogadores.Count;
+                jogador.Exp += exp;
+                Console.WriteLine($"{jogador.Nome} ganhou experiência: {exp}.");
+            }
+
+            Console.Write("Pressione qualquer tecla para continuar.");
+            Console.ReadKey();
         }
     }
 }

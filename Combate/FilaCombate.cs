@@ -59,7 +59,6 @@ namespace projeto1_RPG.Combate
             {
                 this.Rodada++;
                 this.IdxProximo = 0;
-                // foreach (Personagem personagem in this.Jogadores) { personagem.FimDeTurno(); } // TODO: Reduzir tempo de efeitos
             }
             return this.Ordem[this.IdxProximo++];
         }

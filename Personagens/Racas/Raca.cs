@@ -12,10 +12,12 @@ namespace projeto1_RPG.Personagens.Racas
 		public int Id { get; set; }
 		public string Nome { get; set; }
 		public Atributos Atributos { get; set; }
+		public List<Habilidade> Habilidades { get; set; }
 		public Raca()
 		{
 			Nome = String.Empty;
 			Atributos = new Atributos();
+			Habilidades = new List<Habilidade>();
 		}
 	}
 }

@@ -9,15 +9,20 @@ namespace projeto1_RPG.Efeitos
 {
     internal class Efeito
     {
-        public String Nome { get; protected set; }
-        public int Turnos { get; protected set; }
-        public bool Percentual { get; protected set; }
-        public Atributos Atributos { get; private set; }
+        public enum MomentoAplicar
+        {
+            Nenhum,
+            AposCalcularDano
+        }
+        public string Nome { get; protected set; }
+        public string Descricao { get; protected set; }
+        public MomentoAplicar Momento { get; protected set; }
+        public int Turnos { get; set; }
 
         public Efeito()
         {
             this.Nome = String.Empty;
-            this.Atributos = new Atributos();
+            this.Descricao = String.Empty;
         }
     }
 }

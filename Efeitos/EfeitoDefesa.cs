@@ -9,12 +9,14 @@ namespace projeto1_RPG.Efeitos
 {
     internal class EfeitoDefesa : Efeito
     {
+        public int Percentual { get; protected set; }
+
         public EfeitoDefesa() : base()
         {
             this.Nome = "Defesa";
+            this.Momento = MomentoAplicar.AposCalcularDano;
             this.Turnos = 1;
-            this.Percentual = true;
-            this.Atributos.Resistencia = 50;
+            this.Percentual = 50;
         }
     }
 }
