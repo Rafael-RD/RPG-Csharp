@@ -12,7 +12,7 @@ namespace projeto1_RPG.Personagens
 {
 	internal class Jogador : Personagem
 	{
-		public Jogador(Raca raca, Classe classe) : base(raca, classe) { }
+		public Jogador(Raca raca, Classe classe, int nivel = 1) : base(raca, classe, nivel) { }
 
         public override AcaoTurno EscolherAcao()
         {
@@ -27,11 +27,11 @@ namespace projeto1_RPG.Personagens
                 case 0: return AcaoTurno.Atacar;
                 case 1: return AcaoTurno.Defender;
                 case 2: return AcaoTurno.Habilidades;
-               default: return AcaoTurno.Fujir;
+               default: return AcaoTurno.Fugir;
             }
         }
 
-        public override Habilidade? SelecionarHabilidade()
+        public override Habilidade SelecionarHabilidade()
         {
             Console.WriteLine($"\nSelecione uma habilidade:");
             int opcao = Menu.MostrarOpcoes(Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
@@ -43,7 +43,7 @@ namespace projeto1_RPG.Personagens
             return null;
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade)
+        public override Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade)
         {
             List<Personagem> lista = fila.FindAll(x => x is Oponente);
 

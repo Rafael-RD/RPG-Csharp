@@ -43,9 +43,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Habilidade\Habilidade.cs" />
-    <Compile Include="Habilidade\Ataque.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Combate\Combate.cs" />
+    <Compile Include="Combate\FilaCombate.cs" />
+    <Compile Include="Combate\GeradorOponentes.cs" />
+    <Compile Include="Efeitos\Efeito.cs" />
+    <Compile Include="Efeitos\EfeitoDefesa.cs" />
+    <Compile Include="Habilidades\Habilidade.cs" />
+    <Compile Include="Personagens\Classes\Classe.cs" />
+    <Compile Include="Personagens\Classes\Guerreiro.cs" />
+    <Compile Include="Personagens\Classes\Ladrao.cs" />
+    <Compile Include="Personagens\Classes\ListaClasses.cs" />
+    <Compile Include="Personagens\Classes\Mago.cs" />
+    <Compile Include="Personagens\Racas\Jogador\Anao.cs" />
+    <Compile Include="Personagens\Racas\Jogador\Elfo.cs" />
+    <Compile Include="Personagens\Racas\Jogador\Humano.cs" />
+    <Compile Include="Personagens\Jogador.cs" />
+    <Compile Include="Personagens\Nivel.cs" />
+    <Compile Include="Personagens\Oponente.cs" />
+    <Compile Include="Personagens\Personagem.cs" />
+    <Compile Include="Personagens\Racas\Raca.cs" />
+    <Compile Include="Personagens\Racas\ListaRacas.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Warg.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Orc.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Kobold.cs" />
+    <Compile Include="Personagens\Racas\Oponente\HomemRato.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Goblin.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Esqueleto.cs" />
+    <Compile Include="Principal\Ataque.cs" />
+    <Compile Include="Principal\Atributos.cs" />
+    <Compile Include="Principal\Menu.cs" />
+    <Compile Include="Principal\Defesa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

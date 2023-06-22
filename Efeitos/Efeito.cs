@@ -22,6 +22,6 @@ namespace projeto1_RPG.Efeitos
 
     interface IEfeitoAposCalcularDano
     {
-        public int AposCalcularDano(int dano);
+        int AposCalcularDano(int dano);
     }
 }

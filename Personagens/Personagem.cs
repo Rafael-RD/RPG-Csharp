@@ -18,25 +18,28 @@ namespace projeto1_RPG.Personagens
 		public string Nome { get; set; }
 		public Raca Raca { get; set; }
 		public Classe Classe { get; set; }
+		public Nivel Nivel { get; set; }
 		public Atributos Atributos { get; set; }
-		public Arma? Arma { get; set; }
-		public Armadura? Armadura { get; set; }
+		public Arma Arma { get; set; }
+		public Armadura Armadura { get; set; }
 		public List<Habilidade> Habilidades { get; set; }
 		public List<Efeito> Efeitos { get; set; }
 		public int SaudeAtual { get; set; }
-		public int Nivel { get; set; }
-		public int Exp { get; set; }
+		public int Dinheiro { get; set; }
 
-		public Personagem(Raca raca, Classe classe)
+		public Personagem(Raca raca, Classe classe, int nivel = 1)
 		{
 			Nome = String.Empty;
 			Raca = raca;
 			Classe = classe;
+			Nivel = new Nivel(nivel);
 			Arma = null;
 			Armadura = null;
 			Atributos = new Atributos();
 			Atributos.SomarAtributos(Raca.Atributos);
 			Atributos.SomarAtributos(Classe.Atributos);
+			SaudeAtual = Atributos.Saude;
+			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 
 			Habilidades = new List<Habilidade>();
 			Habilidades.AddRange(Raca.Habilidades);
@@ -51,11 +54,11 @@ namespace projeto1_RPG.Personagens
 			Atacar,
             Defender,
             Habilidades,
-			Fujir
+			Fugir
 		}
 		public abstract AcaoTurno EscolherAcao();
-        public abstract Habilidade? SelecionarHabilidade();
-		public abstract Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade = null);
+        public abstract Habilidade SelecionarHabilidade();
+		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade = null);
 
 		public void IniciouTurno()
 		{
@@ -65,6 +68,7 @@ namespace projeto1_RPG.Personagens
 		private void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
 			int dano = ataque.CalcDano();
+
 			foreach (Efeito e in this.Efeitos)
 			{
 				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
