@@ -19,8 +19,8 @@ namespace projeto1_RPG.Personagens
 		public Raca Raca { get; set; }
 		public Classe Classe { get; set; }
 		public Atributos Atributos { get; set; }
-		public Arma? Arma { get; set; }
-		public Armadura? Armadura { get; set; }
+		public Arma Arma { get; set; }
+		public Armadura Armadura { get; set; }
 		public List<Habilidade> Habilidades { get; set; }
 		public List<Efeito> Efeitos { get; set; }
 		public int SaudeAtual { get; set; }
@@ -54,8 +54,8 @@ namespace projeto1_RPG.Personagens
 			Fujir
 		}
 		public abstract AcaoTurno EscolherAcao();
-        public abstract Habilidade? SelecionarHabilidade();
-		public abstract Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade = null);
+        public abstract Habilidade SelecionarHabilidade();
+		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade = null);
 
 		public void IniciouTurno()
 		{

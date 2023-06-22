@@ -72,7 +72,7 @@ namespace projeto1_RPG.Combate
 
         private bool Atacar(Personagem personagem)
         {
-            Personagem? alvo = personagem.SelecionarAlvo(this.Fila.Ordem);
+            Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem);
             if (alvo == null) return false;
 
             Console.WriteLine($"{personagem.Nome} ataca {alvo.Nome}.");
@@ -91,10 +91,10 @@ namespace projeto1_RPG.Combate
 
         private bool UsarHabilidade(Personagem personagem)
         {
-            Habilidade? habilidade = personagem.SelecionarHabilidade();
+            Habilidade habilidade = personagem.SelecionarHabilidade();
             if (habilidade == null) return false;
 
-            Personagem? alvo = personagem.SelecionarAlvo(this.Fila.Ordem, habilidade);
+            Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, habilidade);
             if (alvo == null) return false;
 
             Console.WriteLine($"{personagem.Nome} usou {habilidade.Nome} em {alvo.Nome}.");
