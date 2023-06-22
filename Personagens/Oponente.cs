@@ -22,7 +22,7 @@ namespace projeto1_RPG.Personagens
             return AcaoTurno.Atacar;
         }
 
-        public override Habilidade? SelecionarHabilidade()
+        public override Habilidade SelecionarHabilidade()
         {
             int opcao;
             if (Habilidades.Count == 0) return null;
@@ -33,7 +33,7 @@ namespace projeto1_RPG.Personagens
             return Habilidades[opcao];
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade)
+        public override Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade)
         {
             List<Personagem> lista = fila.FindAll(x => x is Jogador);
             if (lista.Count == 1) return lista[0];

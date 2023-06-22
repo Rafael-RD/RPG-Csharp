@@ -31,7 +31,7 @@ namespace projeto1_RPG.Personagens
             }
         }
 
-        public override Habilidade? SelecionarHabilidade()
+        public override Habilidade SelecionarHabilidade()
         {
             Console.WriteLine($"\nSelecione uma habilidade:");
             int opcao = Menu.MostrarOpcoes(Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
@@ -43,7 +43,7 @@ namespace projeto1_RPG.Personagens
             return null;
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade)
+        public override Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade)
         {
             List<Personagem> lista = fila.FindAll(x => x is Oponente);
 
