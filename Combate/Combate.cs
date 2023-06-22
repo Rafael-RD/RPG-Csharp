@@ -64,7 +64,7 @@ namespace projeto1_RPG.Combate
                     case Personagem.AcaoTurno.Atacar: sair = Atacar(personagem); break;
                     case Personagem.AcaoTurno.Defender: sair = Defender(personagem); break;
                     case Personagem.AcaoTurno.Habilidades: sair = UsarHabilidade(personagem); break;
-                    case Personagem.AcaoTurno.Fujir: sair = Fugir(personagem); break;
+                    case Personagem.AcaoTurno.Fugir: sair = Fugir(personagem); break;
                     default: Console.WriteLine("Ação não identificada!"); break;
                }
             }
@@ -107,8 +107,8 @@ namespace projeto1_RPG.Combate
         private bool Fugir(Personagem personagem)
         {
             // Calcula fuga com base na destreza dos lados
-            int dexJogadores = (int)Math.Round(this.Fila.Jogadores.Sum(j => j.Atributos.Destreza));
-            int dexOponentes = (int)Math.Round(this.Fila.Oponentes.Sum(o => o.Atributos.Destreza));
+            int dexJogadores = this.Fila.Jogadores.Sum(j => j.Atributos.Destreza);
+            int dexOponentes = this.Fila.Oponentes.Sum(o => o.Atributos.Destreza);
             int fuga = (new Random().Next(1, dexJogadores + dexOponentes+1));
 
             Fugiu = (fuga < dexJogadores);
@@ -130,14 +130,14 @@ namespace projeto1_RPG.Combate
             int totalExp = 0;
             foreach (Personagem p in this.Oponentes)
             {
-                if (!this.Fila.Oponentes.Contains(p)) totalExp += p.Exp;
+                if (!this.Fila.Oponentes.Contains(p)) totalExp += p.Nivel.ExpRecompensa;
             }
 
             int exp;
             foreach (Jogador j in this.Fila.Jogadores)
             {
                 exp = totalExp / this.Fila.Jogadores.Count;
-                j.Exp += exp;
+                j.Nivel.ExpAtual += exp;
                 Console.WriteLine($"{j.Nome} ganhou experiência: {exp}.");
             }
 

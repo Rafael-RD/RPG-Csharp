@@ -8,15 +8,13 @@ namespace projeto1_RPG.Principal
 {
     internal class Ataque
     {
-        public string Elemento { get; set; }
-        public string Categoria { get; set; }
+        public Categoria Categoria { get; set; }
         public int DanoMinimo { get; set; }
         public int DanoMaximo { get; set; }
 
-        public Ataque(string elemento, string categoria, int danoMinimo, int danoMaximo)
+        public Ataque(Categoria categoria, int danoMinimo, int danoMaximo)
         {
-            Elemento = elemento;
-            Categoria = categoria;
+            Categoria = categoria ?? new Categoria();
             DanoMinimo = danoMinimo;
             DanoMaximo = danoMaximo;
         }

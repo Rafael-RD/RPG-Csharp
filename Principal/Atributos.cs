@@ -8,11 +8,11 @@ namespace projeto1_RPG.Principal
 {
 	internal class Atributos
 	{
-		public double Forca { get; set; }
-		public double Destreza { get; set; }
-		public double Inteligencia { get; set; }
-		public double Resistencia { get; set; }
-		public double Saude { get; set; }
+		public int Forca { get; set; }
+		public int Destreza { get; set; }
+		public int Inteligencia { get; set; }
+		public int Resistencia { get; set; }
+		public int Saude { get; set; }
 		public Atributos() { }
 		public void SomarAtributos(Atributos atributos)
 		{
