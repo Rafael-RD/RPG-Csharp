@@ -1,5 +1,6 @@
 using projeto1_RPG.Personagens.Racas;
 using projeto1_RPG.Personagens.Classes;
+using projeto1_RPG.Habilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace projeto1_RPG.Personagens
 
         public override AcaoTurno EscolherAcao()
         {
-            int chance = new Random().Next(1, 5);
+            int chance = new Random().Next(1, 5+1);
 
             if (chance == 1) return AcaoTurno.Defender;
             if (chance == 2) return AcaoTurno.Habilidades;
@@ -26,19 +27,18 @@ namespace projeto1_RPG.Personagens
             int opcao;
             if (Habilidades.Count == 0) return null;
             if (Habilidades.Count == 1) opcao = 0;
-            else opcao = new Random().Next(0, Habilidades.Count-1);
+            else opcao = new Random().Next(0, Habilidades.Count);
 
             if (!Classe.ConsegueUsar(Habilidades[opcao])) return null;
             return Habilidades[opcao];
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> fila)
+        public override Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade)
         {
             List<Personagem> lista = fila.FindAll(x => x is Jogador);
             if (lista.Count == 1) return lista[0];
 
-            Random random = new Random();
-            return lista[random.Next(0, lista.Count-1)];
+            return lista[new Random().Next(0, lista.Count)];
         }
 	}
 }

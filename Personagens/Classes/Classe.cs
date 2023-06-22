@@ -1,4 +1,5 @@
 using projeto1_RPG.Principal;
+using projeto1_RPG.Habilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace projeto1_RPG.Personagens.Classes
 		public string Nome { get; set; }
 		public Atributos Atributos { get; set; }
 		public List<Habilidade> Habilidades { get; set; }
+		public int Dinheiro { get; set; }
+
 		public Classe()
 		{
 			Nome = string.Empty;

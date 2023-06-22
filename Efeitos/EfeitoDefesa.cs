@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Efeitos
 {
-    internal class EfeitoDefesa : Efeito
+    internal class EfeitoDefesa : Efeito, IEfeitoAposCalcularDano
     {
-        public int Percentual { get; protected set; }
+        public int PercReducao { get; protected set; }
 
         public EfeitoDefesa() : base()
         {
             this.Nome = "Defesa";
-            this.Momento = MomentoAplicar.AposCalcularDano;
             this.Turnos = 1;
-            this.Percentual = 50;
+            this.PercReducao = 50;
+        }
+
+        public int AposCalcularDano(int dano)
+        {
+            return (int)Math.Floor((float)dano * (this.PercReducao / 100));
         }
     }
 }

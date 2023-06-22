@@ -1,5 +1,6 @@
 using projeto1_RPG.Personagens.Racas;
 using projeto1_RPG.Personagens.Classes;
+using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace projeto1_RPG.Personagens
             return null;
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> fila)
+        public override Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade)
         {
             List<Personagem> lista = fila.FindAll(x => x is Oponente);
 
