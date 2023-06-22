@@ -32,9 +32,9 @@ namespace projeto1_RPG.Personagens
             return Habilidades[opcao];
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> personagens)
+        public override Personagem? SelecionarAlvo(List<Personagem> fila)
         {
-            List<Jogador> lista = BuscarPersonagens<Jogador>(personagens);
+            List<Personagem> lista = fila.FindAll(x => x is Jogador);
             if (lista.Count == 1) return lista[0];
 
             Random random = new Random();

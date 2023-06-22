@@ -25,13 +25,13 @@ namespace projeto1_RPG.Combate
         public void AddJogador(Personagem jogador)
         {
             this.Jogadores.Add(jogador);
-            this.Fila.Adicionar(jogador, true);
+            this.Fila.Adicionar(jogador);
         }
 
         public void AddOponente(Personagem oponente)
         {
             this.Oponentes.Add(oponente);
-            this.Fila.Adicionar(oponente, false);
+            this.Fila.Adicionar(oponente);
         }
 
         public void IniciarCombate()
@@ -112,14 +112,9 @@ namespace projeto1_RPG.Combate
         private bool Fugir(Personagem personagem)
         {
             // Calcula fuga com base na destreza dos lados
-            double dexJogadores = 0;
-            double dexOponentes = 0;
-            foreach (Personagem p in this.Fila.Ordem)
-            {
-                if (p is Jogador) dexJogadores += p.Atributos.Destreza;
-                else dexOponentes += p.Atributos.Destreza;
-            }
-            int fuga = (new Random().Next(1, (int)Math.Round(dexJogadores + dexOponentes)));
+            int dexJogadores = (int)Math.Round(this.Fila.Jogadores.Sum(j => j.Atributos.Destreza));
+            int dexOponentes = (int)Math.Round(this.Fila.Oponentes.Sum(o => o.Atributos.Destreza));
+            int fuga = (new Random().Next(1, dexJogadores + dexOponentes));
 
             Fugiu = (fuga < dexJogadores);
             return true;
@@ -144,11 +139,11 @@ namespace projeto1_RPG.Combate
             }
 
             int exp;
-            foreach (Personagem jogador in this.Fila.Jogadores)
+            foreach (Jogador j in this.Fila.Jogadores)
             {
                 exp = totalExp / this.Fila.Jogadores.Count;
-                jogador.Exp += exp;
-                Console.WriteLine($"{jogador.Nome} ganhou experiência: {exp}.");
+                j.Exp += exp;
+                Console.WriteLine($"{j.Nome} ganhou experiência: {exp}.");
             }
 
             Console.Write("Pressione qualquer tecla para continuar.");

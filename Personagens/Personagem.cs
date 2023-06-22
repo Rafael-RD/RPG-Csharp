@@ -49,18 +49,7 @@ namespace projeto1_RPG.Personagens
 		}
 		public abstract AcaoTurno EscolherAcao();
         public abstract Habilidade? SelecionarHabilidade();
-		public abstract Personagem? SelecionarAlvo(List<Personagem> personagens);
-
-		protected List<T> BuscarPersonagens<T>(List<Personagem> lista) where T : Personagem
-		{
-			List<T> resultado = new List<T>();
-
-            foreach (Personagem p in lista)
-            {
-                if (p is Oponente) resultado.Add((T)p);
-            }
-			return resultado;
-		}
+		public abstract Personagem? SelecionarAlvo(List<Personagem> fila);
 
 		public void IniciouTurno()
 		{

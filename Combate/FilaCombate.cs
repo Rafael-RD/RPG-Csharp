@@ -9,8 +9,8 @@ namespace projeto1_RPG.Combate
 {
     internal class FilaCombate
     {
-        public List<Personagem> Jogadores { get; private set; }
-        public List<Personagem> Oponentes { get; private set; }
+        public List<Jogador> Jogadores { get; private set; }
+        public List<Oponente> Oponentes { get; private set; }
 
         public int Rodada { get; private set; }
         private int IdxProximo { get; set; }
@@ -18,15 +18,15 @@ namespace projeto1_RPG.Combate
 
         public FilaCombate()
         {
-            this.Jogadores = new List<Personagem>();
-            this.Oponentes = new List<Personagem>();
+            this.Jogadores = new List<Jogador>();
+            this.Oponentes = new List<Oponente>();
             this.Ordem = new List<Personagem>();
         }
 
-        public void Adicionar(Personagem personagem, bool jogador)
+        public void Adicionar(Personagem personagem)
         {
-            if (jogador) this.Jogadores.Add(personagem);
-            else this.Oponentes.Add(personagem);
+            if (personagem is Jogador) this.Jogadores.Add((Jogador)personagem);
+            else if (personagem is Oponente) this.Oponentes.Add((Oponente)personagem);
 
             this.Ordem.Add(personagem);
         }
@@ -37,8 +37,8 @@ namespace projeto1_RPG.Combate
             if (idx <= this.IdxProximo) this.IdxProximo--;
 
             this.Ordem.RemoveAt(idx);
-            this.Oponentes.Remove(p);
-            this.Jogadores.Remove(p);
+            if (p is Jogador) this.Jogadores.Remove((Jogador)p);
+            if (p is Oponente) this.Oponentes.Remove((Oponente)p);
         }
 
         public void Iniciar()

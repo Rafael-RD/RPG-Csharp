@@ -42,9 +42,9 @@ namespace projeto1_RPG.Personagens
             return null;
         }
 
-        public override Personagem? SelecionarAlvo(List<Personagem> personagens)
+        public override Personagem? SelecionarAlvo(List<Personagem> fila)
         {
-            List<Oponente> lista = BuscarPersonagens<Oponente>(personagens);
+            List<Personagem> lista = fila.FindAll(x => x is Oponente);
 
             if (lista.Count == 1) return lista[0];
 
