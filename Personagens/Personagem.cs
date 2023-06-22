@@ -5,6 +5,7 @@ using projeto1_RPG.Itens.Armaduras;
 using projeto1_RPG.Efeitos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
+using projeto1_RPG.Itens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace projeto1_RPG.Personagens
 		public Atributos Atributos { get; set; }
 		public Arma Arma { get; set; }
 		public Armadura Armadura { get; set; }
-		public List<Habilidade> Habilidades { get; set; }
-		public List<Efeito> Efeitos { get; set; }
+		public List<Item> Inventario { get; private set; }
+		public List<Efeito> Efeitos { get; private set; }
 		public int SaudeAtual { get; set; }
 		public int Dinheiro { get; set; }
 
@@ -40,10 +41,6 @@ namespace projeto1_RPG.Personagens
 			Atributos.SomarAtributos(Classe.Atributos);
 			SaudeAtual = Atributos.Saude;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
-
-			Habilidades = new List<Habilidade>();
-			Habilidades.AddRange(Raca.Habilidades);
-			Habilidades.AddRange(Classe.Habilidades);
 
 			Efeitos = new List<Efeito>();
 		}

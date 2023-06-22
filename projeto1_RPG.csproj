@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{466B47E3-44BE-4C68-A577-91968429BC28}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>projeto1_RPG</RootNamespace>
+    <AssemblyName>projeto1_RPG</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Combate\Combate.cs" />
+    <Compile Include="Combate\FilaCombate.cs" />
+    <Compile Include="Combate\GeradorOponentes.cs" />
+    <Compile Include="Efeitos\Efeito.cs" />
+    <Compile Include="Efeitos\EfeitoDefesa.cs" />
+    <Compile Include="Habilidades\Habilidade.cs" />
+    <Compile Include="Itens\Armaduras\Armadura.cs" />
+    <Compile Include="Itens\Armaduras\ListaArmaduras.cs" />
+    <Compile Include="Itens\Armas\Arma.cs" />
+    <Compile Include="Itens\Item.cs" />
+    <Compile Include="Personagens\Classes\Classe.cs" />
+    <Compile Include="Personagens\Classes\Guerreiro.cs" />
+    <Compile Include="Personagens\Classes\Ladrao.cs" />
+    <Compile Include="Personagens\Classes\ListaClasses.cs" />
+    <Compile Include="Personagens\Classes\Mago.cs" />
+    <Compile Include="Personagens\Jogador.cs" />
+    <Compile Include="Personagens\Oponente.cs" />
+    <Compile Include="Personagens\Personagem.cs" />
+    <Compile Include="Personagens\Racas\Jogador\Anao.cs" />
+    <Compile Include="Personagens\Racas\Jogador\Elfo.cs" />
+    <Compile Include="Personagens\Racas\Jogador\Humano.cs" />
+    <Compile Include="Personagens\Racas\ListaRacas.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Esqueleto.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Goblin.cs" />
+    <Compile Include="Personagens\Racas\Oponente\Orc.cs" />
+    <Compile Include="Personagens\Racas\Raca.cs" />
+    <Compile Include="Principal\Ataque.cs" />
+    <Compile Include="Principal\Atributos.cs" />
+    <Compile Include="Principal\Defesa.cs" />
+    <Compile Include="Principal\Menu.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

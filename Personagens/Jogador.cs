@@ -34,11 +34,11 @@ namespace projeto1_RPG.Personagens
         public override Habilidade SelecionarHabilidade()
         {
             Console.WriteLine($"\nSelecione uma habilidade:");
-            int opcao = Menu.MostrarOpcoes(Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
+            int opcao = Menu.MostrarOpcoes(Classe.Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
             if (opcao >= 0)
             {
-                if (Classe.ConsegueUsar(Habilidades[opcao])) return Habilidades[opcao];
-                Console.WriteLine($"Não é possível usar {Habilidades[opcao].Nome}.");
+                if (Classe.ConsegueUsar(Classe.Habilidades[opcao])) return Classe.Habilidades[opcao];
+                Console.WriteLine($"Não é possível usar {Classe.Habilidades[opcao].Nome}.");
             }
             return null;
         }
