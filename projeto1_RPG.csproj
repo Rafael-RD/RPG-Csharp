@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{28D28178-EDD0-4534-80E3-0595C86FDB1D}</ProjectGuid>
+    <ProjectGuid>{466B47E3-44BE-4C68-A577-91968429BC28}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>projeto1_RPG</RootNamespace>
-    <AssemblyName>projeto1 RPG</AssemblyName>
+    <AssemblyName>projeto1_RPG</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,7 +53,6 @@
     <Compile Include="Itens\Armaduras\ListaArmaduras.cs" />
     <Compile Include="Itens\Armas\Arma.cs" />
     <Compile Include="Itens\Item.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Personagens\Classes\Classe.cs" />
     <Compile Include="Personagens\Classes\Guerreiro.cs" />
     <Compile Include="Personagens\Classes\Ladrao.cs" />
@@ -68,10 +67,7 @@
     <Compile Include="Personagens\Racas\ListaRacas.cs" />
     <Compile Include="Personagens\Racas\Oponente\Esqueleto.cs" />
     <Compile Include="Personagens\Racas\Oponente\Goblin.cs" />
-    <Compile Include="Personagens\Racas\Oponente\HomemRato.cs" />
-    <Compile Include="Personagens\Racas\Oponente\Kobold.cs" />
     <Compile Include="Personagens\Racas\Oponente\Orc.cs" />
-    <Compile Include="Personagens\Racas\Oponente\Warg.cs" />
     <Compile Include="Personagens\Racas\Raca.cs" />
     <Compile Include="Principal\Ataque.cs" />
     <Compile Include="Principal\Atributos.cs" />
@@ -82,19 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\projeto1 RPG.csproj.AssemblyReference.cache" />
-    <None Include="obj\Debug\projeto1_RPG.csproj.AssemblyReference.cache" />
-    <None Include="obj\Debug\projeto1_RPG.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\projeto1_RPG.csproj.SuggestedBindingRedirects.cache" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="obj\Debug\projeto1_RPG.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\projeto1_RPG.exe" />
-    <Content Include="obj\Debug\projeto1_RPG.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
