@@ -11,7 +11,9 @@ namespace projeto1_RPG.Personagens
 {
 	internal class Oponente : Personagem
 	{
-		public Oponente(Raca raca, Classe classe, int nivel = 1) : base(raca, classe, nivel) { }
+		public Oponente(Raca raca, Classe classe, int nivel = 1) : base(raca, classe, nivel) {
+            this.Dinheiro /= 2;
+        }
 
         public override AcaoTurno EscolherAcao()
         {
@@ -39,6 +41,12 @@ namespace projeto1_RPG.Personagens
             if (lista.Count == 1) return lista[0];
 
             return lista[new Random().Next(0, lista.Count)];
+        }
+
+        public int CalcExpRecompensa()
+        {
+            const int EXP_BASE = 100;
+			return (int)Math.Floor((EXP_BASE * Math.Sqrt(Nivel.NivelAtual + 1)) - EXP_BASE);
         }
 	}
 }
