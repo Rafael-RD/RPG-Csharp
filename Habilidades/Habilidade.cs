@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Habilidades
 {
-    internal class Habilidade
-    {
-        public string Nome { get; set; }
-        public int Custo { get; set; }
-        public Ataque Ataque { get; set; }
+	internal class Habilidade
+	{
+		public string Nome { get; set; }
+		public int Custo { get; set; }
+		public Ataque Ataque { get; set; }
 
-        public Habilidade(string nome, int custo, Ataque ataque)
-        {
-            Nome = nome;
-            Custo = custo;
-            Ataque = ataque;
-        }
-    }
+		public Habilidade(string nome, int custo, Ataque ataque)
+		{
+			Nome = nome;
+			Custo = custo;
+			Ataque = ataque;
+		}
+	}
 }

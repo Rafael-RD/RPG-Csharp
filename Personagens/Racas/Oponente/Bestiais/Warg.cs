@@ -1,15 +1,15 @@
-using projeto1_RPG.Personagens.Racas;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Racas.Oponente
+namespace projeto1_RPG.Personagens.Racas.Oponente.Bestiais
 {
 	internal class Warg : Raca
 	{
-		public Warg()
+		public Warg() : base()
 		{
 			Id = 16;
 			Nome = "Warg";

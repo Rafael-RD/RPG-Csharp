@@ -1,12 +1,10 @@
-using projeto1_RPG.Principal;
-using projeto1_RPG.Habilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Racas
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal abstract class Raca
 	{
@@ -15,13 +13,11 @@ namespace projeto1_RPG.Personagens.Racas
 		public Atributos Atributos { get; private set; }
 		public int DinheiroMin { get; set; }
 		public int DinheiroMax { get; set; }
-
 		public Raca()
 		{
-			Nome = String.Empty;
+			Nome = string.Empty;
 			Atributos = new Atributos();
 		}
-
 		public int GetDinheiro()
 		{
 			int dinheiro = new Random().Next(DinheiroMin, DinheiroMax + 1);

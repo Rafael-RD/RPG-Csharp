@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Principal
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Atributos
 	{
@@ -13,6 +13,7 @@ namespace projeto1_RPG.Principal
 		public int Inteligencia { get; set; }
 		public int Resistencia { get; set; }
 		public int Saude { get; set; }
+		public int PtsHabili { get; set; }
 		public Atributos() { }
 		public void SomarAtributos(Atributos atributos)
 		{
@@ -21,6 +22,7 @@ namespace projeto1_RPG.Principal
 			Inteligencia += atributos.Inteligencia;
 			Resistencia += atributos.Resistencia;
 			Saude += atributos.Saude;
+			PtsHabili += atributos.PtsHabili;
 		}
 	}
 }

@@ -5,21 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Classes
+namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 {
-	internal class Ladrao : Classe
+	internal class Homem_Rato : Raca
 	{
-		public Ladrao() : base()
+		public Homem_Rato() : base()
 		{
-			Id = 3;
-			Nome = "Ladrão";
+			Id = 15;
+			Nome = "Homem-Rato";
 			Atributos.Forca = 1;
-			Atributos.Destreza = 4;
+			Atributos.Destreza = 2;
 			Atributos.Inteligencia = 2;
 			Atributos.Resistencia = 2;
-			Atributos.Saude = 1;
-			Atributos.PtsHabili = 10;
-			Dinheiro = 30;
+			Atributos.Saude = 2;
+			DinheiroMin = 0;
+			DinheiroMax = 5;
 		}
 	}
 }
