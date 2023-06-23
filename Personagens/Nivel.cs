@@ -13,7 +13,6 @@ namespace projeto1_RPG.Principal
 		private int ExpBase { get; set; } = 100;
 		public int ExpAtual { get; set; }
 		public int ExpProxNivel { get; private set; }
-		public int ExpRecompensa { get; private set; }
 		public Nivel(int nivel = 1)
 		{
 			SetNivel(nivel);
@@ -21,9 +20,8 @@ namespace projeto1_RPG.Principal
 		public void SetNivel(int nivel)
 		{
 			NivelAtual = nivel;
-			ExpAtual = (int)Math.Floor((ExpBase * Math.Pow(2, nivel - 1)) - ExpBase);
+			ExpAtual = Math.Max(ExpAtual, (int)Math.Floor((ExpBase * Math.Pow(2, nivel - 1)) - ExpBase));
 			ExpProxNivel = (int)Math.Floor(ExpBase * Math.Pow(2, nivel - 1));
-			ExpRecompensa = (int)Math.Floor((ExpBase * Math.Sqrt(nivel + 1)) - ExpBase);
 		}
 	}
 }
