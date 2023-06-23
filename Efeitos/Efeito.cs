@@ -18,9 +18,4 @@ namespace projeto1_RPG.Efeitos
             this.Descricao = String.Empty;
         }
     }
-
-    interface IEfeitoAposCalcularDano
-    {
-        int AposCalcularDano(int dano);
-    }
 }
