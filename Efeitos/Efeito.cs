@@ -1,4 +1,3 @@
-using projeto1_RPG.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +21,6 @@ namespace projeto1_RPG.Efeitos
 
     interface IEfeitoAposCalcularDano
     {
-        public int AposCalcularDano(int dano);
+        int AposCalcularDano(int dano);
     }
 }

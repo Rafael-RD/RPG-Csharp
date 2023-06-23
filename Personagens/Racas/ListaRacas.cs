@@ -41,5 +41,10 @@ namespace projeto1_RPG.Personagens.Racas
 			}
 			return RacasOponente;
 		}
+
+		public static Raca RandomOponente()
+		{
+			return GetRacasOponente()[new Random().Next(GetRacasOponente().Count)];
+		}
 	}
 }

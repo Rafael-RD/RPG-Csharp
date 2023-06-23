@@ -10,7 +10,7 @@ namespace projeto1_RPG.Principal
     {
 
         /* Retorna índice [0..N] que o usuário selecionou dentre as "opcoes", "itemZero" retornará -1 */
-        public static int MostrarOpcoes(string[] opcoes, string msg, string? itemZero = null)
+        public static int MostrarOpcoes(string[] opcoes, string msg, string itemZero = null)
         {
             // Teste de dados de entrada
             if (opcoes.Length == 0)

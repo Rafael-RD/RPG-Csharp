@@ -11,11 +11,11 @@ namespace projeto1_RPG.Itens.Armas
     {
         public Ataque Ataque { get; set; }
 
-        public Arma(string nome, string descricao, int valor, string elemento, string categoria, int danoMinimo, int danoMaximo) : base(nome, descricao, valor)
+        public Arma(string nome, string descricao, int valor, string catElemental, string catFisica, int danoMinimo, int danoMaximo) : base(nome, descricao, valor)
         {
             Nome = nome;
             Descricao = descricao;
-            Ataque = new Ataque(elemento, categoria, danoMinimo, danoMaximo);
+            Ataque = new Ataque(new Categoria(catElemental, catFisica), danoMinimo, danoMaximo);
         }
     }
 }

@@ -5,6 +5,7 @@ using projeto1_RPG.Itens.Armaduras;
 using projeto1_RPG.Efeitos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
+using projeto1_RPG.Itens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +19,28 @@ namespace projeto1_RPG.Personagens
 		public string Nome { get; set; }
 		public Raca Raca { get; set; }
 		public Classe Classe { get; set; }
+		public Nivel Nivel { get; set; }
 		public Atributos Atributos { get; set; }
-		public Arma? Arma { get; set; }
-		public Armadura? Armadura { get; set; }
-		public List<Habilidade> Habilidades { get; set; }
-		public List<Efeito> Efeitos { get; set; }
+		public Arma Arma { get; set; }
+		public Armadura Armadura { get; set; }
+		public List<Item> Inventario { get; private set; }
+		public List<Efeito> Efeitos { get; private set; }
 		public int SaudeAtual { get; set; }
-		public int Nivel { get; set; }
-		public int Exp { get; set; }
+		public int Dinheiro { get; set; }
 
-		public Personagem(Raca raca, Classe classe)
+		public Personagem(Raca raca, Classe classe, int nivel = 1)
 		{
 			Nome = String.Empty;
 			Raca = raca;
 			Classe = classe;
+			Nivel = new Nivel(nivel);
 			Arma = null;
 			Armadura = null;
 			Atributos = new Atributos();
 			Atributos.SomarAtributos(Raca.Atributos);
 			Atributos.SomarAtributos(Classe.Atributos);
-
-			Habilidades = new List<Habilidade>();
-			Habilidades.AddRange(Raca.Habilidades);
-			Habilidades.AddRange(Classe.Habilidades);
+			SaudeAtual = Atributos.Saude;
+			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 
 			Efeitos = new List<Efeito>();
 		}
@@ -51,11 +51,15 @@ namespace projeto1_RPG.Personagens
 			Atacar,
             Defender,
             Habilidades,
-			Fujir
+			Inventario,
+			Fugir
 		}
+
 		public abstract AcaoTurno EscolherAcao();
-        public abstract Habilidade? SelecionarHabilidade();
-		public abstract Personagem? SelecionarAlvo(List<Personagem> fila, Habilidade? habilidade = null);
+        public abstract Habilidade SelecionarHabilidade();
+		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade = null);
+		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Item item);
+		public abstract Item SelecionarItem();
 
 		public void IniciouTurno()
 		{
@@ -64,18 +68,30 @@ namespace projeto1_RPG.Personagens
 
 		private void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
-			int dano = ataque.CalcDano();
+			int danoIni = ataque.CalcDano();
+			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
+			int dano = danoIni - armadura;
+
+			// Efeitos de redução ou aumento de dano
+			int efeitos = dano;
 			foreach (Efeito e in this.Efeitos)
 			{
 				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
 			}
+			efeitos = dano - danoIni;
 
+			string info = ((armadura > 0) ? $"{-armadura} (armadura)" : String.Empty) +
+						  ((efeitos  > 0) ? $"{efeitos} (efeitos)" : String.Empty);
+			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
+
+			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
 			this.SaudeAtual -= dano;
 		}
 
 		public void Atacar(Personagem alvo)
 		{
-			if (this.Arma != null) alvo.ReceberAtaque(this, this.Arma.Ataque);
+			if (this.Arma == null) alvo.ReceberAtaque(this, new Ataque(null, 1, this.Atributos.Forca));
+			else alvo.ReceberAtaque(this, this.Arma.Ataque);
 		}
 
 		public void Defender()
@@ -86,6 +102,20 @@ namespace projeto1_RPG.Personagens
 		public void Habilidade(Habilidade habilidade, Personagem alvo)
 		{
 			alvo.ReceberAtaque(this, habilidade.Ataque);
+		}
+
+		public void UsarItem(Item item)
+		{
+			if (item is Arma)
+			{
+				this.Arma = (Arma)item;
+				Console.WriteLine($"{this.Nome} equipou a arma {this.Arma.Nome}.");
+			}
+			else if (item is Armadura)
+			{
+				this.Armadura = (Armadura)item;
+				Console.WriteLine($"{this.Nome} equipou a armadura {this.Armadura.Nome}.");
+			}
 		}
 	}
 }
