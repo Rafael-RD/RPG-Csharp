@@ -31,7 +31,7 @@ namespace projeto1_RPG.Personagens
             int opcao;
             if (Classe.Habilidades.Count == 0) return null;
             if (Classe.Habilidades.Count == 1) opcao = 0;
-            else opcao = new Random().Next(0, Classe.Habilidades.Count);
+            else opcao = new Random().Next(Classe.Habilidades.Count);
 
             if (!Classe.ConsegueUsar(Classe.Habilidades[opcao])) return null;
             return Classe.Habilidades[opcao];
@@ -42,7 +42,7 @@ namespace projeto1_RPG.Personagens
             List<Personagem> lista = fila.FindAll(x => x is Jogador);
             if (lista.Count == 1) return lista[0];
 
-            return lista[new Random().Next(0, lista.Count)];
+            return lista[new Random().Next(lista.Count)];
         }
 
         public override Personagem SelecionarAlvo(List<Personagem> fila, Item item)
@@ -53,7 +53,7 @@ namespace projeto1_RPG.Personagens
             List<Personagem> lista = fila.FindAll(x => x is Oponente);
             if (lista.Count == 1) return lista[0];
 
-            return lista[new Random().Next(0, lista.Count)];
+            return lista[new Random().Next(lista.Count)];
         }
 
         public int CalcExpRecompensa()
@@ -67,7 +67,7 @@ namespace projeto1_RPG.Personagens
             int opcao;
             if (Inventario.Count == 0) return null;
             if (Inventario.Count == 1) opcao = 0;
-            else opcao = new Random().Next(0, Inventario.Count);
+            else opcao = new Random().Next(Inventario.Count);
 
             Item i = Inventario[opcao];
             if (i == this.Arma) return null;
