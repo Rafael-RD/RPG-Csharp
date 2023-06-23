@@ -20,14 +20,6 @@ namespace projeto1_RPG
             Console.WriteLine("Selecione uma raça: \n 1-Anão\n 2-Elfo\n 3-Humano");
             int RaçaEscolhida = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Selecione uma raça:");
-            string[] opcoes = new string[] { "Anão", "Elfo", "Humano" };
-            int racaEscolhida = Menu.MostrarOpcoes(opcoes, "Raça: ");
-
-            Console.WriteLine("Selecione uma raça:");
-            string[] opçoes = ListaRacas.GetRacasJogador().Select(x => x.Nome).ToArray();
-            int raçaEscolhida = Menu.MostrarOpcoes(opçoes, "Raça: ");
-
             Console.WriteLine("Selecione uma classe: \n 1-Guerreiro\n 2-Ladrão\n 3-Mago");
             int ClasseEscolhida = int.Parse(Console.ReadLine());
             Console.WriteLine("Todo heroí tem uma arma, vamos encontrar a perfeita para você!");
