@@ -22,5 +22,10 @@ namespace projeto1_RPG.Personagens.Classes
 			}
 			return Classes;
 		}
+
+		public static Classe Random()
+		{
+			return GetClasses()[new Random().Next(GetClasses().Count)];
+		}
 	}
 }
