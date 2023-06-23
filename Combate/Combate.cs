@@ -1,5 +1,6 @@
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Personagens;
+using projeto1_RPG.Itens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,7 @@ namespace projeto1_RPG.Combate
                     case Personagem.AcaoTurno.Atacar: sair = Atacar(personagem); break;
                     case Personagem.AcaoTurno.Defender: sair = Defender(personagem); break;
                     case Personagem.AcaoTurno.Habilidades: sair = UsarHabilidade(personagem); break;
+                    case Personagem.AcaoTurno.Inventario: sair = UsarItem(personagem); break;
                     case Personagem.AcaoTurno.Fugir: sair = Fugir(personagem); break;
                     default: Console.WriteLine("Ação não identificada!"); break;
                }
@@ -97,8 +99,24 @@ namespace projeto1_RPG.Combate
             Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, habilidade);
             if (alvo == null) return false;
 
-            Console.WriteLine($"{personagem.Nome} usou {habilidade.Nome} em {alvo.Nome}.");
+            Console.WriteLine($"{personagem.Nome} usa {habilidade.Nome} em {alvo.Nome}.");
             personagem.Habilidade(habilidade, alvo);
+
+            if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+            return true;
+        }
+
+        private bool UsarItem(Personagem personagem)
+        {
+            Item item = personagem.SelecionarItem();
+            if (item == null) return false;
+
+            Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, item);
+            if (alvo == null) return false;
+
+            if (alvo == personagem) Console.WriteLine($"{personagem.Nome} usa {item.Nome}.");
+            else Console.WriteLine($"{personagem.Nome} usa {item.Nome} em {alvo.Nome}.");
+            alvo.UsarItem(item);
 
             if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
             return true;

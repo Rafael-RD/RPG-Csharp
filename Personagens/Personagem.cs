@@ -51,11 +51,15 @@ namespace projeto1_RPG.Personagens
 			Atacar,
             Defender,
             Habilidades,
+			Inventario,
 			Fugir
 		}
+
 		public abstract AcaoTurno EscolherAcao();
         public abstract Habilidade SelecionarHabilidade();
 		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade = null);
+		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Item item);
+		public abstract Item SelecionarItem();
 
 		public void IniciouTurno()
 		{
@@ -64,29 +68,23 @@ namespace projeto1_RPG.Personagens
 
 		private void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
-			int dano = ataque.CalcDano();
-
-			// Fraqueza
-			if ((this.Armadura != null) &&
-				(this.Armadura.Fraqueza != null) &&
-				((ataque.Categoria.Elemental == this.Armadura.Fraqueza.Elemental) ||
-				 (ataque.Categoria.Fisica == this.Armadura.Fraqueza.Fisica)))
-				dano = (int)Math.Floor(dano * 1.5);
-
-			// Resistência
-			if ((this.Armadura != null) &&
-				(this.Armadura.Resistencia != null))
-			{
-				if (this.Armadura.Resistencia.Elemental  == ataque.Categoria.Elemental) dano =  Math.Max(0, dano - this.Armadura.ReducaoDano);
-				if (this.Armadura.Resistencia.Fisica == ataque.Categoria.Fisica) dano =  Math.Max(0, dano - this.Armadura.ReducaoDano);
-			}
+			int danoIni = ataque.CalcDano();
+			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
+			int dano = danoIni - armadura;
 
 			// Efeitos de redução ou aumento de dano
+			int efeitos = dano;
 			foreach (Efeito e in this.Efeitos)
 			{
 				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
 			}
+			efeitos = dano - danoIni;
 
+			string info = ((armadura > 0) ? $"{-armadura} (armadura)" : String.Empty) +
+						  ((efeitos  > 0) ? $"{efeitos} (efeitos)" : String.Empty);
+			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
+
+			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
 			this.SaudeAtual -= dano;
 		}
 
@@ -104,6 +102,20 @@ namespace projeto1_RPG.Personagens
 		public void Habilidade(Habilidade habilidade, Personagem alvo)
 		{
 			alvo.ReceberAtaque(this, habilidade.Ataque);
+		}
+
+		public void UsarItem(Item item)
+		{
+			if (item is Arma)
+			{
+				this.Arma = (Arma)item;
+				Console.WriteLine($"{this.Nome} equipou a arma {this.Arma.Nome}.");
+			}
+			else if (item is Armadura)
+			{
+				this.Armadura = (Armadura)item;
+				Console.WriteLine($"{this.Nome} equipou a armadura {this.Armadura.Nome}.");
+			}
 		}
 	}
 }

@@ -19,5 +19,36 @@ namespace projeto1_RPG.Itens.Armaduras
             Fraqueza = new Categoria();
             ReducaoDano = reducaoDano;
         }
+
+        private int AplicarFraqueza(int reducao)
+        {
+            // Diminui resistência em 50%
+            return (reducao / 2);
+        }
+
+        private int AplicarResistencia(int reducao)
+        {
+            // Aumenta resistência em 50%
+            return (int)Math.Floor(reducao * 1.5);
+        }
+
+        public int CalculaReducao(Ataque ataque)
+        {
+            int reducao = ReducaoDano;
+
+            // Fraqueza
+            if ((Fraqueza != null) &&
+                ((Fraqueza.Elemental.Equals(ataque.Categoria.Elemental)) ||
+                 (Fraqueza.Fisica.Equals(ataque.Categoria.Fisica))))
+                reducao = AplicarFraqueza(reducao);
+
+            // Resistência
+            if ((Resistencia != null) &&
+                ((Resistencia.Elemental.Equals(ataque.Categoria.Elemental)) ||
+                 (Resistencia.Fisica.Equals(ataque.Categoria.Fisica))))
+                reducao = AplicarResistencia(reducao);
+
+            return reducao;
+        }
     }
 }
