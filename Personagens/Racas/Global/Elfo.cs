@@ -1,11 +1,11 @@
-using projeto1_RPG.Personagens.Racas;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Racas.Jogador
+namespace projeto1_RPG.Personagens.Racas.Global
 {
 	internal class Elfo : Raca
 	{
@@ -13,11 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Jogador
 		{
 			Id = 2;
 			Nome = "Elfo";
-			Atributos.Forca = 1;
-			Atributos.Destreza = 3;
-			Atributos.Inteligencia = 3;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 1;
+			Atributos.SetAtributos(3, 6, 6, 3, 70, 7);
 			DinheiroMin = 0;
 			DinheiroMax = 10;
 		}
