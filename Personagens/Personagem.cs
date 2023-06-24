@@ -81,8 +81,8 @@ namespace projeto1_RPG.Personagens
 			}
 			efeitos = dano - efeitos;
 
-			string info = ((armadura > 0) ? $"{-armadura} (armadura)" : String.Empty) +
-						  ((efeitos  > 0) ? $"{efeitos} (efeitos)" : String.Empty);
+			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
+						  ((efeitos  != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
 			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
 
 			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
