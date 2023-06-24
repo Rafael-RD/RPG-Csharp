@@ -13,13 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 		{
 			Id = 17;
 			Nome = "Gnoll";
-			Atributos.Forca = 4;
-			Atributos.Destreza = 3;
-			Atributos.Inteligencia = 2;
-			Atributos.Resistencia = 4;
-			Atributos.Saude = 2;
-			Atributos.PtsHabili = 40;
-			Atributos.PtsHabili = 2;
+			Atributos.SetAtributos(4, 3, 2, 4, 40, 2);
 			DinheiroMin = 5;
 			DinheiroMax = 15;
 		}

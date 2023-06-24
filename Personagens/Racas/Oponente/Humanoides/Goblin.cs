@@ -13,12 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 		{
 			Id = 12;
 			Nome = "Goblin";
-			Atributos.Forca = 2;
-			Atributos.Destreza = 4;
-			Atributos.Inteligencia = 2;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 40;
-			Atributos.PtsHabili = 2;
+			Atributos.SetAtributos(2, 4, 2, 2, 40, 2);
 			DinheiroMin = 0;
 			DinheiroMax = 10;
 		}

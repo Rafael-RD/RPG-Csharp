@@ -13,12 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 		{
 			Id = 14;
 			Nome = "Kobold";
-			Atributos.Forca = 1;
-			Atributos.Destreza = 5;
-			Atributos.Inteligencia = 3;
-			Atributos.Resistencia = 1;
-			Atributos.Saude = 30;
-			Atributos.PtsHabili = 3;
+			Atributos.SetAtributos(1, 5, 3, 1, 30, 3);
 			DinheiroMin = 0;
 			DinheiroMax = 10;
 		}

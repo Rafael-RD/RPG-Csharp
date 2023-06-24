@@ -13,12 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Global
 		{
 			Id = 3;
 			Nome = "Anão";
-			Atributos.Forca = 6;
-			Atributos.Destreza = 3;
-			Atributos.Inteligencia = 3;
-			Atributos.Resistencia = 6;
-			Atributos.Saude = 90;
-			Atributos.PtsHabili = 4;
+			Atributos.SetAtributos(6, 3, 3, 6, 90, 40);
 			DinheiroMin = 5;
 			DinheiroMax = 15;
 		}
