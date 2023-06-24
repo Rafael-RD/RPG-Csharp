@@ -6,6 +6,7 @@ using projeto1_RPG.Efeitos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
 using projeto1_RPG.Itens;
+using projeto1_RPG.Combate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,18 +48,17 @@ namespace projeto1_RPG.Personagens
 
 		public enum AcaoTurno
 		{
-            Nenhum,
+			Nenhum,
 			Atacar,
-            Defender,
-            Habilidades,
+			Defender,
+			Habilidades,
 			Inventario,
 			Fugir
 		}
 
 		public abstract AcaoTurno EscolherAcao();
-        public abstract Habilidade SelecionarHabilidade();
-		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade = null);
-		public abstract Personagem SelecionarAlvo(List<Personagem> fila, Item item);
+		public abstract Habilidade SelecionarHabilidade();
+		public abstract Personagem SelecionarAlvo(List<Personagem> fila, bool aliado);
 		public abstract Item SelecionarItem();
 
 		public void IniciouTurno()
@@ -66,7 +66,7 @@ namespace projeto1_RPG.Personagens
 			foreach (Efeito e in this.Efeitos) { if (--e.Turnos == 0) this.Efeitos.Remove(e); }
 		}
 
-		private void ReceberAtaque(Personagem origem, Ataque ataque)
+		public void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
 			int danoIni = ataque.CalcDano();
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
@@ -76,12 +76,12 @@ namespace projeto1_RPG.Personagens
 			int efeitos = dano;
 			foreach (Efeito e in this.Efeitos)
 			{
-				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
+				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(dano);
 			}
-			efeitos = dano - danoIni;
+			efeitos = dano - efeitos;
 
-			string info = ((armadura > 0) ? $"{-armadura} (armadura)" : String.Empty) +
-						  ((efeitos  > 0) ? $"{efeitos} (efeitos)" : String.Empty);
+			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
+						  ((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
 			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
 
 			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
@@ -97,25 +97,6 @@ namespace projeto1_RPG.Personagens
 		public void Defender()
 		{
 			this.Efeitos.Add(new EfeitoDefesa());
-		}
-
-		public void Habilidade(Habilidade habilidade, Personagem alvo)
-		{
-			alvo.ReceberAtaque(this, habilidade.Ataque);
-		}
-
-		public void UsarItem(Item item)
-		{
-			if (item is Arma)
-			{
-				this.Arma = (Arma)item;
-				Console.WriteLine($"{this.Nome} equipou a arma {this.Arma.Nome}.");
-			}
-			else if (item is Armadura)
-			{
-				this.Armadura = (Armadura)item;
-				Console.WriteLine($"{this.Nome} equipou a armadura {this.Armadura.Nome}.");
-			}
 		}
 	}
 }

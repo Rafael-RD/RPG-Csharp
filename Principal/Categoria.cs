@@ -28,10 +28,10 @@ namespace projeto1_RPG.Principal
         public string Elemental { get; private set; }
         public string Fisica { get; private set; }
 
-        public Categoria(string elemental = null, string fisica = null)
-        {
-            Elemental = elemental ?? String.Empty;
-            Fisica = fisica ?? String.Empty;
-        }
-    }
+		public Categoria(string elemental = null, string fisica = null)
+		{
+			Elemental = elemental ?? String.Empty;
+			Fisica = fisica ?? String.Empty;
+		}
+	}
 }
