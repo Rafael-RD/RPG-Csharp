@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Efeitos
 {
-    internal class Efeito
-    {
-        public string Nome { get; protected set; }
-        public string Descricao { get; protected set; }
-        public int Turnos { get; set; }
+	internal class Efeito
+	{
+		public string Nome { get; protected set; }
+		public string Descricao { get; protected set; }
+		public int Turnos { get; set; }
 
-        public Efeito()
-        {
-            this.Nome = String.Empty;
-            this.Descricao = String.Empty;
-        }
-    }
+		public Efeito()
+		{
+			this.Nome = String.Empty;
+			this.Descricao = String.Empty;
+		}
+	}
 }
