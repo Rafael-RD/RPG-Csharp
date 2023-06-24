@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Combate\Combate.cs" />
     <Compile Include="Combate\FilaCombate.cs" />
+    <Compile Include="Combate\Gatilhos.cs" />
     <Compile Include="Combate\GeradorOponentes.cs" />
     <Compile Include="Efeitos\Efeito.cs" />
     <Compile Include="Efeitos\EfeitoDefesa.cs" />

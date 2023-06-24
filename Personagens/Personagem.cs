@@ -6,6 +6,7 @@ using projeto1_RPG.Efeitos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
 using projeto1_RPG.Itens;
+using projeto1_RPG.Combate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,12 +77,12 @@ namespace projeto1_RPG.Personagens
 			int efeitos = dano;
 			foreach (Efeito e in this.Efeitos)
 			{
-				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
+				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(dano);
 			}
-			efeitos = dano - danoIni;
+			efeitos = dano - efeitos;
 
-			string info = ((armadura > 0) ? $"{-armadura} (armadura)" : String.Empty) +
-						  ((efeitos  > 0) ? $"{efeitos} (efeitos)" : String.Empty);
+			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
+						  ((efeitos  != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
 			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
 
 			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
