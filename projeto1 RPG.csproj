@@ -50,6 +50,7 @@
     <Compile Include="Efeitos\Efeito.cs" />
     <Compile Include="Efeitos\EfeitoDefesa.cs" />
     <Compile Include="Habilidades\Habilidade.cs" />
+    <Compile Include="Habilidades\HabilidadeOfensiva.cs" />
     <Compile Include="Itens\Armaduras\Armadura.cs" />
     <Compile Include="Itens\Armaduras\ListaArmaduras.cs" />
     <Compile Include="Itens\Armas\Arma.cs" />
