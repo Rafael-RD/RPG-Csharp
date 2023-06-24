@@ -14,7 +14,18 @@ namespace projeto1_RPG.Personagens.Principal
 		public int Resistencia { get; set; }
 		public int Saude { get; set; }
 		public int PtsHabili { get; set; }
+
 		public Atributos() { }
+
+		public void SetAtributos(int forca, int destreza, int inteligencia, int resistencia, int saude, int ptsHabili)
+		{
+			Forca = forca;
+			Destreza = destreza;
+			Inteligencia = inteligencia;
+			Resistencia = resistencia;
+			Saude = saude;
+			PtsHabili = ptsHabili;
+		}
 		public void SomarAtributos(Atributos atributos)
 		{
 			Forca += atributos.Forca;

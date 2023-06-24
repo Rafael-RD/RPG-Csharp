@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Oponente : Personagem
 	{
@@ -33,7 +33,7 @@ namespace projeto1_RPG.Personagens
 			if (Classe.Habilidades.Count == 1) opcao = 0;
 			else opcao = new Random().Next(Classe.Habilidades.Count);
 
-			if (!Classe.ConsegueUsar(Classe.Habilidades[opcao])) return null;
+			//if (!Classe.ConsegueUsar(Classe.Habilidades[opcao])) return null;
 			return Classe.Habilidades[opcao];
 		}
 

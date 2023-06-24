@@ -13,6 +13,9 @@ namespace projeto1_RPG.Personagens.Principal
 	{
 		private static List<Raca> RacasGlobal { get; set; }
 		private static List<Raca> RacasOponente { get; set; }
+
+		public ListaRacas() { }
+
 		public static List<Raca> GetRacasGlobal()
 		{
 			if (RacasGlobal == null)
@@ -26,6 +29,7 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 			return RacasGlobal;
 		}
+
 		public static List<Raca> GetRacasOponente()
 		{
 			if (RacasOponente == null)
@@ -45,6 +49,11 @@ namespace projeto1_RPG.Personagens.Principal
 				};
 			}
 			return RacasOponente;
+		}
+
+		public static Raca RandomOponente()
+		{
+			return GetRacasOponente()[new Random().Next(GetRacasOponente().Count)];
 		}
 	}
 }

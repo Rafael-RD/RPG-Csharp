@@ -13,11 +13,12 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Bestiais
 		{
 			Id = 16;
 			Nome = "Warg";
-			Atributos.Forca = 3;
-			Atributos.Destreza = 2;
-			Atributos.Inteligencia = 0;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 3;
+			Atributos.Forca = 5;
+			Atributos.Destreza = 3;
+			Atributos.Inteligencia = 1;
+			Atributos.Resistencia = 4;
+			Atributos.Saude = 50;
+			Atributos.PtsHabili = 2;
 			DinheiroMin = 0;
 			DinheiroMax = 0;
 		}

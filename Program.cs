@@ -1,4 +1,7 @@
-﻿using projeto1_RPG.Principal;
+﻿using projeto1_RPG.Personagens;
+using projeto1_RPG.Personagens.Classes;
+using projeto1_RPG.Personagens.Principal;
+using projeto1_RPG.Personagens.Racas.Global;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,24 +10,22 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Bem vindo ao jogo! \n Vamos começar a aventura!");
-            Console.WriteLine("Qual seu nome: ");
-            //nome
+	internal class Program
+	{
+		static void Main(string[] args)
+		{
+			Humano r = new Humano();
+			Guerreiro g = new Guerreiro();
+			Jogador j1 = new Jogador(r, g, 1);
+			//Jogador j2 = new Jogador(r, g, 2);
 
-            Console.WriteLine("Selecione uma raça:");
-            string[] opcoesRaca = {
-                "Anão",
-                "Elfo",
-                "Humano" };
-            int raca = Menu.MostrarOpcoes(opcoesRaca, "Raça: ");
+			Console.WriteLine($"{j1.Nivel.NivelAtual}, {j1.Atributos.Forca}");
+			j1.AvancarNivel();
+			Console.WriteLine($"{j1.Nivel.NivelAtual}, {j1.Atributos.Forca}");
+			j1.AvancarNivel();
+			Console.WriteLine($"{j1.Nivel.NivelAtual}, {j1.Atributos.Forca}");
 
-            Console.WriteLine("Selecione uma classe:");
-            string[] opcoesClasse = { };
-            int classe = Menu.MostrarOpcoes(opcoesClasse, "Classe: ");
-        }
-    }
+			Console.ReadKey();
+		}
+	}
 }

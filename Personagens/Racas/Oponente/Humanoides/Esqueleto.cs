@@ -13,11 +13,12 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 		{
 			Id = 11;
 			Nome = "Esqueleto";
-			Atributos.Forca = 2;
-			Atributos.Destreza = 2;
-			Atributos.Inteligencia = 0;
-			Atributos.Resistencia = 1;
-			Atributos.Saude = 1;
+			Atributos.Forca = 3;
+			Atributos.Destreza = 3;
+			Atributos.Inteligencia = 1;
+			Atributos.Resistencia = 3;
+			Atributos.Saude = 40;
+			Atributos.PtsHabili = 3;
 			DinheiroMin = 0;
 			DinheiroMax = 5;
 		}

@@ -13,11 +13,13 @@ namespace projeto1_RPG.Personagens.Principal
 		public Atributos Atributos { get; private set; }
 		public int DinheiroMin { get; set; }
 		public int DinheiroMax { get; set; }
+
 		public Raca()
 		{
 			Nome = string.Empty;
 			Atributos = new Atributos();
 		}
+
 		public int GetDinheiro()
 		{
 			int dinheiro = new Random().Next(DinheiroMin, DinheiroMax + 1);

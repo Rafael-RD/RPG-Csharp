@@ -13,11 +13,12 @@ namespace projeto1_RPG.Personagens.Racas.Global
 		{
 			Id = 2;
 			Nome = "Elfo";
-			Atributos.Forca = 1;
-			Atributos.Destreza = 3;
-			Atributos.Inteligencia = 3;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 1;
+			Atributos.Forca = 3;
+			Atributos.Destreza = 6;
+			Atributos.Inteligencia = 6;
+			Atributos.Resistencia = 3;
+			Atributos.Saude = 70;
+			Atributos.PtsHabili = 7;
 			DinheiroMin = 0;
 			DinheiroMax = 10;
 		}

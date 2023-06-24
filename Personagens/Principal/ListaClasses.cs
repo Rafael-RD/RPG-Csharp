@@ -10,6 +10,9 @@ namespace projeto1_RPG.Personagens.Principal
 	internal class ListaClasses
 	{
 		private static List<Classe> Classes { get; set; }
+
+		public ListaClasses() { }
+
 		public static List<Classe> GetClasses()
 		{
 			if (Classes == null)

@@ -12,18 +12,16 @@ namespace projeto1_RPG.Personagens.Principal
 		public int Id { get; set; }
 		public string Nome { get; set; }
 		public Atributos Atributos { get; set; }
+		public Atributos Incrementos { get; set; }
 		public List<Habilidade> Habilidades { get; set; }
 		public int Dinheiro { get; set; }
+
 		public Classe()
 		{
 			Nome = string.Empty;
 			Atributos = new Atributos();
+			Incrementos = new Atributos();
 			Habilidades = new List<Habilidade>();
-		}
-		public bool ConsegueUsar(Habilidade habilidade)
-		{
-			// TODO: Validar se consegue usar a habilidade (se tem nível/mana o suficiente)
-			return false;
 		}
 	}
 }

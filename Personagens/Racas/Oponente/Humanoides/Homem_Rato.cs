@@ -13,11 +13,12 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 		{
 			Id = 15;
 			Nome = "Homem-Rato";
-			Atributos.Forca = 1;
-			Atributos.Destreza = 2;
-			Atributos.Inteligencia = 2;
+			Atributos.Forca = 2;
+			Atributos.Destreza = 5;
+			Atributos.Inteligencia = 3;
 			Atributos.Resistencia = 2;
-			Atributos.Saude = 2;
+			Atributos.Saude = 30;
+			Atributos.PtsHabili = 3;
 			DinheiroMin = 0;
 			DinheiroMax = 5;
 		}

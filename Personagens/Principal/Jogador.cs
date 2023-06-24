@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Jogador : Personagem
 	{
@@ -39,7 +39,7 @@ namespace projeto1_RPG.Personagens
 			int opcao = Menu.MostrarOpcoes(Classe.Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
 			if (opcao >= 0)
 			{
-				if (Classe.ConsegueUsar(Classe.Habilidades[opcao])) return Classe.Habilidades[opcao];
+				//if (Classe.ConsegueUsar(Classe.Habilidades[opcao])) return Classe.Habilidades[opcao];
 				Console.WriteLine($"Não é possível usar {Classe.Habilidades[opcao].Nome}.");
 			}
 			return null;

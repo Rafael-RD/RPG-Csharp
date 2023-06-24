@@ -45,6 +45,14 @@ namespace projeto1_RPG.Personagens.Principal
 			Efeitos = new List<Efeito>();
 		}
 
+		public void AvancarNivel()
+		{
+			Nivel.AvancarNivel();
+			Atributos.SomarAtributos(Classe.Incrementos);
+			SaudeAtual = Atributos.Saude;
+			PtsHabiliAtual = Atributos.PtsHabili;
+		}
+
 		public enum AcaoTurno
 		{
 			Nenhum,
