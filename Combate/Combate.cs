@@ -75,7 +75,7 @@ namespace projeto1_RPG.Combate
 
 		private bool Atacar(Personagem personagem)
 		{
-			Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem);
+			Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, false);
 			if (alvo == null) return false;
 
 			Console.WriteLine($"{personagem.Nome} ataca {alvo.Nome}.");
@@ -97,11 +97,11 @@ namespace projeto1_RPG.Combate
 			Habilidade habilidade = personagem.SelecionarHabilidade();
 			if (habilidade == null) return false;
 
-			Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, habilidade);
+			Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, habilidade.UsarAliado);
 			if (alvo == null) return false;
 
 			Console.WriteLine($"{personagem.Nome} usa {habilidade.Nome} em {alvo.Nome}.");
-			personagem.Habilidade(habilidade, alvo);
+			habilidade.Usar(personagem, alvo);
 
 			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
@@ -112,12 +112,12 @@ namespace projeto1_RPG.Combate
 			Item item = personagem.SelecionarItem();
 			if (item == null) return false;
 
-			Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, item);
+			Personagem alvo = personagem.SelecionarAlvo(this.Fila.Ordem, item.UsarAliado);
 			if (alvo == null) return false;
 
 			if (alvo == personagem) Console.WriteLine($"{personagem.Nome} usa {item.Nome}.");
 			else Console.WriteLine($"{personagem.Nome} usa {item.Nome} em {alvo.Nome}.");
-			alvo.UsarItem(item);
+			item.Usar(personagem, alvo);
 
 			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;

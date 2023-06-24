@@ -1,3 +1,5 @@
+using projeto1_RPG.Personagens.Principal;
+using projeto1_RPG.Itens;
 using projeto1_RPG.Principal;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,18 @@ namespace projeto1_RPG.Itens.Armas
 			Nome = nome;
 			Descricao = descricao;
 			Ataque = new Ataque(new Categoria(catElemental, catFisica), danoMinimo, danoMaximo);
+		}
+
+		public override void Usar(Personagem origem, Personagem alvo)
+		{
+			if (this == alvo.Arma)
+			{
+				alvo.Arma = null;
+				Console.WriteLine($"{alvo.Nome} removeu a arma.");
+			} else {
+				alvo.Arma = this;
+				Console.WriteLine($"{alvo.Nome} equipou a arma {this.Nome}.");
+			}
 		}
 	}
 }

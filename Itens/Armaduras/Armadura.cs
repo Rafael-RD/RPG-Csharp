@@ -1,3 +1,4 @@
+using projeto1_RPG.Personagens.Principal;
 using projeto1_RPG.Principal;
 using System;
 using System.Collections.Generic;
@@ -38,17 +39,29 @@ namespace projeto1_RPG.Itens.Armaduras
 
 			// Fraqueza
 			if ((Fraqueza != null) &&
-					((Fraqueza.Elemental.Equals(ataque.Categoria.Elemental)) ||
-					 (Fraqueza.Fisica.Equals(ataque.Categoria.Fisica))))
+				((Fraqueza.Elemental.Equals(ataque.Categoria.Elemental)) ||
+				 (Fraqueza.Fisica.Equals(ataque.Categoria.Fisica))))
 				reducao = AplicarFraqueza(reducao);
 
 			// Resistência
 			if ((Resistencia != null) &&
-					((Resistencia.Elemental.Equals(ataque.Categoria.Elemental)) ||
-					 (Resistencia.Fisica.Equals(ataque.Categoria.Fisica))))
+				((Resistencia.Elemental.Equals(ataque.Categoria.Elemental)) ||
+				 (Resistencia.Fisica.Equals(ataque.Categoria.Fisica))))
 				reducao = AplicarResistencia(reducao);
 
 			return reducao;
+		}
+
+		public override void Usar(Personagem origem, Personagem alvo)
+		{
+			if (this == alvo.Armadura)
+			{
+				alvo.Armadura = null;
+				Console.WriteLine($"{alvo.Nome} removeu a armadura.");
+			} else {
+				alvo.Armadura = this;
+				Console.WriteLine($"{alvo.Nome} equipou a armadura {this.Nome}.");
+			}
 		}
 	}
 }
