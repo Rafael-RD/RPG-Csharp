@@ -33,24 +33,14 @@ namespace projeto1_RPG.Personagens.Principal
 			if (Classe.Habilidades.Count == 1) opcao = 0;
 			else opcao = new Random().Next(Classe.Habilidades.Count);
 
-			//if (!Classe.ConsegueUsar(Classe.Habilidades[opcao])) return null;
+			if (!Classe.Habilidades[opcao].PodeUsar(this)) return null;
+
 			return Classe.Habilidades[opcao];
 		}
 
-		public override Personagem SelecionarAlvo(List<Personagem> fila, Habilidade habilidade)
+		public override Personagem SelecionarAlvo(List<Personagem> fila, bool aliado)
 		{
-			List<Personagem> lista = fila.FindAll(x => x is Jogador);
-			if (lista.Count == 1) return lista[0];
-
-			return lista[new Random().Next(lista.Count)];
-		}
-
-		public override Personagem SelecionarAlvo(List<Personagem> fila, Item item)
-		{
-			if (item is Itens.Armas.Arma) return this;
-			if (item is Itens.Armaduras.Armadura) return this;
-
-			List<Personagem> lista = fila.FindAll(x => x is Oponente);
+			List<Personagem> lista = fila.FindAll(x => (aliado) == (x is Oponente));
 			if (lista.Count == 1) return lista[0];
 
 			return lista[new Random().Next(lista.Count)];
@@ -69,9 +59,7 @@ namespace projeto1_RPG.Personagens.Principal
 			if (Inventario.Count == 1) opcao = 0;
 			else opcao = new Random().Next(Inventario.Count);
 
-			Item i = Inventario[opcao];
-			if (i == this.Arma) return null;
-			if (i == this.Armadura) return null;
+			if (!Inventario[opcao].PodeUsar(this)) return null;
 
 			return Inventario[opcao];
 		}
