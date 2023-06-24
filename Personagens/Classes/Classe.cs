@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens;
 
 namespace projeto1_RPG.Personagens.Classes
 {
@@ -14,6 +15,7 @@ namespace projeto1_RPG.Personagens.Classes
 		public string Nome { get; set; }
 		public Atributos Atributos { get; set; }
 		public List<Habilidade> Habilidades { get; set; }
+		public List<Item> KitInicial { get; set; }
 		public int Dinheiro { get; set; }
 
 		public Classe()
@@ -21,6 +23,7 @@ namespace projeto1_RPG.Personagens.Classes
 			Nome = string.Empty;
 			Atributos = new Atributos();
 			Habilidades = new List<Habilidade>();
+			KitInicial = new List<Item>();
 		}
 
 		public bool ConsegueUsar(Habilidade habilidade)

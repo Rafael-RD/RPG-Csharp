@@ -39,9 +39,13 @@ namespace projeto1_RPG.Personagens
 			Atributos = new Atributos();
 			Atributos.SomarAtributos(Raca.Atributos);
 			Atributos.SomarAtributos(Classe.Atributos);
-			SaudeAtual = Atributos.Saude;
-			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
+			Inventario = new List<Item>();
+			Inventario.AddRange(Classe.KitInicial);
+			SelecionarArma();
+            SelecionarArmadura();
 
+            SaudeAtual = Atributos.Saude;
+			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 			Efeitos = new List<Efeito>();
 		}
 
@@ -66,7 +70,32 @@ namespace projeto1_RPG.Personagens
 			foreach (Efeito e in this.Efeitos) { if (--e.Turnos == 0) this.Efeitos.Remove(e); }
 		}
 
-		private void ReceberAtaque(Personagem origem, Ataque ataque)
+		private void SelecionarArma()
+		{
+			foreach(Item item in Inventario)
+			{
+				if (item is Arma)
+				{
+					this.Arma = (Arma)item;
+					break;
+				}
+			}
+		}
+
+        private void SelecionarArmadura()
+		{
+            foreach (Item item in Inventario)
+            {
+                if (item is Armadura)
+                {
+                    this.Armadura = (Armadura)item;
+                    break;
+                }
+            }
+        }
+
+
+        private void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
 			int danoIni = ataque.CalcDano();
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
@@ -78,7 +107,7 @@ namespace projeto1_RPG.Personagens
 			{
 				if (e is IEfeitoAposCalcularDano) dano = ((IEfeitoAposCalcularDano)e).AposCalcularDano(dano);
 			}
-			efeitos = dano - danoIni;
+			efeitos = dano - efeitos;
 
 			string info = ((armadura > 0) ? $"{-armadura} (armadura)" : String.Empty) +
 						  ((efeitos  > 0) ? $"{efeitos} (efeitos)" : String.Empty);
