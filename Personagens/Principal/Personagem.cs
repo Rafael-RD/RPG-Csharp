@@ -6,7 +6,7 @@ using projeto1_RPG.Efeitos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
 using projeto1_RPG.Itens;
-using projeto1_RPG.Combate;
+using projeto1_RPG.Combates;
 using System;
 using System.Collections.Generic;
 using System.Linq;

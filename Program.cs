@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using projeto1_RPG.Personagens;
-using projeto1_RPG.Combate;
-using static projeto1_RPG.Personagens.Personagem;
+using projeto1_RPG.Combates;
+using projeto1_RPG.Principal;
 
 namespace projeto1_RPG
 {
@@ -22,9 +22,9 @@ namespace projeto1_RPG
             Console.WriteLine("Qual seu nome: ");
             string nome = Console.ReadLine();
             Console.WriteLine("Selecione uma raça:");
-            string[] opcoes = ListaRacas.GetRacasJogador().Select(x => x.Nome).ToArray();
+            string[] opcoes = ListaRacas.GetRacasGlobal().Select(x => x.Nome).ToArray();
             int racaEscolhida = Menu.MostrarOpcoes(opcoes, "Raça: ");
-            Raca racajogador = (ListaRacas.GetRacasJogador()[racaEscolhida]);
+            Raca racajogador = (ListaRacas.GetRacasGlobal()[racaEscolhida]);
 
             Console.WriteLine();
             Console.WriteLine("Selecione uma classe: ");
