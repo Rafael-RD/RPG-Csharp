@@ -21,6 +21,7 @@ namespace projeto1_RPG.Habilidades
 		public override void Usar(Personagem origem, Personagem alvo)
 		{
 			alvo.ReceberAtaque(origem, this.Ataque);
+			base.Usar(origem, alvo);
 		}
 	}
 }
