@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Combate
+namespace projeto1_RPG.Combates
 {
 	internal class GeradorOponentes
 	{
