@@ -1,11 +1,11 @@
-using projeto1_RPG.Personagens.Racas;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Racas.Oponente
+namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 {
 	internal class Esqueleto : Raca
 	{
@@ -13,11 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente
 		{
 			Id = 11;
 			Nome = "Esqueleto";
-			Atributos.Forca = 2;
-			Atributos.Destreza = 2;
-			Atributos.Inteligencia = 0;
-			Atributos.Resistencia = 1;
-			Atributos.Saude = 1;
+			Atributos.SetAtributos(3, 3, 1, 3, 40, 3);
 			DinheiroMin = 0;
 			DinheiroMax = 5;
 		}

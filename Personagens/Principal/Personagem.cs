@@ -6,14 +6,14 @@ using projeto1_RPG.Efeitos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
 using projeto1_RPG.Itens;
-using projeto1_RPG.Combate;
+using projeto1_RPG.Combates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal abstract class Personagem
 	{
@@ -22,21 +22,20 @@ namespace projeto1_RPG.Personagens
 		public Classe Classe { get; set; }
 		public Nivel Nivel { get; set; }
 		public Atributos Atributos { get; set; }
+		public int SaudeAtual { get; set; }
+		public int PtsHabiliAtual { get; set; }
+		public List<Item> Inventario { get; private set; }
 		public Arma Arma { get; set; }
 		public Armadura Armadura { get; set; }
-		public List<Item> Inventario { get; private set; }
-		public List<Efeito> Efeitos { get; private set; }
-		public int SaudeAtual { get; set; }
 		public int Dinheiro { get; set; }
+		public List<Efeito> Efeitos { get; private set; }
 
 		public Personagem(Raca raca, Classe classe, int nivel = 1)
 		{
-			Nome = String.Empty;
+			Nome = string.Empty;
 			Raca = raca;
 			Classe = classe;
 			Nivel = new Nivel(nivel);
-			Arma = null;
-			Armadura = null;
 			Atributos = new Atributos();
 			Atributos.SomarAtributos(Raca.Atributos);
 			Atributos.SomarAtributos(Classe.Atributos);
@@ -46,8 +45,20 @@ namespace projeto1_RPG.Personagens
 			SelecionarArmadura();
 
 			SaudeAtual = Atributos.Saude;
+			PtsHabiliAtual = Atributos.PtsHabili;
+			Inventario = new List<Item>();
+			Arma = null;
+			Armadura = null;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 			Efeitos = new List<Efeito>();
+		}
+
+		public void AvancarNivel()
+		{
+			Nivel.AvancarNivel();
+			Atributos.SomarAtributos(Classe.Incrementos);
+			SaudeAtual = Atributos.Saude;
+			PtsHabiliAtual = Atributos.PtsHabili;
 		}
 
 		public enum AcaoTurno

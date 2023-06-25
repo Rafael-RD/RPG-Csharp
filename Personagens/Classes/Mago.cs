@@ -1,3 +1,4 @@
+using projeto1_RPG.Personagens.Principal;
 using projeto1_RPG.Itens.Armaduras;
 using projeto1_RPG.Itens.Armas;
 using System;
@@ -14,11 +15,8 @@ namespace projeto1_RPG.Personagens.Classes
 		{
 			Id = 2;
 			Nome = "Mago";
-			Atributos.Forca = 1;
-			Atributos.Destreza = 1;
-			Atributos.Inteligencia = 4;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 2;
+			Atributos.SetAtributos(1, 2, 6, 1, 40, 0);
+			Incrementos.SetAtributos(0, 0, 0, 0, 0, 0);
 			Dinheiro = 20;
             KitInicial.Add(new Arma("Cajado", "Cajado de fogo", 10, "Fogo", "Neutro", 100, 150));
             KitInicial.Add(new Armadura("Armadura de Pano", "Armadura feita com pano", 10, 50));
