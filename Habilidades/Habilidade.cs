@@ -30,9 +30,13 @@ namespace projeto1_RPG.Habilidades
 		public virtual bool PodeUsar(Personagem personagem, out string msg)
 		{
 			msg = String.Empty;
-			return true;
+			if (personagem.PtsHabiliAtual < Custo) msg="Sem pontos de habilidade";
+			return (msg==String.Empty);
 		}
 
-		public abstract void Usar(Personagem origem, Personagem alvo);
+		public virtual void Usar(Personagem origem, Personagem alvo)
+		{
+            origem.PtsHabiliAtual -= Custo;
+        }
 	}
 }
