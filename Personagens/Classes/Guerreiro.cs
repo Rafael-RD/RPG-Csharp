@@ -1,3 +1,4 @@
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,8 @@ namespace projeto1_RPG.Personagens.Classes
 		{
 			Id = 1;
 			Nome = "Guerreiro";
-			Atributos.Forca = 3;
-			Atributos.Destreza = 1;
-			Atributos.Inteligencia = 1;
-			Atributos.Resistencia = 3;
-			Atributos.Saude = 2;
+			Atributos.SetAtributos(6, 2, 1, 3, 70, 0);
+			Incrementos.SetAtributos(2, 0, 0, 0, 0, 0);
 			Dinheiro = 10;
 		}
 	}

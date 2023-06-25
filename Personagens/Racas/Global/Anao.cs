@@ -1,11 +1,11 @@
-using projeto1_RPG.Personagens.Racas;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Racas.Jogador
+namespace projeto1_RPG.Personagens.Racas.Global
 {
 	internal class Anao : Raca
 	{
@@ -13,11 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Jogador
 		{
 			Id = 3;
 			Nome = "Anão";
-			Atributos.Forca = 3;
-			Atributos.Destreza = 1;
-			Atributos.Inteligencia = 1;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 3;
+			Atributos.SetAtributos(6, 3, 3, 6, 90, 40);
 			DinheiroMin = 5;
 			DinheiroMax = 15;
 		}

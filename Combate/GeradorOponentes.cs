@@ -1,6 +1,4 @@
-using projeto1_RPG.Personagens.Racas;
-using projeto1_RPG.Personagens.Classes;
-using projeto1_RPG.Personagens;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,17 +39,17 @@ namespace projeto1_RPG.Combate
 			{
 				case Dificuldade.Facil:
 					nivelMin = Math.Max(1, nivelMin - 1);
-					nivelMax = Math.Max(1, nivelMax - (nivelMax-nivelMin) / 2);
+					nivelMax = Math.Max(1, nivelMax - (nivelMax - nivelMin) / 2);
 					break;
 				case Dificuldade.Dificil:
-					nivelMin += (nivelMax-nivelMin) / 2;
+					nivelMin += (nivelMax - nivelMin) / 2;
 					break;
 				case Dificuldade.Impossivel:
-					nivelMin += (nivelMax-nivelMin) / 2;
+					nivelMin += (nivelMax - nivelMin) / 2;
 					nivelMax += qtdJogadores;
 					break;
 			}
-			return new Random().Next(nivelMin,nivelMax+1);
+			return new Random().Next(nivelMin, nivelMax + 1);
 		}
 
 		public List<Personagem> MontarLista(List<Personagem> jogadores, Dificuldade dificuldade = Dificuldade.Nenhum, Estilo estilo = Estilo.Nenhum)
@@ -68,7 +66,7 @@ namespace projeto1_RPG.Combate
 				case Estilo.Chefe:
 					// Um oponente forte
 					nivelMin = jogadores.Max(j => j.Nivel.NivelAtual);
-					nivelMax = nivelMin + (int)Math.Pow(jogadores.Count,2) + 1;
+					nivelMax = nivelMin + (int)Math.Pow(jogadores.Count, 2) + 1;
 					nivel = NivelPorDificuldade(nivelMin, nivelMax, dificuldade, jogadores.Count);
 
 					oponentes.Add(new Oponente(ListaRacas.RandomOponente(), ListaClasses.Random(), nivel));
@@ -79,7 +77,7 @@ namespace projeto1_RPG.Combate
 					Raca raca = ListaRacas.RandomOponente();
 					double somaNiveis = jogadores.Sum(j => j.Nivel.NivelAtual);
 					nivelMax = (int)Math.Floor(somaNiveis / jogadores.Count * 0.65);
-					nivelMin = Math.Max(1,nivelMax-3);
+					nivelMin = Math.Max(1, nivelMax - 3);
 					somaNiveis *= 1.2;
 
 					while (somaNiveis > 0)
@@ -94,8 +92,8 @@ namespace projeto1_RPG.Combate
 					// Um oponente médio por jogador
 					foreach (Personagem p in jogadores)
 					{
-						nivelMin = p.Nivel.NivelAtual-2;
-						nivelMax = p.Nivel.NivelAtual+1;
+						nivelMin = p.Nivel.NivelAtual - 2;
+						nivelMax = p.Nivel.NivelAtual + 1;
 						nivel = NivelPorDificuldade(nivelMin, nivelMax, dificuldade, jogadores.Count);
 
 						oponentes.Add(new Oponente(ListaRacas.RandomOponente(), ListaClasses.Random(), nivel));

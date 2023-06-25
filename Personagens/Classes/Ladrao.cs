@@ -1,3 +1,4 @@
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,9 @@ namespace projeto1_RPG.Personagens.Classes
 		{
 			Id = 3;
 			Nome = "Ladrão";
-			Atributos.Forca = 1;
-			Atributos.Destreza = 4;
-			Atributos.Inteligencia = 2;
-			Atributos.Resistencia = 2;
-			Atributos.Saude = 1;
-			Dinheiro = 40;
+			Atributos.SetAtributos(2, 5, 2, 2, 50, 0);
+			Incrementos.SetAtributos(0, 0, 0, 0, 0, 0);
+			Dinheiro = 30;
 		}
 	}
 }

@@ -21,7 +21,7 @@ namespace projeto1_RPG.Principal
 
 		public int CalcDano()
 		{
-			return new Random().Next(DanoMinimo, DanoMaximo+1);
+			return new Random().Next(DanoMinimo, DanoMaximo + 1);
 		}
 
 	}

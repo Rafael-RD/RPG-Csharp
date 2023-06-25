@@ -1,4 +1,4 @@
-using projeto1_RPG.Personagens.Principal;
+﻿using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Personagens.Classes
 {
-	internal class Mago : Classe
+	internal class Clerigo : Classe
 	{
-		public Mago() : base()
+		public Clerigo() : base()
 		{
-			Id = 2;
-			Nome = "Mago";
-			Atributos.SetAtributos(1, 2, 6, 1, 40, 0);
+			Id = 4;
+			Nome = "Clérigo";
+			Atributos.SetAtributos(3, 2, 3, 2, 60, 0);
 			Incrementos.SetAtributos(0, 0, 0, 0, 0, 0);
-			Dinheiro = 20;
+			Dinheiro = 10;
 		}
 	}
 }
