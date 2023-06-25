@@ -25,10 +25,15 @@ namespace projeto1_RPG.Personagens.Principal
 			ExpAtual = Math.Max(ExpAtual, (int)Math.Floor((ExpBase * Math.Pow(2, nivel - 1)) - ExpBase));
 			ExpProxNivel = (int)Math.Floor(ExpBase * Math.Pow(2, nivel - 1));
 		}
+
 		public void AvancarNivel()
 		{
-			//ExpAtual -= ExpProxNivel;
-			SetNivel(NivelAtual + 1);
+			int ExpRestante = ExpAtual - ExpProxNivel;
+			if (ExpRestante >= 0)
+			{
+				SetNivel(NivelAtual + 1);
+				ExpAtual = ExpRestante;
+			}
 		}
 	}
 }

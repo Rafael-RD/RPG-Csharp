@@ -19,7 +19,7 @@ namespace projeto1_RPG
 			Console.WriteLine("Qual seu nome: ");
 
 			Console.WriteLine("Selecione uma raça: \n 1-Anão\n 2-Elfo\n 3-Humano");
-			int RaçaEscolhida = int.Parse(Console.ReadLine());
+			int RacaEscolhida = int.Parse(Console.ReadLine());
 
 			Console.WriteLine("Selecione uma classe: \n 1-Guerreiro\n 2-Ladrão\n 3-Mago");
 			int ClasseEscolhida = int.Parse(Console.ReadLine());

@@ -1,11 +1,9 @@
-using projeto1_RPG.Personagens.Racas;
-using projeto1_RPG.Personagens.Classes;
+using projeto1_RPG.Principal;
+using projeto1_RPG.Habilidades;
+using projeto1_RPG.Itens;
 using projeto1_RPG.Itens.Armas;
 using projeto1_RPG.Itens.Armaduras;
 using projeto1_RPG.Efeitos;
-using projeto1_RPG.Habilidades;
-using projeto1_RPG.Principal;
-using projeto1_RPG.Itens;
 using projeto1_RPG.Combate;
 using System;
 using System.Collections.Generic;
@@ -46,6 +44,13 @@ namespace projeto1_RPG.Personagens.Principal
 			Armadura = null;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 			Efeitos = new List<Efeito>();
+		}
+
+		public void ReceberRecompensa(Oponente oponente)
+		{
+			Nivel.ExpAtual += oponente.Nivel.ExpAtual;
+			Nivel.AvancarNivel();
+			Dinheiro += oponente.Dinheiro;
 		}
 
 		public void AvancarNivel()
@@ -91,7 +96,7 @@ namespace projeto1_RPG.Personagens.Principal
 			efeitos = dano - efeitos;
 
 			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
-						  ((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
+							((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
 			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
 
 			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");

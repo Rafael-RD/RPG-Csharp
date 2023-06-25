@@ -1,5 +1,4 @@
 using projeto1_RPG.Personagens.Principal;
-using projeto1_RPG.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +28,7 @@ namespace projeto1_RPG.Habilidades
 
 		public virtual bool PodeUsar(Personagem personagem, out string msg)
 		{
-			msg = String.Empty;
+			msg = string.Empty;
 			return true;
 		}
 

@@ -13,9 +13,9 @@ namespace projeto1_RPG.Personagens.Racas.Global
 		{
 			Id = 3;
 			Nome = "Anão";
-			Atributos.SetAtributos(6, 3, 3, 6, 90, 40);
-			DinheiroMin = 5;
-			DinheiroMax = 15;
+			Atributos.SetAtributos(6, 3, 3, 6, 90, 4);
+			DinheiroMin = 10;
+			DinheiroMax = 100;
 		}
 	}
 }

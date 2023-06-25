@@ -15,7 +15,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 			Nome = "Esqueleto";
 			Atributos.SetAtributos(3, 3, 1, 3, 40, 3);
 			DinheiroMin = 0;
-			DinheiroMax = 5;
+			DinheiroMax = 10;
 		}
 	}
 }
