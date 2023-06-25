@@ -1,4 +1,6 @@
 using projeto1_RPG.Personagens.Principal;
+using projeto1_RPG.Itens.Armaduras;
+using projeto1_RPG.Itens.Armas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace projeto1_RPG.Personagens.Classes
 			Atributos.SetAtributos(2, 5, 2, 2, 50, 0);
 			Incrementos.SetAtributos(0, 0, 0, 0, 0, 0);
 			Dinheiro = 30;
-		}
+            KitInicial.Add(new Arma("Adaga", "Adaga de ladrão", 10, "Neutro", "Perfurante", 100, 150));
+            KitInicial.Add(new Armadura("Armadura de Couro", "Armadura feita com couro", 10, 75));
+        }
 	}
 }

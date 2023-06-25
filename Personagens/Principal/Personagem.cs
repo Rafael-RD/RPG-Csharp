@@ -39,6 +39,11 @@ namespace projeto1_RPG.Personagens.Principal
 			Atributos = new Atributos();
 			Atributos.SomarAtributos(Raca.Atributos);
 			Atributos.SomarAtributos(Classe.Atributos);
+			Inventario = new List<Item>();
+			Inventario.AddRange(Classe.KitInicial);
+			SelecionarArma();
+			SelecionarArmadura();
+
 			SaudeAtual = Atributos.Saude;
 			PtsHabiliAtual = Atributos.PtsHabili;
 			Inventario = new List<Item>();
@@ -74,6 +79,30 @@ namespace projeto1_RPG.Personagens.Principal
 		public void IniciouTurno()
 		{
 			foreach (Efeito e in this.Efeitos) { if (--e.Turnos == 0) this.Efeitos.Remove(e); }
+		}
+
+		private void SelecionarArma()
+		{
+			foreach(Item item in Inventario)
+			{
+				if (item is Arma)
+				{
+					this.Arma = (Arma)item;
+					break;
+				}
+			}
+		}
+
+		private void SelecionarArmadura()
+		{
+			foreach (Item item in Inventario)
+			{
+				if (item is Armadura)
+				{
+					this.Armadura = (Armadura)item;
+					break;
+				}
+			}
 		}
 
 		public void ReceberAtaque(Personagem origem, Ataque ataque)
