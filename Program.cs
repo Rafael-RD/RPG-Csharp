@@ -10,7 +10,7 @@ using projeto1_RPG.Personagens;
 using projeto1_RPG.Combate;
 using static projeto1_RPG.Personagens.Personagem;
 
-namespace ProjetoRPG
+namespace projeto1_RPG
 {
     internal class Program
     {
