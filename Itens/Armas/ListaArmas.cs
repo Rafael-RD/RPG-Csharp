@@ -16,7 +16,8 @@ namespace projeto1_RPG.Itens.Armas
 			{
 				Armas = new List<Arma>
 				{
-				};
+					new Arma(1, "Espada", "Espada de Batalha", 10, "Neutro", "Cortante", 100, 150)
+                };
 			}
 			return Armas;
 		}

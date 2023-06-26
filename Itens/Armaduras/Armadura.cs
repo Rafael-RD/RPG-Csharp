@@ -13,8 +13,11 @@ namespace projeto1_RPG.Itens.Armaduras
         public Categoria Fraqueza { get; set; }
         public int ReducaoDano { get; set; }
 
-        public Armadura(string nome, string descricao, int valor, int reducaoDano) : base(nome, descricao, valor)
+        public Armadura(int id, string nome, string descricao, int valor, int reducaoDano) : base(id, nome, descricao, valor)
         {
+            Id = id;
+            Nome = nome;
+            Descricao = descricao;
             Resistencia = new Categoria();
             Fraqueza = new Categoria();
             ReducaoDano = reducaoDano;

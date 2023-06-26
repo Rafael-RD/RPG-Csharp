@@ -20,8 +20,8 @@ namespace projeto1_RPG.Personagens.Classes
 			Atributos.Resistencia = 3;
 			Atributos.Saude = 2;
 			Dinheiro = 10;
-			KitInicial.Add(new Arma("Espada", "Espada de Batalha", 10, "Neutro", "Cortante", 100, 150));
-			KitInicial.Add(new Armadura("Armadura de Metal", "Armadura feita com metal", 10, 100));
+			KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 1));
+            KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 1));
 
         }
 	}
