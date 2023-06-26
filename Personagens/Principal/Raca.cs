@@ -1,12 +1,10 @@
-using projeto1_RPG.Principal;
-using projeto1_RPG.Habilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens.Racas
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal abstract class Raca
 	{
@@ -18,7 +16,7 @@ namespace projeto1_RPG.Personagens.Racas
 
 		public Raca()
 		{
-			Nome = String.Empty;
+			Nome = string.Empty;
 			Atributos = new Atributos();
 		}
 
