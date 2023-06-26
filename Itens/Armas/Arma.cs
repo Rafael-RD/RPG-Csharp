@@ -1,6 +1,5 @@
-using projeto1_RPG.Personagens.Principal;
-using projeto1_RPG.Itens;
 using projeto1_RPG.Principal;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;

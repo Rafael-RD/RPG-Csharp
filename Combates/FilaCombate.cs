@@ -1,4 +1,3 @@
-using projeto1_RPG.Personagens;
 using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;

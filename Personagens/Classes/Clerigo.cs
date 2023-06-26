@@ -15,7 +15,7 @@ namespace projeto1_RPG.Personagens.Classes
 			Nome = "Clérigo";
 			Atributos.SetAtributos(3, 2, 3, 2, 60, 1);
 			Incrementos.SetAtributos(1, 1, 2, 2, 4, 2);
-			Dinheiro = 27;
+			Dinheiro = 30;
 		}
 	}
 }

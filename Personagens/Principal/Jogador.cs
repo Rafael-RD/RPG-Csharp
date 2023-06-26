@@ -11,7 +11,7 @@ namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Jogador : Personagem
 	{
-		public Jogador(Raca raca, Classe classe, int nivel = 1) : base(raca, classe, nivel) { }
+		public Jogador(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel) { }
 
 		public override AcaoTurno EscolherAcao()
 		{
