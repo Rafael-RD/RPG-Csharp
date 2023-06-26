@@ -14,8 +14,8 @@ namespace projeto1_RPG.Personagens.Racas.Global
 			Id = 2;
 			Nome = "Elfo";
 			Atributos.SetAtributos(3, 6, 6, 3, 70, 7);
-			DinheiroMin = 0;
-			DinheiroMax = 10;
+			DinheiroMin = 5;
+			DinheiroMax = 50;
 		}
 	}
 }

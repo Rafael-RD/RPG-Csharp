@@ -14,8 +14,8 @@ namespace projeto1_RPG.Personagens.Racas.Global
 			Id = 1;
 			Nome = "Humano";
 			Atributos.SetAtributos(5, 5, 5, 5, 60, 5);
-			DinheiroMin = 0;
-			DinheiroMax = 5;
+			DinheiroMin = 1;
+			DinheiroMax = 20;
 		}
 	}
 }

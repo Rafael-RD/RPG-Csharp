@@ -16,11 +16,10 @@ namespace projeto1_RPG.Personagens.Classes
 			Id = 1;
 			Nome = "Guerreiro";
 			Atributos.SetAtributos(6, 2, 1, 3, 70, 0);
-			Incrementos.SetAtributos(2, 0, 0, 0, 0, 0);
-			Dinheiro = 10;
-			KitInicial.Add(new Arma("Espada", "Espada de Batalha", 10, "Neutro", "Cortante", 100, 150));
+            Incrementos.SetAtributos(2, 1, 1, 1, 5, 1);
+            Dinheiro = 55;
+            KitInicial.Add(new Arma("Espada", "Espada de Batalha", 10, "Neutro", "Cortante", 100, 150));
 			KitInicial.Add(new Armadura("Armadura de Metal", "Armadura feita com metal", 10, 100));
-
         }
 	}
 }

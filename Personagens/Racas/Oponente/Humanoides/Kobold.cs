@@ -14,8 +14,8 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 			Id = 14;
 			Nome = "Kobold";
 			Atributos.SetAtributos(1, 5, 3, 1, 30, 3);
-			DinheiroMin = 0;
-			DinheiroMax = 10;
+			DinheiroMin = 2;
+			DinheiroMax = 15;
 		}
 	}
 }

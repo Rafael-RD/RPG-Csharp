@@ -13,9 +13,9 @@ namespace projeto1_RPG.Personagens.Classes
 		{
 			Id = 4;
 			Nome = "Clérigo";
-			Atributos.SetAtributos(3, 2, 3, 2, 60, 0);
-			Incrementos.SetAtributos(0, 0, 0, 0, 0, 0);
-			Dinheiro = 10;
+			Atributos.SetAtributos(3, 2, 3, 2, 60, 1);
+			Incrementos.SetAtributos(1, 1, 2, 2, 4, 2);
+			Dinheiro = 27;
 		}
 	}
 }
