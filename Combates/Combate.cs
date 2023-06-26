@@ -151,7 +151,7 @@ namespace projeto1_RPG.Combates
 			{
 				if (!this.Fila.Oponentes.Contains(p))
 				{
-					totalExp += p.CalcExpRecompensa();
+					totalExp += p.Nivel.ExpRecompensa;
 					totalDinheiro += p.Dinheiro;
 				}
 			}
@@ -166,8 +166,12 @@ namespace projeto1_RPG.Combates
 				if (dinheiro > 0) Console.WriteLine($"{j.Nome} ganhou dinheiro: {dinheiro}.");
 				if (exp > 0) Console.WriteLine($"{j.Nome} ganhou experiência: {exp}.");
 
-				j.Dinheiro += dinheiro;
-				j.Nivel.ExpAtual += exp;
+				//receber recompensa (?)
+				foreach (Oponente p in Fila.Oponentes)
+				{
+					j.ReceberRecompensa(p);
+				}
+				
 				if (j.Nivel.ExpAtual >= j.Nivel.ExpProxNivel)
 				{
 					j.Nivel.SetNivel(j.Nivel.NivelAtual + 1);

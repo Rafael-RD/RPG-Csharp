@@ -43,13 +43,10 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 			PtsSaudeAtual = Atributos.PtsSaudeMax;
 			PtsHabiliAtual = Atributos.PtsHabiliMax;
-
 			Inventario = new List<Item>();
 			Inventario.AddRange(Classe.KitInicial);
 			SelecionarArma();
 			SelecionarArmadura();
-
-			Inventario = new List<Item>();
 			Arma = null;
 			Armadura = null;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * nivel) / 2;
@@ -70,10 +67,6 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public void ReceberRecompensa(Oponente oponente)
 		{
-			if (oponente.Nivel.NivelAtual == 1)
-			{
-				oponente.Nivel.ExpAtual = Nivel.ExpBase;
-			}
 			Nivel.ExpAtual += oponente.Nivel.ExpRecompensa;
 			Nivel.CalcExperiencia();
 			if (Nivel.AvancouNivel)
@@ -145,9 +138,9 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 			efeitos = dano - efeitos;
 
-			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
-							((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
-			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
+			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : string.Empty) +
+										((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : string.Empty);
+			if (info != string.Empty) info = $"[{danoIni} (ataque) {info}]";
 
 			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
 			this.PtsSaudeAtual -= dano;

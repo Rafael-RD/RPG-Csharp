@@ -26,7 +26,14 @@ namespace projeto1_RPG.Personagens.Principal
 			NivelAtual = nivel;
 			ExpAtual = Math.Max(ExpAtual, (int)Math.Floor((ExpBase * Math.Pow(2, nivel - 1)) - ExpBase));
 			ExpProxNivel = (int)Math.Floor(ExpBase * Math.Pow(2, nivel - 1));
-			ExpRecompensa = (int)Math.Floor((ExpBase * Math.Sqrt(nivel + 1)) - ExpBase);
+			if (nivel == 1)
+			{
+				ExpRecompensa = (int)Math.Floor(ExpBase * Math.Sqrt(nivel + 1));
+			}
+			else
+			{
+				ExpRecompensa = (int)Math.Floor((ExpBase * Math.Sqrt(nivel + 1)) - ExpBase);
+			}
 		}
 
 		public void CalcExperiencia()
