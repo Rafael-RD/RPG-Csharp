@@ -1,10 +1,12 @@
-using projeto1_RPG.Principal;
-using projeto1_RPG.Habilidades;
-using projeto1_RPG.Itens;
+using projeto1_RPG.Personagens.Racas;
+using projeto1_RPG.Personagens.Classes;
 using projeto1_RPG.Itens.Armas;
 using projeto1_RPG.Itens.Armaduras;
 using projeto1_RPG.Efeitos;
-using projeto1_RPG.Combate;
+using projeto1_RPG.Habilidades;
+using projeto1_RPG.Principal;
+using projeto1_RPG.Itens;
+using projeto1_RPG.Combates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +45,11 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 			PtsSaudeAtual = Atributos.PtsSaudeMax;
 			PtsHabiliAtual = Atributos.PtsHabiliMax;
+			Inventario = new List<Item>();
+			Inventario.AddRange(Classe.KitInicial);
+			SelecionarArma();
+			SelecionarArmadura();
+
 			Inventario = new List<Item>();
 			Arma = null;
 			Armadura = null;
@@ -95,6 +102,30 @@ namespace projeto1_RPG.Personagens.Principal
 		public void IniciouTurno()
 		{
 			foreach (Efeito e in this.Efeitos) { if (--e.Turnos == 0) this.Efeitos.Remove(e); }
+		}
+
+		private void SelecionarArma()
+		{
+			foreach(Item item in Inventario)
+			{
+				if (item is Arma)
+				{
+					this.Arma = (Arma)item;
+					break;
+				}
+			}
+		}
+
+		private void SelecionarArmadura()
+		{
+			foreach (Item item in Inventario)
+			{
+				if (item is Armadura)
+				{
+					this.Armadura = (Armadura)item;
+					break;
+				}
+			}
 		}
 
 		public void ReceberAtaque(Personagem origem, Ataque ataque)

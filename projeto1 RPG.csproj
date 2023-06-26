@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Combate\Combate.cs" />
-    <Compile Include="Combate\FilaCombate.cs" />
-    <Compile Include="Combate\Gatilhos.cs" />
-    <Compile Include="Combate\GeradorOponentes.cs" />
+    <Compile Include="Combates\Combate.cs" />
+    <Compile Include="Combates\FilaCombate.cs" />
+    <Compile Include="Combates\Gatilhos.cs" />
+    <Compile Include="Combates\GeradorOponentes.cs" />
     <Compile Include="Efeitos\Efeito.cs" />
     <Compile Include="Efeitos\EfeitoDefesa.cs" />
     <Compile Include="Habilidades\Habilidade.cs" />
