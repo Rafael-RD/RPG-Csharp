@@ -12,19 +12,19 @@ namespace projeto1_RPG.Personagens.Principal
 		public int Destreza { get; set; }
 		public int Inteligencia { get; set; }
 		public int Resistencia { get; set; }
-		public int Saude { get; set; }
-		public int PtsHabili { get; set; }
+		public int PtsSaudeMax;
+		public int PtsHabiliMax { get; set; }
 
 		public Atributos() { }
 
-		public void SetAtributos(int forca, int destreza, int inteligencia, int resistencia, int saude, int ptsHabili)
+		public void SetAtributos(int forca, int destreza, int inteligencia, int resistencia, int ptsSaudeMax, int ptsHabiliMax)
 		{
 			Forca = forca;
 			Destreza = destreza;
 			Inteligencia = inteligencia;
 			Resistencia = resistencia;
-			Saude = saude;
-			PtsHabili = ptsHabili;
+			PtsSaudeMax = ptsSaudeMax;
+			PtsHabiliMax = ptsHabiliMax;
 		}
 		public void SomarAtributos(Atributos atributos)
 		{
@@ -32,8 +32,8 @@ namespace projeto1_RPG.Personagens.Principal
 			Destreza += atributos.Destreza;
 			Inteligencia += atributos.Inteligencia;
 			Resistencia += atributos.Resistencia;
-			Saude += atributos.Saude;
-			PtsHabili += atributos.PtsHabili;
+			PtsSaudeMax += atributos.PtsSaudeMax;
+			PtsHabiliMax += atributos.PtsHabiliMax;
 		}
 	}
 }

@@ -1,6 +1,7 @@
 using projeto1_RPG.Personagens.Classes;
 using projeto1_RPG.Personagens.Principal;
 using projeto1_RPG.Personagens.Racas.Global;
+using projeto1_RPG.Personagens.Racas.Oponente.Humanoides;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,38 @@ namespace projeto1_RPG
 	{
 		static void Main(string[] args)
 		{
-			//inicio
+			/*Raca hum = new Humano();
+			Classe gue = new Guerreiro();
+			Jogador jog = new Jogador(hum, gue, 1);
+
+			Raca gob = new Goblin();
+			Classe lad = new Ladrao();
+			Oponente opo = new Oponente(gob, lad, 1);
+
+			Console.WriteLine($"Nivel: {jog.Nivel.NivelAtual}, Força: {jog.Atributos.Forca}, ExpAtual: {jog.Nivel.ExpAtual}, ExpProxNivel: {jog.Nivel.ExpProxNivel}, Saúde: {jog.PtsSaudeAtual}");
+
+			jog.ReceberRecompensa(opo);
+			jog.ReceberRecompensa(opo);
+			jog.ReceberRecompensa(opo);
+
+			Console.WriteLine($"Nivel: {jog.Nivel.NivelAtual}, Força: {jog.Atributos.Forca}, ExpAtual: {jog.Nivel.ExpAtual}, ExpProxNivel: {jog.Nivel.ExpProxNivel}, Saúde: {jog.PtsSaudeAtual}");
+
+			jog.ReceberRecompensa(opo);
+			jog.ReceberRecompensa(opo);
+			jog.ReceberRecompensa(opo);
+			jog.ReceberRecompensa(opo);
+			jog.ReceberRecompensa(opo);
+
+			Console.WriteLine($"Nivel: {jog.Nivel.NivelAtual}, Força: {jog.Atributos.Forca}, ExpAtual: {jog.Nivel.ExpAtual}, ExpProxNivel: {jog.Nivel.ExpProxNivel}, Saúde: {jog.PtsSaudeAtual}");
+
+			Jogador jog2 = new Jogador(hum, gue, 3);
+
+			Console.WriteLine($"Nivel: {jog2.Nivel.NivelAtual}, Força: {jog2.Atributos.Forca}, ExpAtual: {jog2.Nivel.ExpAtual}, ExpProxNivel: {jog2.Nivel.ExpProxNivel}, Saúde: {jog2.PtsSaudeAtual}/{jog2.Atributos.PtsSaudeMax}");
+
+			Console.ReadKey();*/
+
+
+			/* //inicio
 			Console.WriteLine("Bem vindo ao jogo!\n Vamos começar a aventura!");
 			//criação personagem
 			Console.WriteLine("Qual seu nome: ");
@@ -54,7 +86,7 @@ namespace projeto1_RPG
 				{
 					break;
 				}
-			}
+			} */
 		}
 	}
 }
