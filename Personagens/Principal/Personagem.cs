@@ -28,9 +28,9 @@ namespace projeto1_RPG.Personagens.Principal
 		public int Dinheiro { get; set; }
 		public List<Efeito> Efeitos { get; private set; }
 
-		public Personagem(Raca raca, Classe classe, int nivel = 1)
+		public Personagem(string nome, Raca raca, Classe classe, int nivel = 1)
 		{
-			Nome = string.Empty;
+			Nome = nome;
 			Raca = raca;
 			Classe = classe;
 			Nivel = new Nivel(nivel);
