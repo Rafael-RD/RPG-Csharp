@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens;
 
 namespace projeto1_RPG.Personagens.Principal
 {
@@ -14,6 +15,7 @@ namespace projeto1_RPG.Personagens.Principal
 		public Atributos Atributos { get; set; }
 		public Atributos Incrementos { get; set; }
 		public List<Habilidade> Habilidades { get; set; }
+		public List<Item> KitInicial { get; set; }
 		public int Dinheiro { get; set; }
 
 		public Classe()
@@ -22,6 +24,7 @@ namespace projeto1_RPG.Personagens.Principal
 			Atributos = new Atributos();
 			Incrementos = new Atributos();
 			Habilidades = new List<Habilidade>();
+			KitInicial = new List<Item>();
 		}
 	}
 }
