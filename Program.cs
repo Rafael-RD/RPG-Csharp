@@ -21,6 +21,7 @@ namespace ProjetoRPG
             Console.WriteLine("Bem vindo ao jogo!\nVamos começar a aventura!");
             Console.WriteLine("Qual seu nome: ");
             string nome = Console.ReadLine();
+            Console.WriteLine();
             Console.WriteLine("Selecione uma raça:");
             string[] opcoes = ListaRacas.GetRacasJogador().Select(x => x.Nome).ToArray();
             int racaEscolhida = Menu.MostrarOpcoes(opcoes, "Raça: ");
@@ -36,7 +37,6 @@ namespace ProjetoRPG
             Personagem p1 = new Jogador(racajogador, classeJogador);
             p1.Nome = nome;
 
-            Console.WriteLine();
             Console.WriteLine("Seu personagem ficou assim:");
             Console.WriteLine("Seu nome é: " + p1.Nome);
             Console.WriteLine("Sua raça é " + p1.Raca.Nome);
@@ -57,7 +57,6 @@ namespace ProjetoRPG
             Combate combate;
             while (!sair)
             {
-                // Console.WriteLine("Você conseguiu derrortar o " + nomedomonstro + "ele te deu " + xp + " de experiencia");
                 Console.WriteLine("O que deseja fazer?");
                  opcoes =  new string []{
                 "Explorar",
@@ -89,6 +88,8 @@ namespace ProjetoRPG
                         break;
 
                         case 2: Console.WriteLine("Você escolheu ver o personagem");
+
+
                         break;
                     default: sair = true;
                         break;
