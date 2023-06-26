@@ -1,7 +1,5 @@
-using projeto1_RPG.Personagens.Racas;
-using projeto1_RPG.Personagens.Classes;
-using projeto1_RPG.Habilidades;
 using projeto1_RPG.Principal;
+using projeto1_RPG.Habilidades;
 using projeto1_RPG.Itens;
 using System;
 using System.Collections.Generic;
@@ -9,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Jogador : Personagem
 	{
-		public Jogador(Raca raca, Classe classe, int nivel = 1) : base(raca, classe, nivel) { }
+		public Jogador(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel) { }
 
 		public override AcaoTurno EscolherAcao()
 		{
@@ -30,7 +28,7 @@ namespace projeto1_RPG.Personagens
 				case 1: return AcaoTurno.Defender;
 				case 2: return AcaoTurno.Habilidades;
 				case 3: return AcaoTurno.Inventario;
-			   default: return AcaoTurno.Fugir;
+				default: return AcaoTurno.Fugir;
 			}
 		}
 
@@ -54,7 +52,7 @@ namespace projeto1_RPG.Personagens
 			if (lista.Count == 1) return lista[0];
 
 			Console.WriteLine($"\nSelecione um alvo:");
-			int opcao = Menu.MostrarOpcoes(lista.Select(x => $"{x.Nome} ({x.SaudeAtual}/{x.Atributos.Saude})").ToArray(), "Alvo: ", "Voltar");
+			int opcao = Menu.MostrarOpcoes(lista.Select(x => $"{x.Nome} ({x.PtsSaudeAtual}/{x.Atributos.PtsSaudeMax})").ToArray(), "Alvo: ", "Voltar");
 
 			if (opcao >= 0) return lista[opcao];
 			else return null;
@@ -72,7 +70,7 @@ namespace projeto1_RPG.Personagens
 			if (opcao >= 0)
 			{
 				string msg;
-				if (!Inventario[opcao].PodeUsar(this, out msg)) System.Console.WriteLine(msg); 
+				if (!Inventario[opcao].PodeUsar(this, out msg)) System.Console.WriteLine(msg);
 				else return Inventario[opcao];
 			}
 			return null;

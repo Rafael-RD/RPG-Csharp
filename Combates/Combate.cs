@@ -1,5 +1,5 @@
+using projeto1_RPG.Personagens.Principal;
 using projeto1_RPG.Habilidades;
-using projeto1_RPG.Personagens;
 using projeto1_RPG.Itens;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Combate
+namespace projeto1_RPG.Combates
 {
 	internal class Combate
 	{
@@ -80,7 +80,7 @@ namespace projeto1_RPG.Combate
 			Console.WriteLine($"{personagem.Nome} ataca {alvo.Nome}.");
 			personagem.Atacar(alvo);
 
-			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 
@@ -102,7 +102,7 @@ namespace projeto1_RPG.Combate
 			Console.WriteLine($"{personagem.Nome} usa {habilidade.Nome} em {alvo.Nome}.");
 			habilidade.Usar(personagem, alvo);
 
-			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 
@@ -118,7 +118,7 @@ namespace projeto1_RPG.Combate
 			else Console.WriteLine($"{personagem.Nome} usa {item.Nome} em {alvo.Nome}.");
 			item.Usar(personagem, alvo);
 
-			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 

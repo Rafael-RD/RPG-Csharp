@@ -1,11 +1,11 @@
-using projeto1_RPG.Personagens;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Combate
+namespace projeto1_RPG.Combates
 {
 	internal class FilaCombate
 	{
@@ -43,7 +43,7 @@ namespace projeto1_RPG.Combate
 
 		public void Iniciar()
 		{
-			this.Ordem.Sort(delegate(Personagem p1, Personagem p2) { return p2.Atributos.Destreza.CompareTo(p1.Atributos.Destreza); });
+			this.Ordem.Sort(delegate (Personagem p1, Personagem p2) { return p2.Atributos.Destreza.CompareTo(p1.Atributos.Destreza); });
 			this.Rodada = 1;
 			this.IdxProximo = 0;
 		}

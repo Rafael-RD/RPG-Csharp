@@ -1,5 +1,3 @@
-using projeto1_RPG.Personagens.Racas;
-using projeto1_RPG.Personagens.Classes;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Itens;
 using System;
@@ -8,17 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Personagens
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Oponente : Personagem
 	{
-		public Oponente(Raca raca, Classe classe, int nivel = 1) : base(raca, classe, nivel) {
+		public Oponente(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel)
+		{
 			this.Dinheiro /= 2;
 		}
 
 		public override AcaoTurno EscolherAcao()
 		{
-			int chance = new Random().Next(1, 10+1);
+			int chance = new Random().Next(1, 10 + 1);
 
 			if (chance <= 2) return AcaoTurno.Defender;
 			if (chance == 3) return AcaoTurno.Habilidades;

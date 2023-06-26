@@ -1,13 +1,11 @@
-using projeto1_RPG.Personagens.Racas;
-using projeto1_RPG.Personagens.Classes;
-using projeto1_RPG.Personagens;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Combate
+namespace projeto1_RPG.Combates
 {
 	internal class GeradorOponentes
 	{
@@ -60,6 +58,7 @@ namespace projeto1_RPG.Combate
 			if (dificuldade == Dificuldade.Nenhum) dificuldade = RandomEnum<Dificuldade>();
 			if (estilo == Estilo.Nenhum) estilo = RandomEnum<Estilo>();
 
+			Raca raca;
 			int nivelMin;
 			int nivelMax;
 			int nivel;
@@ -71,12 +70,13 @@ namespace projeto1_RPG.Combate
 					nivelMax = nivelMin + (int)Math.Pow(jogadores.Count,2) + 1;
 					nivel = NivelPorDificuldade(nivelMin, nivelMax, dificuldade, jogadores.Count);
 
-					oponentes.Add(new Oponente(ListaRacas.RandomOponente(), ListaClasses.Random(), nivel));
+					raca = ListaRacas.RandomOponente();
+					oponentes.Add(new Oponente($"{raca.Nome} chefe", raca, ListaClasses.Random(), nivel));
 					break;
 
 				case Estilo.Grupo:
 					// Vários oponentes fracos
-					Raca raca = ListaRacas.RandomOponente();
+					raca = ListaRacas.RandomOponente();
 					double somaNiveis = jogadores.Sum(j => j.Nivel.NivelAtual);
 					nivelMax = (int)Math.Floor(somaNiveis / jogadores.Count * 0.65);
 					nivelMin = Math.Max(1,nivelMax-3);
@@ -86,7 +86,7 @@ namespace projeto1_RPG.Combate
 					{
 						nivel = NivelPorDificuldade(nivelMin, nivelMax, dificuldade, jogadores.Count);
 						somaNiveis -= nivel;
-						oponentes.Add(new Oponente(raca, ListaClasses.Random(), nivel));
+						oponentes.Add(new Oponente($"{raca.Nome} {oponentes.Count(x => x.Raca == raca)+1}", raca, ListaClasses.Random(), nivel));
 					}
 					break;
 
@@ -98,7 +98,8 @@ namespace projeto1_RPG.Combate
 						nivelMax = p.Nivel.NivelAtual+1;
 						nivel = NivelPorDificuldade(nivelMin, nivelMax, dificuldade, jogadores.Count);
 
-						oponentes.Add(new Oponente(ListaRacas.RandomOponente(), ListaClasses.Random(), nivel));
+						raca = ListaRacas.RandomOponente();
+						oponentes.Add(new Oponente($"{raca.Nome} {oponentes.Count(x => x.Raca == raca)+1}", raca, ListaClasses.Random(), nivel));
 					}
 					break;
 			}

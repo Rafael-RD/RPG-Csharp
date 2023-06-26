@@ -1,5 +1,5 @@
-using projeto1_RPG.Personagens;
 using projeto1_RPG.Principal;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +21,7 @@ namespace projeto1_RPG.Habilidades
 		public override void Usar(Personagem origem, Personagem alvo)
 		{
 			alvo.ReceberAtaque(origem, this.Ataque);
+			base.Usar(origem, alvo);
 		}
 	}
 }
