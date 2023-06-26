@@ -98,7 +98,7 @@ namespace projeto1_RPG.Personagens.Principal
 		public abstract Personagem SelecionarAlvo(List<Personagem> fila, bool aliado);
 		public abstract Item SelecionarItem();
 
-		public void IniciouTurno()
+		public virtual void IniciouTurno()
 		{
 			for (int i = Efeitos.Count - 1; i >= 0; i--)
 			{

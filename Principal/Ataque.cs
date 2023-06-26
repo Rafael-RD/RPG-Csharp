@@ -12,6 +12,8 @@ namespace projeto1_RPG.Principal
 		public int DanoMinimo { get; set; }
 		public int DanoMaximo { get; set; }
 
+		private static readonly Random _rnd = new Random();
+
 		public Ataque(Categoria categoria, int danoMinimo, int danoMaximo)
 		{
 			Categoria = categoria ?? new Categoria();
@@ -21,7 +23,7 @@ namespace projeto1_RPG.Principal
 
 		public int CalcDano()
 		{
-			return new Random().Next(DanoMinimo, DanoMaximo + 1);
+			return _rnd.Next(DanoMinimo, DanoMaximo + 1);
 		}
 
 	}

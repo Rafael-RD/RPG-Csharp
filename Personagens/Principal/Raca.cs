@@ -14,6 +14,8 @@ namespace projeto1_RPG.Personagens.Principal
 		public int DinheiroMin { get; set; }
 		public int DinheiroMax { get; set; }
 
+		private static readonly Random _rnd = new Random();
+
 		public Raca()
 		{
 			Nome = string.Empty;
@@ -22,7 +24,7 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public int GetDinheiro()
 		{
-			int dinheiro = new Random().Next(DinheiroMin, DinheiroMax + 1);
+			int dinheiro = _rnd.Next(DinheiroMin, DinheiroMax + 1);
 			return dinheiro;
 		}
 	}
