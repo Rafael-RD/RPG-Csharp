@@ -20,7 +20,7 @@ namespace projeto1_RPG.Efeitos
 
 		public int DanoAposArmadura(int dano)
 		{
-			return (int)Math.Floor((float)dano * (this.PercReducao / 100));
+			return (int)Math.Floor(dano * ((float)this.PercReducao / 100));
 		}
 	}
 }

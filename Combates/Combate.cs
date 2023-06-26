@@ -16,6 +16,10 @@ namespace projeto1_RPG.Combates
 		private FilaCombate Fila { get; set; }
 		private bool Fugiu { get; set; }
 
+		private static readonly Random _rnd = new Random();
+
+		private static string _linha_separar { get; set; } = new string('-', 20);
+
 		public Combate()
 		{
 			this.Jogadores = new List<Jogador>();
@@ -34,12 +38,13 @@ namespace projeto1_RPG.Combates
 		{
 			Fugiu = false;
 			this.Fila.Iniciar();
-			Console.WriteLine("-----------------");
+			Console.WriteLine(_linha_separar);
 			Console.WriteLine("Combate iniciado!");
 
 			// Apresenta ordem
-			Console.WriteLine("Ordem: ");
-			foreach (Personagem p in this.Fila.Ordem) { Console.Write($"- {p.Nome}"); }
+			Console.Write("Ordem: ");
+			foreach (Personagem p in this.Fila.Ordem) { Console.Write($"{p.Nome} | "); }
+			Console.WriteLine();
 
 			// Loop principal do combate
 			while ((!Fugiu) && (!this.Fila.Terminou()))
@@ -53,13 +58,15 @@ namespace projeto1_RPG.Combates
 
 		private void IniciarTurno(Personagem personagem)
 		{
-			Console.WriteLine($"\nTurno de {personagem.Nome}");
+			Console.WriteLine(_linha_separar);
+			Console.WriteLine($"Turno de {personagem.Nome}. Saúde: {personagem.PtsSaudeAtual}/{personagem.Atributos.PtsSaudeMax}. {personagem.Classe.GetDescPtsHabili()}: {personagem.PtsHabiliAtual}/{personagem.Atributos.PtsHabiliMax}");
 			personagem.IniciouTurno();
 
 			// Sai do loop somente quando executou uma ação
 			bool sair = false;
 			while (!sair)
 			{
+				Console.WriteLine();
 				switch (personagem.EscolherAcao())
 				{
 					case Personagem.AcaoTurno.Atacar: sair = Atacar(personagem); break;
@@ -125,17 +132,26 @@ namespace projeto1_RPG.Combates
 		private bool Fugir(Personagem personagem)
 		{
 			// Calcula fuga com base na destreza dos lados
-			int dexJogadores = this.Fila.Jogadores.Sum(j => j.Atributos.Destreza);
-			int dexOponentes = this.Fila.Oponentes.Sum(o => o.Atributos.Destreza);
-			int fuga = (new Random().Next(1, dexJogadores + dexOponentes + 1));
+			int dexJogadores = this.Fila.Jogadores.Sum(j => j.Atributos.Destreza + _rnd.Next(-2, 2));
+			int dexOponentes = this.Fila.Oponentes.Sum(o => o.Atributos.Destreza + _rnd.Next(-2, 2));
+
+			Console.WriteLine($"Chance: {((double)dexJogadores*100/(dexJogadores + dexOponentes)).ToString("N2")}%");
+			Console.Write($"Deseja realmente fugir (s/n)? ");
+			if (!("s").Equals(Console.ReadLine().ToLower())) return false;
+
+			int fuga = (_rnd.Next(1, dexJogadores + dexOponentes + 1));
 
 			Fugiu = (fuga < dexJogadores);
+
+			if (Fugiu) Console.WriteLine($"{personagem.Nome} fugiu da batalha.");
+			else Console.WriteLine($"{personagem.Nome} não conseguiu fugir.");
+
 			return true;
 		}
 
 		private void ApresentarResultado()
 		{
-			Console.WriteLine("------------------");
+			Console.WriteLine(_linha_separar);
 			Console.WriteLine("Combate encerrado!");
 
 			string resultado;
@@ -175,7 +191,8 @@ namespace projeto1_RPG.Combates
 				}
 			}
 
-			Console.Write("Pressione qualquer tecla para continuar.");
+			Console.WriteLine(_linha_separar);
+			Console.WriteLine("Pressione qualquer tecla para continuar.");
 			Console.ReadKey();
 		}
 	}

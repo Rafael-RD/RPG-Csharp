@@ -21,5 +21,10 @@ namespace projeto1_RPG.Personagens.Classes
 			KitInicial.Add(new Armadura("Armadura de Metal", "Armadura feita com metal", 10, 100));
 			Dinheiro = 50;
 		}
+
+		public override string GetDescPtsHabili()
+		{
+			return "Stamina";
+		}
 	}
 }

@@ -26,5 +26,7 @@ namespace projeto1_RPG.Personagens.Principal
 			Habilidades = new List<Habilidade>();
 			KitInicial = new List<Item>();
 		}
+
+		public abstract string GetDescPtsHabili();
 	}
 }

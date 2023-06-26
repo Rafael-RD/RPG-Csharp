@@ -26,11 +26,13 @@ namespace projeto1_RPG.Combates
 			Chefe
 		}
 
+		private static readonly Random _rnd = new Random();
+
 		private T RandomEnum<T>() where T : Enum
 		{
 			// Ignora primeiro enum pois considera ser o "Nenhum"
 			Array array = Enum.GetValues(typeof(T));
-			return (T)array.GetValue(new Random().Next(1, array.Length));
+			return (T)array.GetValue(_rnd.Next(1, array.Length));
 		}
 
 		private int NivelPorDificuldade(int nivelMin, int nivelMax, Dificuldade dificuldade, int qtdJogadores)
@@ -49,7 +51,7 @@ namespace projeto1_RPG.Combates
 					nivelMax += qtdJogadores;
 					break;
 			}
-			return new Random().Next(nivelMin,nivelMax+1);
+			return _rnd.Next(nivelMin,nivelMax+1);
 		}
 
 		public List<Personagem> MontarLista(List<Personagem> jogadores, Dificuldade dificuldade = Dificuldade.Nenhum, Estilo estilo = Estilo.Nenhum)

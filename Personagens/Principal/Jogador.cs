@@ -34,6 +34,12 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public override Habilidade SelecionarHabilidade()
 		{
+			if (Inventario.Count == 0)
+			{
+				System.Console.WriteLine("Você não possui nenhuma habilidade.");
+				return null;
+			}
+
 			Console.WriteLine($"\nSelecione uma habilidade:");
 			int opcao = Menu.MostrarOpcoes(Classe.Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
 			if (opcao >= 0)
@@ -65,6 +71,12 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public override Item SelecionarItem()
 		{
+			if (Inventario.Count == 0)
+			{
+				System.Console.WriteLine("Você não possui nenhum item.");
+				return null;
+			}
+
 			Console.WriteLine($"\nSelecione um item:");
 			int opcao = Menu.MostrarOpcoes(Inventario.Select(x => (ItemEquipado(x) ? $"*{x.Nome} (Equipado)" : $" {x.Nome}")).ToArray(), "Item: ", "Voltar");
 			if (opcao >= 0)
