@@ -59,6 +59,7 @@
     <Compile Include="Itens\Armas\Arma.cs" />
     <Compile Include="Itens\Armas\ListaArmas.cs" />
     <Compile Include="Itens\Consumiveis\Consumivel.cs" />
+    <Compile Include="Itens\Consumiveis\PocaoVida.cs" />
     <Compile Include="Itens\Item.cs" />
     <Compile Include="Personagens\Classes\Clerigo.cs" />
     <Compile Include="Personagens\Principal\Classe.cs" />

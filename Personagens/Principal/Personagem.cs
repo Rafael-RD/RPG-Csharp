@@ -26,7 +26,6 @@ namespace projeto1_RPG.Personagens.Principal
 		public List<Item> Inventario { get; private set; }
 		public Arma Arma { get; set; }
 		public Armadura Armadura { get; set; }
-		public Consumivel Consumivel { get; set; }
 		public int Dinheiro { get; set; }
 		public List<Efeito> Efeitos { get; private set; }
 
@@ -145,10 +144,10 @@ namespace projeto1_RPG.Personagens.Principal
         public void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
-			int dano = ataque.CalcDano() - armadura;
+            int dano = Math.Max(0, ataque.CalcDano() - armadura);
 
-			// Efeitos de redução ou aumento de dano
-			foreach (Efeito e in this.Efeitos)
+            // Efeitos de redução ou aumento de dano
+            foreach (Efeito e in this.Efeitos)
 			{
 				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(this, dano);
 			}

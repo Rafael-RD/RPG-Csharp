@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Itens.Consumiveis
 {
-    internal class Consumivel : Item
+    internal abstract class Consumivel : Item
     {
-        public int VidaRestaurada { get; set; }
-        public int ManaRestaurada { get; set; }
 
         public Consumivel(int id, string nome, string descricao, int valor) : base(id, nome, descricao, valor) 
         {
@@ -19,11 +17,6 @@ namespace projeto1_RPG.Itens.Consumiveis
             Descricao = descricao;
             Valor = valor;
         }
-        public override void Usar(Personagem origem, Personagem alvo)
-        {
-            alvo.Consumivel = this;
-            Console.WriteLine($"{alvo.Nome} usou {this.Nome}.");
-            
-        }
+
     }
 }
