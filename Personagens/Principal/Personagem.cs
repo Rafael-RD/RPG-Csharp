@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG.Personagens.Principal
 {
@@ -27,6 +28,7 @@ namespace projeto1_RPG.Personagens.Principal
 		public List<Item> Inventario { get; private set; }
 		public Arma Arma { get; set; }
 		public Armadura Armadura { get; set; }
+		public Consumivel Consumivel { get; set; }
 		public int Dinheiro { get; set; }
 		public List<Efeito> Efeitos { get; private set; }
 
@@ -41,6 +43,7 @@ namespace projeto1_RPG.Personagens.Principal
 			Atributos.SomarAtributos(Classe.Atributos);
 			Inventario = new List<Item>();
 			Inventario.AddRange(Classe.KitInicial);
+			//SelecionarConsumivel();
 			SelecionarArma();
 			SelecionarArmadura();
 
@@ -105,7 +108,19 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 		}
 
-		public void ReceberAtaque(Personagem origem, Ataque ataque)
+        /*private void SelecionarConsumivel()
+        {
+            foreach (Item item in Inventario)
+            {
+                if (item is Consumivel)
+                {
+                    this.Consumivel = (Consumivel)item;
+                    break;
+                }
+            }
+        }*/
+
+        public void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
 			int danoIni = ataque.CalcDano();
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);

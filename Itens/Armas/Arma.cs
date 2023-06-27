@@ -13,7 +13,7 @@ namespace projeto1_RPG.Itens.Armas
 	{
 		public Ataque Ataque { get; set; }
 
-		public Arma(int id, string nome, string descricao, int valor, string catElemental, string catFisica, int danoMinimo, int danoMaximo) : base(nome, descricao, valor)
+		public Arma(int id, string nome, string descricao, int valor, string catElemental, string catFisica, int danoMinimo, int danoMaximo) : base(id, nome, descricao, valor)
 		{
             Id = id;
             Nome = nome;
