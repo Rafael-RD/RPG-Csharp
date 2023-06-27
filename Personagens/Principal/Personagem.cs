@@ -49,9 +49,6 @@ namespace projeto1_RPG.Personagens.Principal
 
 			SaudeAtual = Atributos.Saude;
 			PtsHabiliAtual = Atributos.PtsHabili;
-			Inventario = new List<Item>();
-			Arma = null;
-			Armadura = null;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 			Efeitos = new List<Efeito>();
 		}

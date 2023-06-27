@@ -41,7 +41,7 @@ namespace projeto1_RPG
             Console.WriteLine("Seu nome é: " + p1.Nome);
             Console.WriteLine("Sua raça é " + p1.Raca.Nome);
             Console.WriteLine("Sua classe é " + p1.Classe.Nome);
-            Console.WriteLine("E sua arma é " + p1.Arma);
+            Console.WriteLine("E sua arma é " + p1.Arma.Nome);
             Console.WriteLine();
 
 

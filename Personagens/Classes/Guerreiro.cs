@@ -20,7 +20,7 @@ namespace projeto1_RPG.Personagens.Classes
 			Dinheiro = 10;
 			KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 1));
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 7));
-            KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 1));
+            KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 3));
 
         }
 	}
