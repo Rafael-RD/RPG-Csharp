@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Habilidades
 {
-	internal abstract class HabilidadeOfensiva : Habilidade
+	internal class HabilidadeOfensiva : Habilidade
 	{
 		public Ataque Ataque { get; set; }
 
-		public HabilidadeOfensiva(string nome, int custo, Ataque ataque) : base(nome, custo)
+		public HabilidadeOfensiva(int id, string nome, string descricao, int custo, string[] classes, Ataque ataque, bool usarAliado=false, bool usarProprio=false) : base(id, nome, descricao, custo, classes)
 		{
 			Ataque = ataque;
-			UsarAliado = false;
+			UsarAliado = usarAliado;
+			UsarProprio = usarProprio;
 		}
 
 		public override void Usar(Personagem origem, Personagem alvo)
