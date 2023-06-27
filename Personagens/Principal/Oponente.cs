@@ -11,21 +11,10 @@ namespace projeto1_RPG.Personagens.Principal
 	internal class Oponente : Personagem
 	{
 		private static readonly Random _rnd = new Random();
-		private bool AdicionarClasse { get; set; }
 
 		public Oponente(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel)
 		{
-			this.AdicionarClasse = true;
 			this.Dinheiro /= 2;
-		}
-
-		public override void IniciouTurno()
-		{
-			base.IniciouTurno();
-			if (this.AdicionarClasse) {
-				this.AdicionarClasse = false;
-				this.Nome = this.Classe.Nome;
-			}
 		}
 
 		public override AcaoTurno EscolherAcao()
