@@ -13,7 +13,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 		{
 			Id = 13;
 			Nome = "Orc";
-			Atributos.SetAtributos(5, 2, 1, 5, 50, 2);
+			Atributos.SetAtributos(5, 2, 1, 5, 12, 2);
 			DinheiroMin = 5;
 			DinheiroMax = 50;
 		}

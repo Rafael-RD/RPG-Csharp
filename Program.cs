@@ -15,36 +15,40 @@ namespace projeto1_RPG
 		{
 			//ciração do personagem
 
-			Console.WriteLine("Bem vindo ao jogo!\nVamos começar a aventura!");
-			Console.WriteLine("Qual seu nome: ");
-			string nome = Console.ReadLine();
-			Console.WriteLine("Selecione uma raça:");
+			Console.Write("Bem-vindo ao jogo! Vamos começar a aventura?");
+			Console.Write("\n\n");
+			Console.Write("----- CRIAÇÃO DE PERSONAGEM -----");
+			Console.Write("\n\n");
+			Console.WriteLine("Selecione a raça do seu personagem:");
 			string[] opcoes = ListaRacas.GetRacasGlobal().Select(x => x.Nome).ToArray();
-			int racaEscolhida = Menu.MostrarOpcoes(opcoes, "Raça: ");
-			Raca racajogador = (ListaRacas.GetRacasGlobal()[racaEscolhida]);
-
-			Console.WriteLine();
-			Console.WriteLine("Selecione uma classe: ");
+			int racaEscolhida = Menu.MostrarOpcoes(opcoes, "> ");
+			Raca racaJogador = (ListaRacas.GetRacasGlobal()[racaEscolhida]);
+			Console.Write('\n');
+			Console.WriteLine("Selecione a classe do seu personagem:");
 			opcoes = ListaClasses.GetClasses().Select(x => x.Nome).ToArray();
-			int classeEscolhida = Menu.MostrarOpcoes(opcoes, "Classe: ");
-			Console.WriteLine();
+			int classeEscolhida = Menu.MostrarOpcoes(opcoes, "> ");
 			Classe classeJogador = (ListaClasses.GetClasses()[classeEscolhida]);
+			Console.Write('\n');
+			Console.Write("Informe o nome do seu personagem:\n> ");
+			string nome = Console.ReadLine();
 
-			Personagem p1 = new Jogador(nome, racajogador, classeJogador);
+			Jogador j1 = new Jogador(nome, racaJogador, classeJogador);
 
-			Console.WriteLine();
-			Console.WriteLine("Seu personagem ficou assim:");
-			Console.WriteLine("Seu nome é: " + p1.Nome);
-			Console.WriteLine("Sua raça é " + p1.Raca.Nome);
-			Console.WriteLine("Sua classe é " + p1.Classe.Nome);
-			Console.WriteLine("E sua arma é " + p1.Arma);
-			Console.WriteLine();
+			Console.Write('\n');
 
+			Console.WriteLine("Resumo do seu personagem:");
+			Console.WriteLine($"Nome: {j1.Nome}");
+			Console.WriteLine($"Raça: {j1.Raca.Nome}  ||  Classe: {j1.Classe.Nome}");
+			Console.WriteLine($"Pontos de vida: {j1.PtsSaudeAtual}  ||  Pontos de habilidade: {j1.PtsHabiliAtual}");
+			Console.WriteLine($"Arma: {j1.Arma}"); //falta o nome da arma
+			Console.WriteLine($"Peças de ouro: {j1.Dinheiro}");
+
+			//Console.WriteLine("Você está satisfeito com esse personagem?");
 
 			//inicio batalha
 			GeradorOponentes b = new GeradorOponentes();
 			List<Personagem> listaJogadores = new List<Personagem>();
-			listaJogadores.Add(p1);
+			listaJogadores.Add(j1);
 			//fim batalha
 
 
@@ -73,7 +77,7 @@ namespace projeto1_RPG
 						{
 							combate.AddPersonagem(item);
 						}
-						combate.AddPersonagem(p1);
+						combate.AddPersonagem(j1);
 						combate.IniciarCombate();
 						break;
 
@@ -81,7 +85,7 @@ namespace projeto1_RPG
 					case 1:
 						Console.WriteLine();
 						Console.WriteLine("Você escolheu ver inventário");
-						p1.SelecionarItem();
+						j1.SelecionarItem();
 						break;
 
 					case 2:

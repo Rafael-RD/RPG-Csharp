@@ -43,13 +43,10 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 			PtsSaudeAtual = Atributos.PtsSaudeMax;
 			PtsHabiliAtual = Atributos.PtsHabiliMax;
-
 			Inventario = new List<Item>();
 			Inventario.AddRange(Classe.KitInicial);
 			SelecionarArma();
 			SelecionarArmadura();
-
-			Inventario = new List<Item>();
 			Arma = null;
 			Armadura = null;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * nivel) / 2;
@@ -68,12 +65,8 @@ namespace projeto1_RPG.Personagens.Principal
 			while (qtdNiveis > 0);
 		}
 
-		public void ReceberRecompensa(Oponente oponente)
+		/*public void ReceberRecompensa(Oponente oponente)
 		{
-			if (oponente.Nivel.NivelAtual == 1)
-			{
-				oponente.Nivel.ExpAtual = Nivel.ExpBase;
-			}
 			Nivel.ExpAtual += oponente.Nivel.ExpRecompensa;
 			Nivel.CalcExperiencia();
 			if (Nivel.AvancouNivel)
@@ -81,7 +74,7 @@ namespace projeto1_RPG.Personagens.Principal
 				IncrementarAtributos();
 			}
 			Dinheiro += oponente.Dinheiro / 2;
-		}
+		}*/
 
 		public enum AcaoTurno
 		{
