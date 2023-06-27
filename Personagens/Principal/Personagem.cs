@@ -104,11 +104,9 @@ namespace projeto1_RPG.Personagens.Principal
 			for (int i = Efeitos.Count - 1; i >= 0; i--)
 			{
 				Efeito e = Efeitos[i];
-				if (--e.Turnos == 0)
-					this.Efeitos.Remove(e);
-				else
-				if (e is IGatilhoPodeIniciarTurno)
-					iniciaTurno = iniciaTurno && ((IGatilhoPodeIniciarTurno)e).PodeIniciarTurno(this);
+				if (e is IGatilhoPodeIniciarTurno) iniciaTurno = iniciaTurno && ((IGatilhoPodeIniciarTurno)e).PodeIniciarTurno(this);
+
+				if (--e.Turnos == 0) this.Efeitos.Remove(e);
 			}
 
 			return iniciaTurno;
