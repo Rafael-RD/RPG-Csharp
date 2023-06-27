@@ -5,13 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Combates
+namespace projeto1_RPG.Gatilhos
 {
-	interface IGatilhoDanoAposArmadura
-	{
-		int DanoAposArmadura(Personagem alvo, int dano);
-	}
-
 	interface IGatilhoPodeIniciarTurno
 	{
 		bool PodeIniciarTurno(Personagem alvo);

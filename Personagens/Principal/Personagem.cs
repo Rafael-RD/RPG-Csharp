@@ -1,5 +1,5 @@
 using projeto1_RPG.Principal;
-using projeto1_RPG.Combates;
+using projeto1_RPG.Gatilhos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Itens;
 using projeto1_RPG.Itens.Armas;

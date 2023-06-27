@@ -1,5 +1,5 @@
 using projeto1_RPG.Personagens.Principal;
-using projeto1_RPG.Combates;
+using projeto1_RPG.Gatilhos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
