@@ -1,5 +1,4 @@
 using projeto1_RPG.Personagens.Principal;
-using projeto1_RPG.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;

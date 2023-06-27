@@ -15,7 +15,7 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 			Nome = "Orc";
 			Atributos.SetAtributos(5, 2, 1, 5, 50, 2);
 			DinheiroMin = 5;
-			DinheiroMax = 10;
+			DinheiroMax = 50;
 		}
 	}
 }

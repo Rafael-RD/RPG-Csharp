@@ -14,8 +14,8 @@ namespace projeto1_RPG.Personagens.Racas.Oponente.Humanoides
 			Id = 12;
 			Nome = "Goblin";
 			Atributos.SetAtributos(2, 4, 2, 2, 40, 2);
-			DinheiroMin = 0;
-			DinheiroMax = 10;
+			DinheiroMin = 1;
+			DinheiroMax = 20;
 		}
 	}
 }

@@ -1,4 +1,3 @@
-using projeto1_RPG.Personagens;
 using projeto1_RPG.Personagens.Principal;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Itens;
@@ -81,7 +80,7 @@ namespace projeto1_RPG.Combates
 			Console.WriteLine($"{personagem.Nome} ataca {alvo.Nome}.");
 			personagem.Atacar(alvo);
 
-			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 
@@ -103,7 +102,7 @@ namespace projeto1_RPG.Combates
 			Console.WriteLine($"{personagem.Nome} usa {habilidade.Nome} em {alvo.Nome}.");
 			habilidade.Usar(personagem, alvo);
 
-			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 
@@ -119,7 +118,7 @@ namespace projeto1_RPG.Combates
 			else Console.WriteLine($"{personagem.Nome} usa {item.Nome} em {alvo.Nome}.");
 			item.Usar(personagem, alvo);
 
-			if (alvo.SaudeAtual <= 0) this.Fila.Remover(alvo);
+			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 
