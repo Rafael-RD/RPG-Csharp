@@ -21,10 +21,10 @@ namespace projeto1_RPG.Personagens.Principal
 			{
 				Classes = new List<Classe>
 				{
+					new Clerigo(),
 					new Guerreiro(),
-					new Mago(),
 					new Ladrao(),
-					new Clerigo()
+					new Mago()
 				};
 			}
 			return Classes;
