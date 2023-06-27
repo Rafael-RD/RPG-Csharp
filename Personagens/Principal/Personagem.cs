@@ -65,7 +65,7 @@ namespace projeto1_RPG.Personagens.Principal
 			while (qtdNiveis > 0);
 		}
 
-		public void ReceberRecompensa(Oponente oponente)
+		/*public void ReceberRecompensa(Oponente oponente)
 		{
 			Nivel.ExpAtual += oponente.Nivel.ExpRecompensa;
 			Nivel.CalcExperiencia();
@@ -74,7 +74,7 @@ namespace projeto1_RPG.Personagens.Principal
 				IncrementarAtributos();
 			}
 			Dinheiro += oponente.Dinheiro / 2;
-		}
+		}*/
 
 		public enum AcaoTurno
 		{

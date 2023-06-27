@@ -22,9 +22,9 @@ namespace projeto1_RPG.Personagens.Principal
 			{
 				RacasGlobal = new List<Raca>
 				{
-					new Humano(),
+					new Anao(),
 					new Elfo(),
-					new Anao()
+					new Humano()
 				};
 			}
 			return RacasGlobal;
@@ -36,16 +36,16 @@ namespace projeto1_RPG.Personagens.Principal
 			{
 				RacasOponente = new List<Raca>
 				{
-					new Humano(),
-					new Elfo(),
 					new Anao(),
+					new Elfo(),
+					new Humano(),
 					new Esqueleto(),
-					new Goblin(),
-					new Orc(),
-					new Kobold(),
-					new Homem_Rato(),
-					new Warg(),
 					new Gnoll(),
+					new Goblin(),
+					new Homem_Rato(),
+					new Kobold(),
+					new Orc(),
+					new Warg(),
 				};
 			}
 			return RacasOponente;
