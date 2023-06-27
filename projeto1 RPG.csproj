@@ -51,7 +51,9 @@
     <Compile Include="Gatilhos\IGatilhoDanoAposArmadura.cs" />
     <Compile Include="Gatilhos\IGatilhoPodeIniciarTurno.cs" />
     <Compile Include="Habilidades\Habilidade.cs" />
+    <Compile Include="Habilidades\HabilidadeDefensiva.cs" />
     <Compile Include="Habilidades\HabilidadeOfensiva.cs" />
+    <Compile Include="Habilidades\ListaHabilidades.cs" />
     <Compile Include="Itens\Armaduras\Armadura.cs" />
     <Compile Include="Itens\Armaduras\ListaArmaduras.cs" />
     <Compile Include="Itens\Armas\Arma.cs" />
