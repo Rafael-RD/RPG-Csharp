@@ -17,9 +17,10 @@ namespace projeto1_RPG.Personagens.Classes
 			Nome = "Guerreiro";
 			Atributos.SetAtributos(6, 2, 1, 3, 15, 0);
 			Incrementos.SetAtributos(2, 1, 1, 1, 5, 1);
-			KitInicial.Add(new Arma("Espada", "Espada de Batalha", 10, "Neutro", "Cortante", 100, 150));
-			KitInicial.Add(new Armadura("Armadura de Metal", "Armadura feita com metal", 10, 100));
-			Dinheiro = 50;
+            Dinheiro = 50;
+            KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 1));
+            KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 7));
+            KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 3));
 		}
 
 		public override string GetDescPtsHabili()

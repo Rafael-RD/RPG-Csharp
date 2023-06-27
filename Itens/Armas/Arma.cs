@@ -12,9 +12,10 @@ namespace projeto1_RPG.Itens.Armas
 	{
 		public Ataque Ataque { get; set; }
 
-		public Arma(string nome, string descricao, int valor, string catElemental, string catFisica, int danoMinimo, int danoMaximo) : base(nome, descricao, valor)
+		public Arma(int id, string nome, string descricao, int valor, string catElemental, string catFisica, int danoMinimo, int danoMaximo) : base(id, nome, descricao, valor)
 		{
-			Nome = nome;
+            Id = id;
+            Nome = nome;
 			Descricao = descricao;
 			Ataque = new Ataque(new Categoria(catElemental, catFisica), danoMinimo, danoMaximo);
 		}

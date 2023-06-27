@@ -1,4 +1,6 @@
-﻿using projeto1_RPG.Personagens.Principal;
+﻿using projeto1_RPG.Itens.Armaduras;
+using projeto1_RPG.Itens.Armas;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,10 @@ namespace projeto1_RPG.Personagens.Classes
 			Atributos.SetAtributos(3, 2, 3, 2, 12, 1);
 			Incrementos.SetAtributos(1, 1, 2, 2, 4, 2);
 			Dinheiro = 30;
-		}
+            KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 2));
+            KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 8));
+            KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 2));
+        }
 
 		public override string GetDescPtsHabili()
 		{

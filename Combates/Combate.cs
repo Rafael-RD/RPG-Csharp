@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG.Combates
 {
@@ -127,8 +128,9 @@ namespace projeto1_RPG.Combates
 			if (alvo == personagem) Console.WriteLine($"{personagem.Nome} usa {item.Nome}.");
 			else Console.WriteLine($"{personagem.Nome} usa {item.Nome} em {alvo.Nome}.");
 			item.Usar(personagem, alvo);
+            if (item is Consumivel) { personagem.Inventario.Remove(item); }
 
-			if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
+            if (alvo.PtsSaudeAtual <= 0) this.Fila.Remover(alvo);
 			return true;
 		}
 
