@@ -52,8 +52,6 @@ namespace projeto1_RPG.Personagens.Principal
 			SelecionarArma();
 			SelecionarArmadura();
 
-			SaudeAtual = Atributos.Saude;
-			PtsHabiliAtual = Atributos.PtsHabili;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
 			Efeitos = new List<Efeito>();
 		}
