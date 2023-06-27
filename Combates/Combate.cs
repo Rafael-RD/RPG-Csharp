@@ -59,7 +59,11 @@ namespace projeto1_RPG.Combates
 			Console.WriteLine(_linha_separar);
 			Console.WriteLine($"Turno de {personagem.Nome}. Saúde: {personagem.PtsSaudeAtual}/{personagem.Atributos.PtsSaudeMax}. {personagem.Classe.GetDescPtsHabili()}: {personagem.PtsHabiliAtual}/{personagem.Atributos.PtsHabiliMax}");
 			
-			if (!personagem.IniciouTurno()) return;
+			if (!personagem.IniciouTurno())
+			{
+				if (personagem.PtsSaudeAtual <= 0) this.Fila.Remover(personagem);
+				return;
+			}
 
 			// Sai do loop somente quando executou uma ação
 			bool sair = false;
