@@ -45,10 +45,11 @@
   <ItemGroup>
     <Compile Include="Combates\Combate.cs" />
     <Compile Include="Combates\FilaCombate.cs" />
-    <Compile Include="Combates\Gatilhos.cs" />
     <Compile Include="Combates\GeradorOponentes.cs" />
     <Compile Include="Efeitos\Efeito.cs" />
     <Compile Include="Efeitos\EfeitoDefesa.cs" />
+    <Compile Include="Gatilhos\IGatilhoDanoAposArmadura.cs" />
+    <Compile Include="Gatilhos\IGatilhoPodeIniciarTurno.cs" />
     <Compile Include="Habilidades\Habilidade.cs" />
     <Compile Include="Habilidades\HabilidadeDefensiva.cs" />
     <Compile Include="Habilidades\HabilidadeOfensiva.cs" />

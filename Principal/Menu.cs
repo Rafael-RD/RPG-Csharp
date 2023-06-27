@@ -38,7 +38,7 @@ namespace projeto1_RPG.Principal
 			{
 				// Solicita opção para o usuário
 				Console.Write(msg);
-				opcao = Console.ReadLine() ?? String.Empty;
+				opcao = Console.ReadLine() ?? string.Empty;
 
 				// Verifica se é um número
 				if (!int.TryParse(opcao, out conversao))

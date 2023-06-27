@@ -1,4 +1,5 @@
-using projeto1_RPG.Combates;
+using projeto1_RPG.Personagens.Principal;
+using projeto1_RPG.Gatilhos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,16 @@ namespace projeto1_RPG.Efeitos
 	{
 		public int PercReducao { get; protected set; }
 
-		public EfeitoDefesa() : base()
+		public EfeitoDefesa() : base("Defesa", "Reduz o dano recebido.", 1)
 		{
-			this.Nome = "Defesa";
-			this.Turnos = 1;
 			this.PercReducao = 50;
 		}
 
-		public int DanoAposArmadura(int dano)
+		public int DanoAposArmadura(Personagem alvo, int dano)
 		{
-			return (int)Math.Floor(dano * ((float)this.PercReducao / 100));
+			int reducao = (int)Math.Floor(dano * ((float)this.PercReducao / 100));
+			Console.WriteLine($"[{this.Nome}] Dano reduzido em {this.PercReducao}% ({reducao}).");
+			return dano - reducao;
 		}
 	}
 }

@@ -16,8 +16,6 @@ namespace projeto1_RPG.Combates
 		private FilaCombate Fila { get; set; }
 		private bool Fugiu { get; set; }
 
-		private static readonly Random _rnd = new Random();
-
 		private static string _linha_separar { get; set; } = new string('-', 20);
 
 		public Combate()
@@ -49,18 +47,23 @@ namespace projeto1_RPG.Combates
 			// Loop principal do combate
 			while ((!Fugiu) && (!this.Fila.Terminou()))
 			{
-				IniciarTurno(this.Fila.Proximo());
+				ComecarTurno(this.Fila.Proximo());
 			}
 
 			// Resultado do combate
 			ApresentarResultado();
 		}
 
-		private void IniciarTurno(Personagem personagem)
+		private void ComecarTurno(Personagem personagem)
 		{
 			Console.WriteLine(_linha_separar);
 			Console.WriteLine($"Turno de {personagem.Nome}. Saúde: {personagem.PtsSaudeAtual}/{personagem.Atributos.PtsSaudeMax}. {personagem.Classe.GetDescPtsHabili()}: {personagem.PtsHabiliAtual}/{personagem.Atributos.PtsHabiliMax}");
-			personagem.IniciouTurno();
+			
+			if (!personagem.IniciouTurno())
+			{
+				if (personagem.PtsSaudeAtual <= 0) this.Fila.Remover(personagem);
+				return;
+			}
 
 			// Sai do loop somente quando executou uma ação
 			bool sair = false;
@@ -131,17 +134,11 @@ namespace projeto1_RPG.Combates
 
 		private bool Fugir(Personagem personagem)
 		{
-			// Calcula fuga com base na destreza dos lados
-			int dexJogadores = this.Fila.Jogadores.Sum(j => j.Atributos.Destreza + _rnd.Next(-2, 2));
-			int dexOponentes = this.Fila.Oponentes.Sum(o => o.Atributos.Destreza + _rnd.Next(-2, 2));
-
-			Console.WriteLine($"Chance: {((double)dexJogadores*100/(dexJogadores + dexOponentes)).ToString("N2")}%");
-			Console.Write($"Deseja realmente fugir (s/n)? ");
+			Console.WriteLine($"Chance: {(this.Fila.GetChanceFugir()*100).ToString("N2")}%");
+			Console.Write($"Deseja tentar fugir (s/n)? ");
 			if (!("s").Equals(Console.ReadLine().ToLower())) return false;
 
-			int fuga = (_rnd.Next(1, dexJogadores + dexOponentes + 1));
-
-			Fugiu = (fuga < dexJogadores);
+			Fugiu = this.Fila.TentaFugir();
 
 			if (Fugiu) Console.WriteLine($"{personagem.Nome} fugiu da batalha.");
 			else Console.WriteLine($"{personagem.Nome} não conseguiu fugir.");
@@ -161,38 +158,30 @@ namespace projeto1_RPG.Combates
 
 			Console.WriteLine($"Resultado: {resultado}");
 
-			int totalExp = 0;
-			int totalDinheiro = 0;
-			foreach (Oponente p in this.Oponentes)
+			int expTotal = 0;
+			int dinTotal = 0;
+			int expFinal = 0;
+			int dinFinal = 0;
+			foreach (Oponente p in Oponentes)
 			{
-				if (!this.Fila.Oponentes.Contains(p))
+				expTotal += p.Nivel.ExpRecompensa;
+				dinTotal += p.Dinheiro / Oponentes.Count;
+				if (!Fila.Oponentes.Contains(p))
 				{
-					totalExp += p.CalcExpRecompensa();
-					totalDinheiro += p.Dinheiro;
+					expFinal = expTotal / Fila.Jogadores.Count;
+					dinFinal = dinTotal / Fila.Jogadores.Count;
 				}
 			}
-
-			int exp;
-			int dinheiro;
-			foreach (Jogador j in this.Fila.Jogadores)
+			foreach (Jogador j in Fila.Jogadores)
 			{
-				exp = totalExp / this.Fila.Jogadores.Count;
-				dinheiro = totalDinheiro / this.Fila.Jogadores.Count;
-
-				if (dinheiro > 0) Console.WriteLine($"{j.Nome} ganhou dinheiro: {dinheiro}.");
-				if (exp > 0) Console.WriteLine($"{j.Nome} ganhou experiência: {exp}.");
-
-				j.Dinheiro += dinheiro;
-				j.Nivel.ExpAtual += exp;
-				if (j.Nivel.ExpAtual >= j.Nivel.ExpProxNivel)
-				{
-					j.Nivel.SetNivel(j.Nivel.NivelAtual + 1);
-					Console.WriteLine($"{j.Nome} alcançou o nível {j.Nivel.NivelAtual}!");
-				}
+				if (expFinal > 0) Console.WriteLine($"{j.Nome} recebeu {expFinal} pontos de experiência.");
+				j.Nivel.ExpAtual += expFinal;
+				j.Nivel.CalcExperiencia();
+				if (j.Nivel.AvancouNivel) Console.WriteLine($"{j.Nome} alcançou o nível {j.Nivel.NivelAtual}!");
+				if (dinFinal > 0) Console.WriteLine($"{j.Nome} recebeu {dinFinal} peças de ouro.");
+				j.Dinheiro += dinFinal;
 			}
-
-			Console.WriteLine(_linha_separar);
-			Console.WriteLine("Pressione qualquer tecla para continuar.");
+			Console.Write("Pressione qualquer tecla para continuar.");
 			Console.ReadKey();
 		}
 	}

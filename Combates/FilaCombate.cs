@@ -14,6 +14,10 @@ namespace projeto1_RPG.Combates
 
 		public int Rodada { get; private set; }
 		private int IdxProximo { get; set; }
+		private int RodadaFuga { get; set; }
+		private double ChanceFugirRodada { get; set; }
+		private static readonly Random _rnd = new Random();
+
 		public List<Personagem> Ordem { get; private set; }
 
 		public FilaCombate()
@@ -31,14 +35,14 @@ namespace projeto1_RPG.Combates
 			this.Ordem.Add(personagem);
 		}
 
-		public void Remover(Personagem p)
+		public void Remover(Personagem personagem)
 		{
-			int idx = this.Ordem.IndexOf(p);
+			int idx = this.Ordem.IndexOf(personagem);
 			if (idx <= this.IdxProximo) this.IdxProximo--;
 
 			this.Ordem.RemoveAt(idx);
-			if (p is Jogador) this.Jogadores.Remove((Jogador)p);
-			if (p is Oponente) this.Oponentes.Remove((Oponente)p);
+			if (personagem is Jogador) this.Jogadores.Remove((Jogador)personagem);
+			if (personagem is Oponente) this.Oponentes.Remove((Oponente)personagem);
 		}
 
 		public void Iniciar()
@@ -61,6 +65,25 @@ namespace projeto1_RPG.Combates
 				this.IdxProximo = 0;
 			}
 			return this.Ordem[this.IdxProximo++];
+		}
+
+		public double GetChanceFugir()
+		{
+			if (RodadaFuga != Rodada)
+			{
+				RodadaFuga = Rodada;
+				int dexJogadores = this.Jogadores.Sum(j => j.Atributos.Destreza + _rnd.Next(-2, 2));
+				int dexOponentes = this.Oponentes.Sum(o => o.Atributos.Destreza + _rnd.Next(-2, 2));
+
+				ChanceFugirRodada = (double)dexJogadores/(dexJogadores + dexOponentes);
+			}
+
+			return ChanceFugirRodada;
+		}
+
+		public bool TentaFugir()
+		{
+			return (_rnd.NextDouble() < this.GetChanceFugir());
 		}
 	}
 }
