@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG.Personagens.Principal
 {
@@ -45,10 +46,9 @@ namespace projeto1_RPG.Personagens.Principal
 			PtsHabiliAtual = Atributos.PtsHabiliMax;
 			Inventario = new List<Item>();
 			Inventario.AddRange(Classe.KitInicial);
+			//SelecionarConsumivel();
 			SelecionarArma();
 			SelecionarArmadura();
-			Arma = null;
-			Armadura = null;
 			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * nivel) / 2;
 			Efeitos = new List<Efeito>();
 		}
@@ -129,13 +129,25 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 		}
 
-		public void ReceberAtaque(Personagem origem, Ataque ataque)
+        /*private void SelecionarConsumivel()
+        {
+            foreach (Item item in Inventario)
+            {
+                if (item is Consumivel)
+                {
+                    this.Consumivel = (Consumivel)item;
+                    break;
+                }
+            }
+        }*/
+
+        public void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
-			int dano = ataque.CalcDano() - armadura;
+            int dano = Math.Max(0, ataque.CalcDano() - armadura);
 
-			// Efeitos de redução ou aumento de dano
-			foreach (Efeito e in this.Efeitos)
+            // Efeitos de redução ou aumento de dano
+            foreach (Efeito e in this.Efeitos)
 			{
 				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(this, dano);
 			}

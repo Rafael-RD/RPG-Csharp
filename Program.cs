@@ -1,11 +1,13 @@
 using projeto1_RPG.Principal;
 using projeto1_RPG.Personagens.Principal;
 using projeto1_RPG.Combates;
+using projeto1_RPG.Itens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG
 {
@@ -40,7 +42,7 @@ namespace projeto1_RPG
 			Console.WriteLine($"Nome: {j1.Nome}");
 			Console.WriteLine($"Raça: {j1.Raca.Nome}  ||  Classe: {j1.Classe.Nome}");
 			Console.WriteLine($"Pontos de vida: {j1.PtsSaudeAtual}  ||  Pontos de habilidade: {j1.PtsHabiliAtual}");
-			Console.WriteLine($"Arma: {j1.Arma}"); //falta o nome da arma
+			Console.WriteLine($"Arma: {j1.Arma.Nome}");
 			Console.WriteLine($"Peças de ouro: {j1.Dinheiro}");
 
 			//Console.WriteLine("Você está satisfeito com esse personagem?");
@@ -73,9 +75,9 @@ namespace projeto1_RPG
 						listaOponentes = b.MontarLista(listaJogadores);
 
 						combate = new Combate();
-						foreach (Personagem item in listaOponentes)
+						foreach (Personagem oponente in listaOponentes)
 						{
-							combate.AddPersonagem(item);
+							combate.AddPersonagem(oponente);
 						}
 						combate.AddPersonagem(j1);
 						combate.IniciarCombate();
@@ -85,8 +87,13 @@ namespace projeto1_RPG
 					case 1:
 						Console.WriteLine();
 						Console.WriteLine("Você escolheu ver inventário");
-						j1.SelecionarItem();
-						break;
+						Item item = j1.SelecionarItem();
+						if (item != null)
+						{
+							item.Usar(j1, j1);
+							if(item is Consumivel) {j1.Inventario.Remove(item); }
+						}
+                        break;
 
 					case 2:
 						Console.WriteLine("Você escolheu ver o personagem");

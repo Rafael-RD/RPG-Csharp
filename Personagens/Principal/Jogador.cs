@@ -6,12 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Jogador : Personagem
 	{
-		public Jogador(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel) { }
+		public Jogador(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel) 
+		{
+			Inventario.Add(new PocaoVida(1, "Poção de vida", "Poção que restaura vida", 10, 15));
+            Inventario.Add(new PocaoVida(1, "Poção de vida", "Poção que restaura vida", 10, 15));
+            Inventario.Add(new PocaoVida(1, "Poção de vida", "Poção que restaura vida", 10, 15));
+        }
 
 		public override AcaoTurno EscolherAcao()
 		{

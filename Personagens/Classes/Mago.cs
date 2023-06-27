@@ -17,10 +17,11 @@ namespace projeto1_RPG.Personagens.Classes
 			Nome = "Mago";
 			Atributos.SetAtributos(1, 2, 6, 1, 6, 1);
 			Incrementos.SetAtributos(1, 1, 2, 1, 2, 3);
-			KitInicial.Add(new Arma("Cajado", "Cajado de fogo", 10, "Fogo", "Neutro", 100, 150));
-			KitInicial.Add(new Armadura("Armadura de Pano", "Armadura feita com pano", 10, 50));
-			Dinheiro = 20;
-		}
+            Dinheiro = 20;
+            KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 5));
+            KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 6));
+            KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 1));
+        }
 
 		public override string GetDescPtsHabili()
 		{
