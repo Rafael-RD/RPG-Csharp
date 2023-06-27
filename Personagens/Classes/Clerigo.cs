@@ -17,5 +17,10 @@ namespace projeto1_RPG.Personagens.Classes
 			Incrementos.SetAtributos(1, 1, 2, 2, 4, 2);
 			Dinheiro = 30;
 		}
+
+		public override string GetDescPtsHabili()
+		{
+			return "Fé";
+		}
 	}
 }

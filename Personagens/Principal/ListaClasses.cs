@@ -11,6 +11,8 @@ namespace projeto1_RPG.Personagens.Principal
 	{
 		private static List<Classe> Classes { get; set; }
 
+		private static readonly Random _rnd = new Random();
+
 		public ListaClasses() { }
 
 		public static List<Classe> GetClasses()
@@ -29,7 +31,7 @@ namespace projeto1_RPG.Personagens.Principal
 		}
 		public static Classe Random()
 		{
-			return GetClasses()[new Random().Next(GetClasses().Count)];
+			return GetClasses()[_rnd.Next(GetClasses().Count)];
 		}
 	}
 }

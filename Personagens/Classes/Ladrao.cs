@@ -21,5 +21,10 @@ namespace projeto1_RPG.Personagens.Classes
 			KitInicial.Add(new Armadura("Armadura de Couro", "Armadura feita com couro", 10, 75));
 			Dinheiro = 100;
 		}
+
+		public override string GetDescPtsHabili()
+		{
+			return "Sorte";
+		}
 	}
 }

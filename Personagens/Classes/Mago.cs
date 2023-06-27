@@ -21,5 +21,10 @@ namespace projeto1_RPG.Personagens.Classes
 			KitInicial.Add(new Armadura("Armadura de Pano", "Armadura feita com pano", 10, 50));
 			Dinheiro = 20;
 		}
+
+		public override string GetDescPtsHabili()
+		{
+			return "Mana";
+		}
 	}
 }
