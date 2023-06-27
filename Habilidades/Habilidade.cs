@@ -29,7 +29,7 @@ namespace projeto1_RPG.Habilidades
 		public virtual bool PodeUsar(Personagem personagem, out string msg)
 		{
 			msg = String.Empty;
-			if (personagem.PtsHabiliAtual < Custo) msg="Sem pontos de habilidade";
+			if (personagem.PtsHabiliAtual < Custo) msg=$"Você não possui {personagem.Classe.GetDescPtsHabili()} suficiente para usar esta habilidade.";
 			return (msg==String.Empty);
 		}
 
