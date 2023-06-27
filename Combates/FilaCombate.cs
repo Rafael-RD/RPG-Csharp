@@ -35,14 +35,14 @@ namespace projeto1_RPG.Combates
 			this.Ordem.Add(personagem);
 		}
 
-		public void Remover(Personagem p)
+		public void Remover(Personagem personagem)
 		{
-			int idx = this.Ordem.IndexOf(p);
+			int idx = this.Ordem.IndexOf(personagem);
 			if (idx <= this.IdxProximo) this.IdxProximo--;
 
 			this.Ordem.RemoveAt(idx);
-			if (p is Jogador) this.Jogadores.Remove((Jogador)p);
-			if (p is Oponente) this.Oponentes.Remove((Oponente)p);
+			if (personagem is Jogador) this.Jogadores.Remove((Jogador)personagem);
+			if (personagem is Oponente) this.Oponentes.Remove((Oponente)personagem);
 		}
 
 		public void Iniciar()
