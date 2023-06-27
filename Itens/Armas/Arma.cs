@@ -31,5 +31,10 @@ namespace projeto1_RPG.Itens.Armas
 				Console.WriteLine($"{alvo.Nome} equipou a arma {this.Nome}.");
 			}
 		}
+
+		public virtual void Atacar(Personagem origem, Personagem alvo)
+		{
+			alvo.ReceberAtaque(origem, this.Ataque);
+		}
 	}
 }

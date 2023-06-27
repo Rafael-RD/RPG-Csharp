@@ -1,5 +1,5 @@
 using projeto1_RPG.Principal;
-using projeto1_RPG.Combates;
+using projeto1_RPG.Gatilhos;
 using projeto1_RPG.Habilidades;
 using projeto1_RPG.Itens;
 using projeto1_RPG.Itens.Armas;
@@ -45,14 +45,12 @@ namespace projeto1_RPG.Personagens.Principal
 			}
 			PtsSaudeAtual = Atributos.PtsSaudeMax;
 			PtsHabiliAtual = Atributos.PtsHabiliMax;
-
 			Inventario = new List<Item>();
 			Inventario.AddRange(Classe.KitInicial);
 			//SelecionarConsumivel();
 			SelecionarArma();
 			SelecionarArmadura();
-
-			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * (nivel / 2));
+			Dinheiro = Raca.GetDinheiro() + (Classe.Dinheiro * nivel) / 2;
 			Efeitos = new List<Efeito>();
 		}
 
@@ -68,12 +66,8 @@ namespace projeto1_RPG.Personagens.Principal
 			while (qtdNiveis > 0);
 		}
 
-		public void ReceberRecompensa(Oponente oponente)
+		/*public void ReceberRecompensa(Oponente oponente)
 		{
-			if (oponente.Nivel.NivelAtual == 1)
-			{
-				oponente.Nivel.ExpAtual = Nivel.ExpBase;
-			}
 			Nivel.ExpAtual += oponente.Nivel.ExpRecompensa;
 			Nivel.CalcExperiencia();
 			if (Nivel.AvancouNivel)
@@ -81,7 +75,7 @@ namespace projeto1_RPG.Personagens.Principal
 				IncrementarAtributos();
 			}
 			Dinheiro += oponente.Dinheiro / 2;
-		}
+		}*/
 
 		public enum AcaoTurno
 		{
@@ -98,13 +92,18 @@ namespace projeto1_RPG.Personagens.Principal
 		public abstract Personagem SelecionarAlvo(List<Personagem> fila, bool aliado);
 		public abstract Item SelecionarItem();
 
-		public void IniciouTurno()
+		public bool IniciouTurno()
 		{
+			bool iniciaTurno = true;
 			for (int i = Efeitos.Count - 1; i >= 0; i--)
 			{
 				Efeito e = Efeitos[i];
+				if (e is IGatilhoPodeIniciarTurno) iniciaTurno = iniciaTurno && ((IGatilhoPodeIniciarTurno)e).PodeIniciarTurno(this);
+
 				if (--e.Turnos == 0) this.Efeitos.Remove(e);
 			}
+
+			return iniciaTurno;
 		}
 
 		private void SelecionarArma()
@@ -145,30 +144,23 @@ namespace projeto1_RPG.Personagens.Principal
 
         public void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
-			int danoIni = ataque.CalcDano();
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
-			int dano = danoIni - armadura;
+			int dano = ataque.CalcDano() - armadura;
 
 			// Efeitos de redução ou aumento de dano
-			int efeitos = dano;
 			foreach (Efeito e in this.Efeitos)
 			{
-				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(dano);
+				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(this, dano);
 			}
-			efeitos = dano - efeitos;
 
-			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
-							((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
-			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
-
-			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
+			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano.");
 			this.PtsSaudeAtual -= dano;
 		}
 
 		public void Atacar(Personagem alvo)
 		{
 			if (this.Arma == null) alvo.ReceberAtaque(this, new Ataque(null, 1, this.Atributos.Forca));
-			else alvo.ReceberAtaque(this, this.Arma.Ataque);
+			else this.Arma.Atacar(this, alvo);
 		}
 
 		public void Defender()

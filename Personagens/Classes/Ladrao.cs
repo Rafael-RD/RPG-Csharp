@@ -15,12 +15,17 @@ namespace projeto1_RPG.Personagens.Classes
 		{
 			Id = 3;
 			Nome = "Ladrão";
-            Atributos.SetAtributos(2, 5, 2, 2, 50, 0);
-            Incrementos.SetAtributos(1, 2, 1, 1, 3, 2);
+			Atributos.SetAtributos(2, 5, 2, 2, 10, 0);
+			Incrementos.SetAtributos(1, 2, 1, 1, 3, 2);
             Dinheiro = 100;
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 3));
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 4));
             KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 1));
         }
+
+		public override string GetDescPtsHabili()
+		{
+			return "Sorte";
+		}
 	}
 }

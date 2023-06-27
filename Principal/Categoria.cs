@@ -23,6 +23,7 @@ namespace projeto1_RPG.Principal
             public static readonly string Impacto = "Impacto";
             public static readonly string Cortante = "Cortante";
             public static readonly string Perfurante = "Perfurante";
+            public static readonly string Magia = "Magia";
         }
 
         public string Elemental { get; private set; }

@@ -14,6 +14,8 @@ namespace projeto1_RPG.Personagens.Principal
 		private static List<Raca> RacasGlobal { get; set; }
 		private static List<Raca> RacasOponente { get; set; }
 
+		private static readonly Random _rnd = new Random();
+
 		public ListaRacas() { }
 
 		public static List<Raca> GetRacasGlobal()
@@ -22,9 +24,9 @@ namespace projeto1_RPG.Personagens.Principal
 			{
 				RacasGlobal = new List<Raca>
 				{
-					new Humano(),
+					new Anao(),
 					new Elfo(),
-					new Anao()
+					new Humano()
 				};
 			}
 			return RacasGlobal;
@@ -36,16 +38,16 @@ namespace projeto1_RPG.Personagens.Principal
 			{
 				RacasOponente = new List<Raca>
 				{
-					new Humano(),
-					new Elfo(),
 					new Anao(),
+					new Elfo(),
+					new Humano(),
 					new Esqueleto(),
-					new Goblin(),
-					new Orc(),
-					new Kobold(),
-					new Homem_Rato(),
-					new Warg(),
 					new Gnoll(),
+					new Goblin(),
+					new Homem_Rato(),
+					new Kobold(),
+					new Orc(),
+					new Warg(),
 				};
 			}
 			return RacasOponente;
@@ -53,7 +55,7 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public static Raca RandomOponente()
 		{
-			return GetRacasOponente()[new Random().Next(GetRacasOponente().Count)];
+			return GetRacasOponente()[_rnd.Next(GetRacasOponente().Count)];
 		}
 	}
 }

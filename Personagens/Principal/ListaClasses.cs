@@ -11,6 +11,8 @@ namespace projeto1_RPG.Personagens.Principal
 	{
 		private static List<Classe> Classes { get; set; }
 
+		private static readonly Random _rnd = new Random();
+
 		public ListaClasses() { }
 
 		public static List<Classe> GetClasses()
@@ -19,17 +21,17 @@ namespace projeto1_RPG.Personagens.Principal
 			{
 				Classes = new List<Classe>
 				{
+					new Clerigo(),
 					new Guerreiro(),
-					new Mago(),
 					new Ladrao(),
-					new Clerigo()
+					new Mago()
 				};
 			}
 			return Classes;
 		}
 		public static Classe Random()
 		{
-			return GetClasses()[new Random().Next(GetClasses().Count)];
+			return GetClasses()[_rnd.Next(GetClasses().Count)];
 		}
 	}
 }
