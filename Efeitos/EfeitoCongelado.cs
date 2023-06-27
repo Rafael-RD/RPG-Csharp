@@ -10,7 +10,7 @@ namespace projeto1_RPG.Efeitos
 {
 	internal class EfeitoCongelado : Efeito, IGatilhoPodeIniciarTurno
 	{
-		public EfeitoCongelado(int turnos) : base("Congelamento", "Impedido de iniciar o turno.", turnos) { }
+		public EfeitoCongelado(int turnos) : base("Congelamento", "Impede o alvo de iniciar o turno.", turnos) { }
 
 		public bool PodeIniciarTurno(Personagem alvo)
 		{
