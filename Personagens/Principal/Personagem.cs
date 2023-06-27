@@ -98,13 +98,20 @@ namespace projeto1_RPG.Personagens.Principal
 		public abstract Personagem SelecionarAlvo(List<Personagem> fila, bool aliado);
 		public abstract Item SelecionarItem();
 
-		public virtual void IniciouTurno()
+		public bool IniciouTurno()
 		{
+			bool iniciaTurno = true;
 			for (int i = Efeitos.Count - 1; i >= 0; i--)
 			{
 				Efeito e = Efeitos[i];
-				if (--e.Turnos == 0) this.Efeitos.Remove(e);
+				if (--e.Turnos == 0)
+					this.Efeitos.Remove(e);
+				else
+				if (e is IGatilhoPodeIniciarTurno)
+					iniciaTurno = iniciaTurno && ((IGatilhoPodeIniciarTurno)e).PodeIniciarTurno(this);
 			}
+
+			return iniciaTurno;
 		}
 
 		private void SelecionarArma()
@@ -133,30 +140,23 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public void ReceberAtaque(Personagem origem, Ataque ataque)
 		{
-			int danoIni = ataque.CalcDano();
 			int armadura = (this.Armadura == null) ? 0 : this.Armadura.CalculaReducao(ataque);
-			int dano = danoIni - armadura;
+			int dano = ataque.CalcDano() - armadura;
 
 			// Efeitos de redução ou aumento de dano
-			int efeitos = dano;
 			foreach (Efeito e in this.Efeitos)
 			{
-				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(dano);
+				if (e is IGatilhoDanoAposArmadura) dano = ((IGatilhoDanoAposArmadura)e).DanoAposArmadura(this, dano);
 			}
-			efeitos = dano - efeitos;
 
-			string info = ((armadura != 0) ? $" - {Math.Abs(armadura)} (armadura)" : String.Empty) +
-							((efeitos != 0) ? $" {(efeitos < 0 ? "-" : "+")} {Math.Abs(efeitos)} (efeitos)" : String.Empty);
-			if (info != String.Empty) info = $"[{danoIni} (ataque) {info}]";
-
-			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano. {info}");
+			Console.WriteLine($"{this.Nome} recebe {dano} pontos de dano.");
 			this.PtsSaudeAtual -= dano;
 		}
 
 		public void Atacar(Personagem alvo)
 		{
 			if (this.Arma == null) alvo.ReceberAtaque(this, new Ataque(null, 1, this.Atributos.Forca));
-			else alvo.ReceberAtaque(this, this.Arma.Ataque);
+			else this.Arma.Atacar(this, alvo);
 		}
 
 		public void Defender()

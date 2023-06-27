@@ -19,15 +19,6 @@ namespace projeto1_RPG.Personagens.Principal
 			this.Dinheiro /= 2;
 		}
 
-		public override void IniciouTurno()
-		{
-			base.IniciouTurno();
-			if (this.AdicionarClasse) {
-				this.AdicionarClasse = false;
-				this.Nome = this.Classe.Nome;
-			}
-		}
-
 		public override AcaoTurno EscolherAcao()
 		{
 			int chance = _rnd.Next(1, 10 + 1);
