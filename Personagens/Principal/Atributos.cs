@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto1_RPG.Principal
+namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Atributos
 	{
@@ -12,15 +12,28 @@ namespace projeto1_RPG.Principal
 		public int Destreza { get; set; }
 		public int Inteligencia { get; set; }
 		public int Resistencia { get; set; }
-		public int Saude { get; set; }
+		public int PtsSaudeMax;
+		public int PtsHabiliMax { get; set; }
+
 		public Atributos() { }
+
+		public void SetAtributos(int forca, int destreza, int inteligencia, int resistencia, int ptsSaudeMax, int ptsHabiliMax)
+		{
+			Forca = forca;
+			Destreza = destreza;
+			Inteligencia = inteligencia;
+			Resistencia = resistencia;
+			PtsSaudeMax = ptsSaudeMax;
+			PtsHabiliMax = ptsHabiliMax;
+		}
 		public void SomarAtributos(Atributos atributos)
 		{
 			Forca += atributos.Forca;
 			Destreza += atributos.Destreza;
 			Inteligencia += atributos.Inteligencia;
 			Resistencia += atributos.Resistencia;
-			Saude += atributos.Saude;
+			PtsSaudeMax += atributos.PtsSaudeMax;
+			PtsHabiliMax += atributos.PtsHabiliMax;
 		}
 	}
 }

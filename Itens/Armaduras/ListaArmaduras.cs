@@ -16,10 +16,10 @@ namespace projeto1_RPG.Itens.Armaduras
 			{
 				Armaduras = new List<Armadura>
 				{
-                    new Armadura("Armadura de Tecido", "Armadura feita com tecido", 5, 25),
-                    new Armadura("Armadura de Couro", "Armadura feita com Couro", 15, 50),
-                    new Armadura("Armadura de Metal", "Armadura feita com Metal", 50, 100)
-				};
+                    new Armadura(1, "Armadura Leve", "Uma armadura leve e delicada feita de tecido", 5, 2),
+                    new Armadura(2, "Armadura Média", "Uma armadura intermediária feita de couro resistente", 10, 4),
+                    new Armadura(3, "Armadura Pesada", "Uma armadura resistente feita de placas metálicas", 15, 6),
+                };
 			}
 			return Armaduras;
 		}

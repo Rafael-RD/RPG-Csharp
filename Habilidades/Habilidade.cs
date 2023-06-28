@@ -1,4 +1,4 @@
-using projeto1_RPG.Principal;
+using projeto1_RPG.Personagens.Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +7,43 @@ using System.Threading.Tasks;
 
 namespace projeto1_RPG.Habilidades
 {
-    internal class Habilidade
-    {
-        public string Nome { get; set; }
-        public int Custo { get; set; }
-        public Ataque Ataque { get; set; }
+	internal abstract class Habilidade
+	{
+		public int Id { get; set; }
+		public string Nome { get; set; }
+		public string Descricao { get; set; }
+		public int Custo { get; set; }
+		public string[] Classes { get; set; }
+		public bool UsarAliado { get; set; }
+		public bool UsarProprio { get; set; }
 
-        public Habilidade(string nome, int custo, Ataque ataque)
+        public Habilidade(int id, string nome, string descricao, int custo, string[] classes)
         {
+			Id = id;
             Nome = nome;
+			Descricao = descricao;
             Custo = custo;
-            Ataque = ataque;
+            Classes = classes;
+            UsarAliado = false;
+            UsarProprio = false;
         }
-    }
+
+        public bool PodeUsar(Personagem personagem)
+		{
+			string msg;
+			return PodeUsar(personagem, out msg);
+		}
+
+		public virtual bool PodeUsar(Personagem personagem, out string msg)
+		{
+			msg = String.Empty;
+			if (personagem.PtsHabiliAtual < Custo) msg=$"Você não possui {personagem.Classe.GetDescPtsHabili()} suficiente para usar esta habilidade.";
+			return (msg==String.Empty);
+		}
+
+		public virtual void Usar(Personagem origem, Personagem alvo)
+		{
+            origem.PtsHabiliAtual -= Custo;
+        }
+	}
 }
