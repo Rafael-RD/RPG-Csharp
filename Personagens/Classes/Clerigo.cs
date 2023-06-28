@@ -1,4 +1,5 @@
-﻿using projeto1_RPG.Itens.Armaduras;
+﻿using projeto1_RPG.Habilidades;
+using projeto1_RPG.Itens.Armaduras;
 using projeto1_RPG.Itens.Armas;
 using projeto1_RPG.Personagens.Principal;
 using System;
@@ -21,6 +22,7 @@ namespace projeto1_RPG.Personagens.Classes
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 2));
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 8));
             KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 2));
+            HabilidadesIniciais.Add(ListaHabilidades.HabilidadesOfensivas.Find(a => a.Id == 5));
         }
 
 		public override string GetDescPtsHabili()

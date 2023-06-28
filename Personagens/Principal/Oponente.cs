@@ -30,13 +30,13 @@ namespace projeto1_RPG.Personagens.Principal
 		public override Habilidade SelecionarHabilidade()
 		{
 			int opcao;
-			if (Classe.Habilidades.Count == 0) return null;
-			if (Classe.Habilidades.Count == 1) opcao = 0;
-			else opcao = _rnd.Next(Classe.Habilidades.Count);
+			if (Classe.HabilidadesIniciais.Count == 0) return null;
+			if (Classe.HabilidadesIniciais.Count == 1) opcao = 0;
+			else opcao = _rnd.Next(Classe.HabilidadesIniciais.Count);
 
-			if (!Classe.Habilidades[opcao].PodeUsar(this)) return null;
+			if (!Classe.HabilidadesIniciais[opcao].PodeUsar(this)) return null;
 
-			return Classe.Habilidades[opcao];
+			return Classe.HabilidadesIniciais[opcao];
 		}
 
 		public override Personagem SelecionarAlvo(List<Personagem> fila, bool aliado)

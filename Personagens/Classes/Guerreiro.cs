@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Habilidades;
 
 namespace projeto1_RPG.Personagens.Classes
 {
@@ -21,7 +22,8 @@ namespace projeto1_RPG.Personagens.Classes
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 1));
             KitInicial.Add(ListaArmas.GetArmas().Find(a => a.Id == 7));
             KitInicial.Add(ListaArmaduras.GetArmaduras().Find(a => a.Id == 3));
-		}
+			HabilidadesIniciais.Add(ListaHabilidades.HabilidadesOfensivas.Find(a => a.Id == 6));
+        }
 
 		public override string GetDescPtsHabili()
 		{

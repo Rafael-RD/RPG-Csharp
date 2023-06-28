@@ -14,7 +14,7 @@ namespace projeto1_RPG.Personagens.Principal
 		public string Nome { get; set; }
 		public Atributos Atributos { get; set; }
 		public Atributos Incrementos { get; set; }
-		public List<Habilidade> Habilidades { get; set; }
+		public List<Habilidade> HabilidadesIniciais { get; set; }
 		public List<Item> KitInicial { get; set; }
 		public int Dinheiro { get; set; }
 
@@ -23,7 +23,7 @@ namespace projeto1_RPG.Personagens.Principal
 			Nome = string.Empty;
 			Atributos = new Atributos();
 			Incrementos = new Atributos();
-			Habilidades = new List<Habilidade>();
+			HabilidadesIniciais = new List<Habilidade>();
 			KitInicial = new List<Item>();
 		}
 

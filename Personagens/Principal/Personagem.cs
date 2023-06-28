@@ -23,6 +23,7 @@ namespace projeto1_RPG.Personagens.Principal
 		public Atributos Atributos { get; set; }
 		public int PtsSaudeAtual { get; set; }
 		public int PtsHabiliAtual { get; set; }
+		public List<Habilidade> Habilidades { get; set; }
 		public List<Item> Inventario { get; private set; }
 		public Arma Arma { get; set; }
 		public Armadura Armadura { get; set; }
@@ -46,6 +47,8 @@ namespace projeto1_RPG.Personagens.Principal
 			PtsHabiliAtual = Atributos.PtsHabiliMax;
 			Inventario = new List<Item>();
 			Inventario.AddRange(Classe.KitInicial);
+			Habilidades = new List<Habilidade>();
+			Habilidades.AddRange(Classe.HabilidadesIniciais);
 			//SelecionarConsumivel();
 			SelecionarArma();
 			SelecionarArmadura();
