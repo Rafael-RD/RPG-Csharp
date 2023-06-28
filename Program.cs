@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using projeto1_RPG.Itens;
 using projeto1_RPG.Itens.Armas;
 using projeto1_RPG.Itens.Consumiveis;
 
@@ -101,17 +100,17 @@ namespace projeto1_RPG
 
 					case 2:
 						Console.WriteLine("Você escolheu ver o personagem");
-                        Console.WriteLine("Nivel atual: " + p1.Nivel.NivelAtual);
-                        Console.WriteLine("Saude atual:" + p1.PtsSaudeAtual);
-                        Console.WriteLine("Pontos de habilide: " + p1.PtsHabiliAtual);
-                        Console.WriteLine("Moedas de ouro: " + p1.Dinheiro);
-                        Console.WriteLine("Raça: " + p1.Raca.Nome);
-						Console.WriteLine("Classe: " + p1.Classe.Nome);
+                        Console.WriteLine("Nivel atual: " + j1.Nivel.NivelAtual);
+                        Console.WriteLine("Saude atual:" + j1.PtsSaudeAtual);
+                        Console.WriteLine("Pontos de habilide: " + j1.PtsHabiliAtual);
+                        Console.WriteLine("Moedas de ouro: " + j1.Dinheiro);
+                        Console.WriteLine("Raça: " + j1.Raca.Nome);
+						Console.WriteLine("Classe: " + j1.Classe.Nome);
 						Console.WriteLine("\nSeus atributos são:");
-						Console.WriteLine("Força: " + p1.Atributos.Forca);
-                        Console.WriteLine("Destreza: " + p1.Atributos.Destreza);
-                        Console.WriteLine("Inteligência: " + p1.Atributos.Inteligencia);
-                        Console.WriteLine("Resistência: " + p1.Atributos.Resistencia);
+						Console.WriteLine("Força: " + j1.Atributos.Forca);
+                        Console.WriteLine("Destreza: " + j1.Atributos.Destreza);
+                        Console.WriteLine("Inteligência: " + j1.Atributos.Inteligencia);
+                        Console.WriteLine("Resistência: " + j1.Atributos.Resistencia);
 						Console.WriteLine();
                         break;
 					default:
