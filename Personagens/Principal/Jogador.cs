@@ -40,19 +40,19 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public override Habilidade SelecionarHabilidade()
 		{
-			if (Inventario.Count == 0)
+			if (Habilidades.Count == 0)
 			{
 				System.Console.WriteLine("Você não possui nenhuma habilidade.");
 				return null;
 			}
 
 			Console.WriteLine($"\nSelecione uma habilidade:");
-			int opcao = Menu.MostrarOpcoes(Classe.Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
+			int opcao = Menu.MostrarOpcoes(Classe.HabilidadesIniciais.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
 			if (opcao >= 0)
 			{
 				string msg;
-				if (!Classe.Habilidades[opcao].PodeUsar(this, out msg)) System.Console.WriteLine(msg);
-				else return Classe.Habilidades[opcao];
+				if (!Classe.HabilidadesIniciais[opcao].PodeUsar(this, out msg)) System.Console.WriteLine(msg);
+				else return Classe.HabilidadesIniciais[opcao];
 			}
 			return null;
 		}
