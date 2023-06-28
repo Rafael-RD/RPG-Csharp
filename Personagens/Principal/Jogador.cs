@@ -6,12 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Jogador : Personagem
 	{
-		public Jogador(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel) { }
+		public Jogador(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel) 
+		{
+			Inventario.Add(new PocaoVida(1, "Poção de vida", "Poção que restaura vida", 10, 15));
+            Inventario.Add(new PocaoVida(1, "Poção de vida", "Poção que restaura vida", 10, 15));
+            Inventario.Add(new PocaoVida(1, "Poção de vida", "Poção que restaura vida", 10, 15));
+        }
 
 		public override AcaoTurno EscolherAcao()
 		{
@@ -34,13 +40,19 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public override Habilidade SelecionarHabilidade()
 		{
+			if (Habilidades.Count == 0)
+			{
+				System.Console.WriteLine("Você não possui nenhuma habilidade.");
+				return null;
+			}
+
 			Console.WriteLine($"\nSelecione uma habilidade:");
-			int opcao = Menu.MostrarOpcoes(Classe.Habilidades.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
+			int opcao = Menu.MostrarOpcoes(Classe.HabilidadesIniciais.Select(x => x.Nome).ToArray(), "Habilidade: ", "Voltar");
 			if (opcao >= 0)
 			{
 				string msg;
-				if (!Classe.Habilidades[opcao].PodeUsar(this, out msg)) System.Console.WriteLine(msg);
-				else return Classe.Habilidades[opcao];
+				if (!Classe.HabilidadesIniciais[opcao].PodeUsar(this, out msg)) System.Console.WriteLine(msg);
+				else return Classe.HabilidadesIniciais[opcao];
 			}
 			return null;
 		}
@@ -65,6 +77,12 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public override Item SelecionarItem()
 		{
+			if (Inventario.Count == 0)
+			{
+				System.Console.WriteLine("Você não possui nenhum item.");
+				return null;
+			}
+
 			Console.WriteLine($"\nSelecione um item:");
 			int opcao = Menu.MostrarOpcoes(Inventario.Select(x => (ItemEquipado(x) ? $"*{x.Nome} (Equipado)" : $" {x.Nome}")).ToArray(), "Item: ", "Voltar");
 			if (opcao >= 0)

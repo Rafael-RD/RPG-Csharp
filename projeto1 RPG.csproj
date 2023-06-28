@@ -45,16 +45,21 @@
   <ItemGroup>
     <Compile Include="Combates\Combate.cs" />
     <Compile Include="Combates\FilaCombate.cs" />
-    <Compile Include="Combates\Gatilhos.cs" />
     <Compile Include="Combates\GeradorOponentes.cs" />
     <Compile Include="Efeitos\Efeito.cs" />
     <Compile Include="Efeitos\EfeitoDefesa.cs" />
+    <Compile Include="Gatilhos\IGatilhoDanoAposArmadura.cs" />
+    <Compile Include="Gatilhos\IGatilhoPodeIniciarTurno.cs" />
     <Compile Include="Habilidades\Habilidade.cs" />
+    <Compile Include="Habilidades\HabilidadeDefensiva.cs" />
     <Compile Include="Habilidades\HabilidadeOfensiva.cs" />
+    <Compile Include="Habilidades\ListaHabilidades.cs" />
     <Compile Include="Itens\Armaduras\Armadura.cs" />
     <Compile Include="Itens\Armaduras\ListaArmaduras.cs" />
     <Compile Include="Itens\Armas\Arma.cs" />
     <Compile Include="Itens\Armas\ListaArmas.cs" />
+    <Compile Include="Itens\Consumiveis\Consumivel.cs" />
+    <Compile Include="Itens\Consumiveis\PocaoVida.cs" />
     <Compile Include="Itens\Item.cs" />
     <Compile Include="Personagens\Classes\Clerigo.cs" />
     <Compile Include="Personagens\Principal\Classe.cs" />

@@ -10,6 +10,8 @@ namespace projeto1_RPG.Personagens.Principal
 {
 	internal class Oponente : Personagem
 	{
+		private static readonly Random _rnd = new Random();
+
 		public Oponente(string nome, Raca raca, Classe classe, int nivel = 1) : base(nome, raca, classe, nivel)
 		{
 			this.Dinheiro /= 2;
@@ -17,7 +19,7 @@ namespace projeto1_RPG.Personagens.Principal
 
 		public override AcaoTurno EscolherAcao()
 		{
-			int chance = new Random().Next(1, 10 + 1);
+			int chance = _rnd.Next(1, 10 + 1);
 
 			if (chance <= 2) return AcaoTurno.Defender;
 			if (chance == 3) return AcaoTurno.Habilidades;
@@ -28,13 +30,13 @@ namespace projeto1_RPG.Personagens.Principal
 		public override Habilidade SelecionarHabilidade()
 		{
 			int opcao;
-			if (Classe.Habilidades.Count == 0) return null;
-			if (Classe.Habilidades.Count == 1) opcao = 0;
-			else opcao = new Random().Next(Classe.Habilidades.Count);
+			if (Classe.HabilidadesIniciais.Count == 0) return null;
+			if (Classe.HabilidadesIniciais.Count == 1) opcao = 0;
+			else opcao = _rnd.Next(Classe.HabilidadesIniciais.Count);
 
-			if (!Classe.Habilidades[opcao].PodeUsar(this)) return null;
+			if (!Classe.HabilidadesIniciais[opcao].PodeUsar(this)) return null;
 
-			return Classe.Habilidades[opcao];
+			return Classe.HabilidadesIniciais[opcao];
 		}
 
 		public override Personagem SelecionarAlvo(List<Personagem> fila, bool aliado)
@@ -42,7 +44,7 @@ namespace projeto1_RPG.Personagens.Principal
 			List<Personagem> lista = fila.FindAll(x => (aliado) == (x is Oponente));
 			if (lista.Count == 1) return lista[0];
 
-			return lista[new Random().Next(lista.Count)];
+			return lista[_rnd.Next(lista.Count)];
 		}
 
 		public int CalcExpRecompensa()
@@ -56,7 +58,7 @@ namespace projeto1_RPG.Personagens.Principal
 			int opcao;
 			if (Inventario.Count == 0) return null;
 			if (Inventario.Count == 1) opcao = 0;
-			else opcao = new Random().Next(Inventario.Count);
+			else opcao = _rnd.Next(Inventario.Count);
 
 			if (!Inventario[opcao].PodeUsar(this)) return null;
 
