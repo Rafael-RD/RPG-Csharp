@@ -1,5 +1,6 @@
 using projeto1_RPG.Principal;
 using projeto1_RPG.Personagens.Principal;
+using projeto1_RPG.Personagens.Classes;
 using projeto1_RPG.Combates;
 using projeto1_RPG.Itens;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens.Armas;
 using projeto1_RPG.Itens.Consumiveis;
 
 namespace projeto1_RPG
@@ -52,27 +54,27 @@ namespace projeto1_RPG
 			List<Personagem> listaJogadores = new List<Personagem>();
 			listaJogadores.Add(j1);
 			//fim batalha
+			
 
 
-			bool sair = false;
-			List<Personagem> listaOponentes;
-			Combate combate;
-			while (!sair)
-			{
-				// Console.WriteLine("Você conseguiu derrortar o " + nomedomonstro + "ele te deu " + xp + " de experiencia");
-				Console.WriteLine("O que deseja fazer?");
-				opcoes = new string[]{
-								"Explorar",
-								"Ver inventário",
-								"Ver personagem"
-						};
-				int opcao = Menu.MostrarOpcoes(opcoes, "Opção:", "Sair");
-				switch (opcao)
-				{
-					case 0:
-						Console.WriteLine();
-						Console.WriteLine("Você escolheu explorar");
-						listaOponentes = b.MontarLista(listaJogadores);
+            bool sair = false;
+            List<Personagem> listaOponentes;
+            Combate combate;
+            while (!sair)
+            {
+                Console.WriteLine("O que deseja fazer?");
+                 opcoes =  new string []{
+                "Explorar",
+                "Ver inventário",
+                "Ver personagem"
+            };
+                int opcao = Menu.MostrarOpcoes(opcoes, "Opção:", "Sair");
+                switch (opcao)
+                {
+                    case 0:
+                        Console.WriteLine();
+                        Console.WriteLine("Você escolheu explorar");
+                        listaOponentes = b.MontarLista(listaJogadores);
 
 						combate = new Combate();
 						foreach (Personagem oponente in listaOponentes)
@@ -85,6 +87,7 @@ namespace projeto1_RPG
 
 
 					case 1:
+						//ta errado por enquanto
 						Console.WriteLine();
 						Console.WriteLine("Você escolheu ver inventário");
 						Item item = j1.SelecionarItem();
@@ -97,7 +100,19 @@ namespace projeto1_RPG
 
 					case 2:
 						Console.WriteLine("Você escolheu ver o personagem");
-						break;
+                        Console.WriteLine("Nivel atual: " + j1.Nivel.NivelAtual);
+                        Console.WriteLine("Saude atual:" + j1.PtsSaudeAtual);
+                        Console.WriteLine("Pontos de habilide: " + j1.PtsHabiliAtual);
+                        Console.WriteLine("Moedas de ouro: " + j1.Dinheiro);
+                        Console.WriteLine("Raça: " + j1.Raca.Nome);
+						Console.WriteLine("Classe: " + j1.Classe.Nome);
+						Console.WriteLine("\nSeus atributos são:");
+						Console.WriteLine("Força: " + j1.Atributos.Forca);
+                        Console.WriteLine("Destreza: " + j1.Atributos.Destreza);
+                        Console.WriteLine("Inteligência: " + j1.Atributos.Inteligencia);
+                        Console.WriteLine("Resistência: " + j1.Atributos.Resistencia);
+						Console.WriteLine();
+                        break;
 					default:
 						sair = true;
 						break;
