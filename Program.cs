@@ -1,11 +1,14 @@
 using projeto1_RPG.Principal;
 using projeto1_RPG.Personagens.Principal;
+using projeto1_RPG.Personagens.Classes;
 using projeto1_RPG.Combates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto1_RPG.Itens;
+using projeto1_RPG.Itens.Armas;
 
 namespace projeto1_RPG
 {
@@ -18,7 +21,7 @@ namespace projeto1_RPG
 			Console.WriteLine("Bem vindo ao jogo!\nVamos começar a aventura!");
 			Console.WriteLine("Qual seu nome: ");
 			string nome = Console.ReadLine();
-			Console.WriteLine("Selecione uma raça:");
+			Console.WriteLine("\nSelecione uma raça:");
 			string[] opcoes = ListaRacas.GetRacasGlobal().Select(x => x.Nome).ToArray();
 			int racaEscolhida = Menu.MostrarOpcoes(opcoes, "Raça: ");
 			Raca racajogador = (ListaRacas.GetRacasGlobal()[racaEscolhida]);
@@ -46,6 +49,7 @@ namespace projeto1_RPG
 			List<Personagem> listaJogadores = new List<Personagem>();
 			listaJogadores.Add(p1);
 			//fim batalha
+			
 
 
             bool sair = false;
@@ -78,14 +82,28 @@ namespace projeto1_RPG
 
 
 					case 1:
+						//ta errado por enquanto
 						Console.WriteLine();
 						Console.WriteLine("Você escolheu ver inventário");
+                    //foreach (Item item in p1.Inventario) { Console.WriteLine(item.ToString()); }
 						p1.SelecionarItem();
 						break;
 
 					case 2:
 						Console.WriteLine("Você escolheu ver o personagem");
-						break;
+                        Console.WriteLine("Nivel atual: " + p1.Nivel.NivelAtual);
+                        Console.WriteLine("Saude atual:" + p1.PtsSaudeAtual);
+                        Console.WriteLine("Pontos de habilide: " + p1.PtsHabiliAtual);
+                        Console.WriteLine("Moedas de ouro: " + p1.Dinheiro);
+                        Console.WriteLine("Raça: " + p1.Raca.Nome);
+						Console.WriteLine("Classe: " + p1.Classe.Nome);
+						Console.WriteLine("\nSeus atributos são:");
+						Console.WriteLine("Força: " + p1.Atributos.Forca);
+                        Console.WriteLine("Destreza: " + p1.Atributos.Destreza);
+                        Console.WriteLine("Inteligência: " + p1.Atributos.Inteligencia);
+                        Console.WriteLine("Resistência: " + p1.Atributos.Resistencia);
+						Console.WriteLine();
+                        break;
 					default:
 						sair = true;
 						break;
