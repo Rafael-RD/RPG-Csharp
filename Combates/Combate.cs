@@ -153,37 +153,37 @@ namespace projeto1_RPG.Combates
 			Console.WriteLine(_linha_separar);
 			Console.WriteLine("Combate encerrado!");
 
-			string resultado;
-			if (Fugiu) resultado = "Fuga";
-			else if (this.Fila.Jogadores.Count == 0) resultado = "Derrota";
-			else resultado = "Vitória";
+			if (this.Fila.Jogadores.Count == 0) Console.WriteLine("Resultado: Derrota");
+			else
+		 	{
+				if (Fugiu) Console.WriteLine($"Resultado: Fuga");
+				else Console.WriteLine($"Resultado: Vitória");
 
-			Console.WriteLine($"Resultado: {resultado}");
-
-			int expTotal = 0;
-			int dinTotal = 0;
-			int expFinal = 0;
-			int dinFinal = 0;
-			foreach (Oponente p in Oponentes)
-			{
-				expTotal += p.Nivel.ExpRecompensa;
-				dinTotal += p.Dinheiro / Oponentes.Count;
-				if (!Fila.Oponentes.Contains(p))
+				int expTotal = 0;
+				int dinTotal = 0;
+				int expFinal = 0;
+				int dinFinal = 0;
+				foreach (Oponente p in Oponentes)
 				{
-					expFinal = expTotal / Fila.Jogadores.Count;
-					dinFinal = dinTotal / Fila.Jogadores.Count;
+					expTotal += p.Nivel.ExpRecompensa;
+					dinTotal += p.Dinheiro / Oponentes.Count;
+					if (!Fila.Oponentes.Contains(p))
+					{
+						expFinal = expTotal / Fila.Jogadores.Count;
+						dinFinal = dinTotal / Fila.Jogadores.Count;
+					}
+				}
+				foreach (Jogador j in Fila.Jogadores)
+				{
+					if (expFinal > 0) Console.WriteLine($"{j.Nome} recebeu {expFinal} pontos de experiência.");
+					j.Nivel.ExpAtual += expFinal;
+					j.Nivel.CalcExperiencia();
+					if (j.Nivel.AvancouNivel) Console.WriteLine($"{j.Nome} alcançou o nível {j.Nivel.NivelAtual}!");
+					if (dinFinal > 0) Console.WriteLine($"{j.Nome} recebeu {dinFinal} peças de ouro.");
+					j.Dinheiro += dinFinal;
 				}
 			}
-			foreach (Jogador j in Fila.Jogadores)
-			{
-				if (expFinal > 0) Console.WriteLine($"{j.Nome} recebeu {expFinal} pontos de experiência.");
-				j.Nivel.ExpAtual += expFinal;
-				j.Nivel.CalcExperiencia();
-				if (j.Nivel.AvancouNivel) Console.WriteLine($"{j.Nome} alcançou o nível {j.Nivel.NivelAtual}!");
-				if (dinFinal > 0) Console.WriteLine($"{j.Nome} recebeu {dinFinal} peças de ouro.");
-				j.Dinheiro += dinFinal;
-			}
-			Console.Write("Pressione qualquer tecla para continuar.");
+			Console.WriteLine("Pressione qualquer tecla para continuar.");
 			Console.ReadKey();
 		}
 	}
