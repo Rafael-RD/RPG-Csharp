@@ -66,3 +66,7 @@ Sistema de Efeitos de Combate:
 Sistema de ganho de itens: Ao matar X inimigos aparece um baú, neste baú podem vir itens aleatórios.
 Sistema de Raridade de Itens: Pode existir de 2 - 4 tipos de raridade de itens, com atributos e efeitos diferentes.
 Sistema de Habilidades de Itens: Pode existir uma classificação de itens chamada “Únicos”, como:  “Raio de Zeus”, “Cajado de Merlin”, etc. Estes itens adicionam habilidades extras à lista de habilidades do personagem. 
+
+---
+### Diagrama de classes:
+![DiagramaClassesRPG](https://github.com/Rafael-RD/RPG-Csharp/assets/12214387/cd6328e9-4675-4c11-8798-3f5e233e172e)
